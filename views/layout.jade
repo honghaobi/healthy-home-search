@@ -2,6 +2,11 @@ doctype html
 html
   head
     title= title
+    meta(name='viewport', content='initial-scale=1,maximum-scale=1,user-scalable=no')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.17.0/mapbox-gl.css', rel='stylesheet')
+    script(src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.17.0/mapbox-gl.js')
+    script(src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js')
+    link(href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css', rel='stylesheet')
   body
     block content

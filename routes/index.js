@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
       renderLocation: location
     }
     console.log(allData.renderLocation);
-    // res.render('result', {allData});
+    res.render('result', {allData});
   })
 });
 

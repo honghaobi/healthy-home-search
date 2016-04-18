@@ -1,3 +1,26 @@
 extends layout
 
 block content
+
+  #map
+  script.
+    L.mapbox.accessToken = 'pk.eyJ1IjoiaGVucnliaSIsImEiOiJjaW42NmVvMmowZTFidXBra2xkM2N3cTE1In0.cdfJiLolXJoUefefWOKqew';
+    var map = new L.mapbox.map('map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
+
+    L.mapbox.featureLayer({
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [
+          #{allData.renderLocation.lat},
+          #{allData.renderLocation.long} 
+        ]
+    },
+      properties: {
+        title: 'My featured house',
+        description: 'Healthy Search',
+        'marker-size': 'large',
+        'marker-color': '#5dfd92',
+        'marker-symbol': 'star',
+        }
+    }).addTo(map);
