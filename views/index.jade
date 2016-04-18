@@ -1,5 +1,7 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 welcome to healthy home search!
+  form(action='/', method='post')
+    input(type='text' name='userInput')
+    input(type='submit')

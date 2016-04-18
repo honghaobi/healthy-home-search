@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var search = require('../models/search');
+var community = require('../models/community');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -7,9 +9,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  models.getGeoCode(userSearch).then(function(data){
-    
-    res.render('result', {data});
+  search.getGeoCode(req.body.userInput).then(function(location){
+    //here we are making api calls in promises then rendor the page:
+    var allData = {
+      renderLocation: location
+    }
+    console.log(allData.renderLocation);
+    // res.render('result', {allData});
   })
 });
 
