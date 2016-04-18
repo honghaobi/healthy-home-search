@@ -14,7 +14,13 @@ router.post('/', function(req, res, next) {
     var allData = {
       renderLocation: location
     }
-    console.log(allData.renderLocation);
+
+    community.getSchools(location).then(function(schoolData) {
+      if(schoolData.name) {
+        return schoolData;
+      }
+      console.log(schoolData);
+    })
     res.render('result', {allData});
   })
 });
