@@ -20,8 +20,8 @@ router.post('/', function(req, res, next) {
         return schoolData;
       }
       console.log(schoolData);
+      res.render('result', {allData});
     })
-    res.render('result', {allData});
   })
 });
 
