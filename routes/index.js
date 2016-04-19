@@ -30,6 +30,11 @@ router.post('/', function(req, res, next) {
       allData.renderAqi = aqiData;
     }));
 
+    allFunctions.push(environment.getPermits(location).then( (permitData) => {
+      console.log(permitData);
+      allData.renderPermits = permitData;
+    }));
+
     Promise.all(allFunctions).then(function(){
       res.render('result', {allData});
     });
