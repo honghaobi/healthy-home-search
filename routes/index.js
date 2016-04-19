@@ -22,9 +22,16 @@ router.post('/', function(req, res, next) {
     }));
 
     allFunctions.push(community.getParks(location).then( (parkData) => {
-      console.log(parkData);
       allData.renderParks = parkData;
     }));
+
+    allFunctions.push(community.getCulturalSpace(location).then( (cultureData) => {
+      allData.rendercultCenters = cultureData;
+    }));
+
+    allFunctions.push(community.getViewPoints(location).then( (viewpointData) => {
+      allData.renderViewpoints = viewpointData;
+    }))
 
     allFunctions.push(safety.getCrime(location).then(function(crimeData) {
       allData.renderCrime = crimeData;
