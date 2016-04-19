@@ -2,11 +2,159 @@ extends layout
 
 block content
 
-  #map
+  section.main
+    header
+      .row
+        nav.top-bar(data-topbar='', role='navigation')
+          // Start Logo
+          ul.title-area
+            li.name
+
+            span.toggle-topbar.menu-icon
+              a(href='#')
+                span Menu
+
+
+          // Start Navigation Menu
+          section#mean_nav.top-bar-section
+            ul.right
+              li
+                a(href='#scores') Healthy Scores
+              li
+                a(href='#community') Community
+              li
+                a(href='#accessibility') Accessibility
+              li
+                a(href='#safety') Safety
+              li
+                a(href='#environment') Environment
+          // End Navigation Menu
+    // Start Hero Caption
+    section.caption
+      .row
+        h1.mean_cap
+          | Let us Help You to Find Your Next
+          h2.sub_cap Healthy Living
+          a.score_arrow.btn_details(href='#scores')
+            span See Your Healthy Home Scores
+            img.arrow(src='images/btn_arrow.png', alt='')
+    // End Hero Caption
+  // End Hero Section
+  // Start scores Section
+  section#scores.scores
+    // Start scores Titles
+    .row
+      h1.mean_title Here are your Scores Below
+      h2.sub_title Your Home is Our Priority
+    // End scores Titles
+    // Start scores List
+    .row.scores_list
+      .small-12.medium-3.large-3.columns
+      
+      
+        img.serv_icon(src='images/icon2.png', alt='', title='')
+        h1.mean_title 92
+        .btn_holder
+          a.btn_fancy(href='#community')
+            .solid_layer
+            .border_layer
+            .text_layer Community
+        br
+        p
+          | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      .small-12.medium-3.large-3.columns
+      
+      
+        img.serv_icon(src='images/icon1.png', alt='', title='')
+        h1.mean_title 76
+        .btn_holder
+          a.btn_fancy(href='#accessibility')
+            .solid_layer
+            .border_layer
+            .text_layer Accessibility
+        br
+        p
+          | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      .small-12.medium-3.large-3.columns
+      
+      
+        img.serv_icon(src='images/icon3.png', alt='', title='')
+        h1.mean_title 65
+        .btn_holder
+          a.btn_fancy(href='#safety')
+            .solid_layer
+            .border_layer
+            .text_layer Safety
+        br
+        p
+          | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      .small-12.medium-3.large-3.columns
+      
+      
+        img.serv_icon(src='images/icon4.png', alt='', title='')
+        h1.mean_title 97
+        .btn_holder
+          a.btn_fancy(href='#environment')
+            .solid_layer
+            .border_layer
+            .text_layer Environment
+        br
+        p
+          | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          
+  section.break    
+  
+  section#community.community
+    .row
+      .large-7.columns
+        #community_map
+      .large-5.columns
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      
+  section.break    
+      
+  section#accessibility.accessibility
+    .row
+      .large-5.columns
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      .large-7.columns
+        #accessibility_map
+        
+  section.break    
+        
+  section#safety.safety
+    .row
+      .large-7.columns
+        img(src='https://placeimg.com/640/480/any')
+      .large-5.columns
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          
+  section.break    
+      
+  section#environment.environment
+    .row
+      .large-5.columns
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      .large-7.columns
+        #environment_map
+        
+        
+  .shadow
+
+
+  footer
+  a#back_top.btn_fancy(href='#')
+    .solid_layer
+    .border_layer
+    .text_layer
+      img.top_arrow(src='images/top_arrow.png', alt='Back to top', title='')
+  
   script.
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVucnliaSIsImEiOiJjaW42NmVvMmowZTFidXBra2xkM2N3cTE1In0.cdfJiLolXJoUefefWOKqew';
     
-    var map = new L.mapbox.map('map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
+    var allData = !{JSON.stringify(allData)};
+    
+    var communityMap = new L.mapbox.map('community_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
 
     L.mapbox.featureLayer({
       type: 'Feature',
@@ -24,11 +172,51 @@ block content
         'marker-color': '#5dfd92',
         'marker-symbol': 'star',
         }
-    }).addTo(map);
+    }).addTo(communityMap);
     
-    var allData = !{JSON.stringify(allData)};
-    console.log(allData);
     for (var i = 0; i < allData.renderSchool.length; i++) {
-      L.marker([allData.renderSchool[i].lat_cen,allData.renderSchool[i].long_cen]).addTo(map);
+      L.marker([allData.renderSchool[i].lat_cen,allData.renderSchool[i].long_cen]).addTo(communityMap);
     }
+    
+    var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
+
+    
+    L.mapbox.featureLayer({
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [
+          #{allData.renderLocation.lat},
+          #{allData.renderLocation.long} 
+        ]
+      },
+      properties: {
+        title: 'My featured house',
+        description: 'Healthy Search',
+        'marker-size': 'large',
+        'marker-color': '#5dfd92',
+        'marker-symbol': 'star',
+        }
+    }).addTo(accessibilityMap);
+        
+    var environmentMap = new L.mapbox.map('environment_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
+    
+    L.mapbox.featureLayer({
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [
+          #{allData.renderLocation.lat},
+          #{allData.renderLocation.long} 
+        ]
+      },
+      properties: {
+        title: 'My featured house',
+        description: 'Healthy Search',
+        'marker-size': 'large',
+        'marker-color': '#5dfd92',
+        'marker-symbol': 'star',
+        }
+    }).addTo(environmentMap);
+    
     

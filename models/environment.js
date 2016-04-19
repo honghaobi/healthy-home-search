@@ -4,6 +4,7 @@ var env = require('require-env');
 module.exports = {
   getAqi: (userInput) => {
     userInput = userInput.replace(/\s+/g, '+');
+
     var options = {
       method: 'GET',
       uri:`https://api.breezometer.com/baqi/?location=${userInput}&fields=breezometer_aqi,dominant_pollutant_text,breezometer_description&key=${process.env.BREEZEKEY}`,
@@ -21,7 +22,6 @@ module.exports = {
   },
 
   getPermits: (location) => {
-
     var options = {
       method: 'GET',
       uri: `https://data.seattle.gov/resource/mags-97de.json?$where=within_circle(location, ${location.long}, ${location.lat},250)`,
@@ -30,6 +30,7 @@ module.exports = {
       },
       json:true
     }
+
     return rp(options)
       .then( (permitData) => {
         return permitData;

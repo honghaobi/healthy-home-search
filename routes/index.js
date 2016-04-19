@@ -22,10 +22,21 @@ router.post('/', function(req, res, next) {
       allData.renderSchool = schoolData;
     }));
 
+    allFunctions.push(community.getParks(location).then( (parkData) => {
+      allData.renderParks = parkData;
+    }));
+
+    allFunctions.push(community.getCulturalSpace(location).then( (cultureData) => {
+      allData.rendercultCenters = cultureData;
+    }));
+
+    allFunctions.push(community.getViewPoints(location).then( (viewpointData) => {
+      allData.renderViewpoints = viewpointData;
+    }))
+
     allFunctions.push(safety.getCrime(location).then(function(crimeData) {
       allData.renderCrime = crimeData;
     }));
-
 
     allFunctions.push(environment.getAqi(req.body.userInput).then( (aqiData) => {
       allData.renderAqi = aqiData;
