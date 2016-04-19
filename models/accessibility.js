@@ -17,5 +17,25 @@ module.exports = {
       .catch(function(err) {
         console.log(err);
       });
+  },
+
+  getParking: (location) => {
+    var options = {
+      method: 'GET',
+      uri: `https://data.seattle.gov/resource/3neb-8edu.json?$where=within_circle(shape,${location.long},${location.lat},1500)`,
+      ps: {
+        $$app_token: process.env.SODAKEY
+      },
+      json:true
+    }
+
+
+    return rp(options)
+      .then(function(parkingData) {
+        return parkingData;
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   }
 }
