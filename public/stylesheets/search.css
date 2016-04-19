@@ -16,10 +16,6 @@
    color: #55adb6;
 }
 
-body {
-	background: #DDD;
-	font-size: 15px;
-}
 #wrap {
   margin: 50px 100px;
   display: inline-block;
@@ -30,8 +26,8 @@ body {
   position: relative;
 }
 
-input[type="text"] {
-  height: 60px;
+#search {
+  height: 70px;
   font-size: 55px;
   display: inline-block;
   font-family: "Lato";
@@ -51,17 +47,17 @@ input[type="text"] {
   cursor: pointer;
 }
 
-input[type="text"]:focus:hover {
+#search:focus:hover {
   border-bottom: 5px solid #55adb6;
 }
 
-input[type="text"]:focus {
+#search:focus {
   width: 700px;
   z-index: 1;
   border-bottom: 5px solid #55adb6;
   cursor: text;
 }
-input[type="submit"] {
+#search_submit {
   height: 65px;
   width: 65px;
   display: inline-block;
@@ -78,6 +74,6 @@ input[type="submit"] {
   transition: opacity .8s ease;
 }
 
-input[type="submit"]:hover {
+#search_submit:hover {
   opacity: 1;
 }
