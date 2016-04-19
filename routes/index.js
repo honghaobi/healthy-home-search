@@ -27,7 +27,7 @@ router.post('/', function(req, res, next) {
     }));
 
     allFunctions.push(community.getCulturalSpace(location).then( (cultureData) => {
-      allData.rendercultCenters = cultureData;
+      allData.renderCultCenters = cultureData;
     }));
 
     allFunctions.push(community.getViewPoints(location).then( (viewpointData) => {

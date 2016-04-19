@@ -108,6 +108,13 @@ block content
     .row
       .large-7.columns
         #community_map
+        nav.menu-ui
+          a.active(href='#', data-filter='all') Show all
+          a(href='#', data-filter='school') School
+          a(href='#', data-filter='park') Park
+          a(href='#', data-filter='viewpoint') Viewpoint
+          a(href='#', data-filter='cultural-space') Cultural Space
+
       .large-5.columns
         p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       
@@ -155,7 +162,7 @@ block content
     var allData = !{JSON.stringify(allData)};
     console.log(allData);
     
-    var communityMap = new L.mapbox.map('community_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
+    var communityMap = new L.mapbox.map('community_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 15);
 
     L.mapbox.featureLayer({
       type: 'Feature',
@@ -175,9 +182,111 @@ block content
         }
     }).addTo(communityMap);
     
+    var geojson = [];
+    
     for (var i = 0; i < allData.renderSchool.length; i++) {
-      L.marker([allData.renderSchool[i].lat_cen,allData.renderSchool[i].long_cen]).addTo(communityMap);
+      geojson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderSchool[i].long_cen,
+            allData.renderSchool[i].lat_cen
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": allData.renderSchool[i].name,
+          "school": true,
+          "park": false,
+          "viewpoint": false,
+          "cultural-space": false,
+          "marker-color": "#2f36b6",
+          "marker-size": "large",
+        }
+      });  
     }
+      
+    for (var j = 0; j < allData.renderParks.length; j++) {
+      geojson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderParks[j].longitude,
+            allData.renderParks[j].latitude
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": allData.renderParks[j].common_name,
+          "school": false,
+          "park": true,
+          "viewpoint": false,
+          "cultural-space": false,
+          "marker-color": "#3ebc36",
+          "marker-size": "large",
+        }
+      });  
+    }
+    
+    for (var k = 0; k < allData.renderViewpoints.length; k++) {
+      geojson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderViewpoints[k].longitude,
+            allData.renderViewpoints[k].latitude
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": allData.renderViewpoints[k].common_name,
+          "school": false,
+          "park": false,
+          "viewpoint": true,
+          "cultural-space": false,
+          "marker-color": "#da6339",
+          "marker-size": "large",
+        }
+      });  
+    }
+    
+    for (var l = 0; l < allData.renderCultCenters.length; l++) {
+      geojson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderCultCenters[l].location.coordinates[0],
+            allData.renderCultCenters[l].location.coordinates[1]
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": allData.renderCultCenters[l].name,
+          "school": false,
+          "park": false,
+          "viewpoint": false,
+          "cultural-space": true,
+          "marker-color": "#b64990",
+          "marker-size": "large",
+        }
+      });  
+    }
+      
+    var markers = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(communityMap);
+    
+    $('.menu-ui a').on('click', function() {
+    // For each filter link, get the 'data-filter' attribute value.
+      var filter = $(this).data('filter');
+      $(this).addClass('active').siblings().removeClass('active');
+      markers.setFilter(function(f) {
+        // If the data-filter attribute is set to "all", return
+        // all (true). Otherwise, filter on markers that have
+        // a value set to true based on the filter name.
+        return (filter === 'all') ? true : f.properties[filter] === true;
+      });
+      return false;
+    });
+        
     
     var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
 

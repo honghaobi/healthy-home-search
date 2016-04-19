@@ -5,7 +5,7 @@ module.exports = {
   getSchools: (location) => {
     var options = {
       method: 'GET',
-      uri: 'https://data.kingcounty.gov/resource/cnyx-gwan.json?$where=within_circle(location_geo,' + location.long + ',' + location.lat + ',5000)',
+      uri: 'https://data.kingcounty.gov/resource/cnyx-gwan.json?$where=within_circle(location_geo,' + location.long + ',' + location.lat + ',1500)',
       qs: {
         $$app_token: process.env.SODAKEY
       },
