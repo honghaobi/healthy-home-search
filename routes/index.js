@@ -12,21 +12,23 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   search.getGeoCode(req.body.userInput).then(function(location){
     //here we are making api calls in promises then rendor the page:
-    var allData = {
-      renderLocation: location
-    }
+    var allData = {};
+    allData.renderLocation = location;
+    var allFunctions = [];
+    allFunctions.push(community.getSchools(location).then(function(schoolData) {
+      allData.renderSchool = schoolData;
+      console.log(schoolData);
+    }));
 
-    community.getSchools(location).then(function(schoolData) {
-      if(schoolData.name) {
-        return schoolData;
-      }
-    });
-    safety.getCrime(location).then(function(crimeData) {
+    allFunctions.push(safety.getCrime(location).then(function(crimeData) {
+      allData.renderCrime = crimeData;
       console.log(crimeData);
-      return crimeData;
-    })
-    res.render('result', {allData});
-  })
+    }));
+
+    Promise.all(allFunctions).then(function(){
+      res.render('result', {allData});
+    });
+  });
 });
 
 
