@@ -25,17 +25,10 @@ block content
         'marker-symbol': 'star',
         }
     }).addTo(map);
-    console.log(#{allData.renderSchool[0].long_cen});
-    console.log(#{allData.renderSchool[0].lat_cen});
-  
     
-    L.marker([#{allData.renderSchool[0].lat_cen},#{allData.renderSchool[0].long_cen}]).addTo(map);
-    L.marker([#{allData.renderSchool[1].lat_cen},#{allData.renderSchool[1].long_cen}]).addTo(map);
-    L.marker([#{allData.renderSchool[2].lat_cen},#{allData.renderSchool[2].long_cen}]).addTo(map);
-    L.marker([#{allData.renderSchool[3].lat_cen},#{allData.renderSchool[3].long_cen}]).addTo(map);
-    L.marker([#{allData.renderSchool[4].lat_cen},#{allData.renderSchool[4].long_cen}]).addTo(map);
-    L.marker([#{allData.renderSchool[5].lat_cen},#{allData.renderSchool[5].long_cen}]).addTo(map);
-    L.marker([#{allData.renderSchool[6].lat_cen},#{allData.renderSchool[6].long_cen}]).addTo(map);
-    L.marker([#{allData.renderSchool[7].lat_cen},#{allData.renderSchool[7].long_cen}]).addTo(map);
-    L.marker([#{allData.renderSchool[8].lat_cen},#{allData.renderSchool[8].long_cen}]).addTo(map);
-    L.marker([#{allData.renderSchool[9].lat_cen},#{allData.renderSchool[9].long_cen}]).addTo(map);
+    var allData = !{JSON.stringify(allData)};
+    console.log(allData);
+    for (var i = 0; i < allData.renderSchool.length; i++) {
+      L.marker([allData.renderSchool[i].lat_cen,allData.renderSchool[i].long_cen]).addTo(map);
+    }
+    

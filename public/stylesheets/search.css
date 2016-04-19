@@ -62,8 +62,8 @@ input[type="text"]:focus {
   cursor: text;
 }
 input[type="submit"] {
-  height: 67px;
-  width: 63px;
+  height: 65px;
+  width: 65px;
   display: inline-block;
   float: right;
   background: url(../images/house.png) center center no-repeat;
@@ -74,7 +74,7 @@ input[type="submit"] {
   right: 0;
   z-index: 2;
   cursor: pointer;
-	opacity: 0.5;
+	opacity: 0.7;
   transition: opacity .8s ease;
 }
 
