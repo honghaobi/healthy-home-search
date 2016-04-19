@@ -4,6 +4,7 @@ var search = require('../models/search');
 var community = require('../models/community');
 var safety = require('../models/safety');
 var environment = require('../models/environment');
+var accessibility = require('../models/accessibility');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -43,6 +44,11 @@ router.post('/', function(req, res, next) {
 
     allFunctions.push(environment.getPermits(location).then( (permitData) => {
       allData.renderPermits = permitData;
+    }));
+
+    allFunctions.push(accessibility.getTransit(location).then( (transitData) => {
+      console.log(transitData);
+      allData.renderTransit = transitData;
     }));
 
     Promise.all(allFunctions).then(function(){
