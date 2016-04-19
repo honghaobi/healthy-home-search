@@ -1,7 +1,20 @@
 extends layout
 
 block content
-  h1 welcome to healthy home search!
-  form(action='/', method='post')
-    input(type='text' name='userInput')
-    input(type='submit')
+  #wrap
+    form(action='/', method='post', autocomplete='on')
+      input#search(name='userInput', type='text', placeholder="Your next Home")
+      input#search_submit(value='Search', type='submit')
+    ul.cb-slideshow
+      li
+        span Image 01
+      li
+        span Image 02
+      li
+        span Image 03
+      li
+        span Image 04
+      li
+        span Image 05
+      li
+        span Image 06
