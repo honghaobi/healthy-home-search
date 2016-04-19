@@ -3,6 +3,7 @@ var router = express.Router();
 var search = require('../models/search');
 var community = require('../models/community');
 var safety = require('../models/safety');
+var environment = require('../models/environment');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,14 +16,18 @@ router.post('/', function(req, res, next) {
     var allData = {};
     allData.renderLocation = location;
     var allFunctions = [];
+
     allFunctions.push(community.getSchools(location).then(function(schoolData) {
       allData.renderSchool = schoolData;
-      console.log(schoolData);
     }));
 
     allFunctions.push(safety.getCrime(location).then(function(crimeData) {
       allData.renderCrime = crimeData;
-      console.log(crimeData);
+    }));
+
+
+    allFunctions.push(environment.getAqi(req.body.userInput).then( (aqiData) => {
+      allData.renderAqi = aqiData;
     }));
 
     Promise.all(allFunctions).then(function(){
