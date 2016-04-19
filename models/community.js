@@ -68,6 +68,7 @@ module.exports = {
       },
       json:true
     }
+
     return rp(options)
       .then( (viewpointData) => {
         return viewpointData;
