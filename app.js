@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var GoogleStrategy = require('passport-google-oauth1').Strategy;
+var Google2Strategy = require('passport-google-oauth2').Strategy;
 var passport = require('passport');
 
 var routes = require('./routes/index');
@@ -16,15 +16,15 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-passport.use(new GoogleStrategy({
+passport.use(new Google2Strategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: process.env.HOST + "/auth/google/callback",
   scope: ['r_emailaddress', 'r_basicprofile'],
 },
-function(accessToken, refreshToken, profile, cb) {
+function(accessToken, refreshToken, profile, done) {
   User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    return cb(err, user);
+    return done(err, user);
   });
 }));
 
@@ -43,7 +43,10 @@ require('dotenv').load();
 app.use('/', routes);
 app.use('/users', users);
 
-app.get('/auth/google', passport.authenticate('google'));
+app.get('/auth/google', passport.authenticate('google', {state: 'SOME STATE'}),
+  function(req, res) {
+    //this function will not be called
+  });
 
 app.get('auth/google/callback', passport.authentiate('google', {
   successRedirect: '/',
