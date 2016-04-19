@@ -24,7 +24,7 @@ module.exports = {
   getParks: (location) => {
     var options = {
       method: 'GET',
-      uri: `https://data.seattle.gov/resource/3c4b-gdxv.json?$where=within_circle(location,${location.long},${location.lat},1500)&city_feature=Childrens Play Areas`,
+      uri: `https://data.seattle.gov/resource/3c4b-gdxv.json?$where=within_circle(location,${location.long},${location.lat},1500)&city_feature=Parks`,
       qs: {
         $$app_token: process.env.SODAKEY
       },
