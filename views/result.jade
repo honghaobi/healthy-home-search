@@ -153,6 +153,7 @@ block content
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVucnliaSIsImEiOiJjaW42NmVvMmowZTFidXBra2xkM2N3cTE1In0.cdfJiLolXJoUefefWOKqew';
     
     var allData = !{JSON.stringify(allData)};
+    console.log(allData);
     
     var communityMap = new L.mapbox.map('community_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
 
@@ -180,7 +181,6 @@ block content
     
     var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
 
-    
     L.mapbox.featureLayer({
       type: 'Feature',
       geometry: {
@@ -218,5 +218,9 @@ block content
         'marker-symbol': 'star',
         }
     }).addTo(environmentMap);
+    
+    for (var i = 0; i < allData.renderParks.length; i++) {
+      L.marker([allData.renderParks[i].latitude,allData.renderParks[i].longitude]).addTo(environmentMap);
+    }
     
     
