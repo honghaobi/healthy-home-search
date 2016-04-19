@@ -24,7 +24,7 @@ module.exports = {
   getParks: (location) => {
     var options = {
       method: 'GET',
-      uri: `https://data.seattle.gov/resource/3c4b-gdxv.json?$where=within_circle(location,${location.long},${location.lat},1500)&city_feature=Childrens Play Areas`,
+      uri: `https://data.seattle.gov/resource/3c4b-gdxv.json?$where=within_circle(location,${location.long},${location.lat},1500)`,
       qs: {
         $$app_token: process.env.SODAKEY,
       },
@@ -34,6 +34,25 @@ module.exports = {
     return rp(options)
       .then( (parkData) => {
         return parkData;
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
+  },
+
+  getCulturalSpace: (location) => {
+    var options = {
+      method: 'GET',
+      uri: `https://data.seattle.gov/resource/bsta-72tn.json?$select=name,location&$where=within_circle(location,${location.long},${location.lat},1500)&closed=0`,
+      qs: {
+        $$app_token: process.env.SODAKEY,
+      },
+      json:true
+    }
+
+    return rp(options)
+      .then( (cultureData) => {
+        return cultureData;
       })
       .catch( (err) => {
         console.log(err);
