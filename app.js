@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var GoogleStrategy = require('passport-google-oauth1').Strategy;
+var passport = require('passport');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -14,6 +16,18 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.HOST + "/auth/google/callback",
+  scope: ['r_emailaddress', 'r_basicprofile'],
+},
+function(accessToken, refreshToken, profile, cb) {
+  User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    return cb(err, user);
+  });
+}));
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -21,11 +35,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.ititialize());
+app.use(passport.session());
 
 require('dotenv').load();
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.get('/auth/google', passport.authenticate('google'));
+
+app.get('auth/google/callback', passport.authentiate('google', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,6 +80,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
