@@ -21,17 +21,20 @@ router.post('/', function(req, res, next) {
       allData.renderSchool = schoolData;
     }));
 
+    allFunctions.push(community.getParks(location).then( (parkData) => {
+      console.log(parkData);
+      allData.renderParks = parkData;
+    }));
+
     allFunctions.push(safety.getCrime(location).then(function(crimeData) {
       allData.renderCrime = crimeData;
     }));
-
 
     allFunctions.push(environment.getAqi(req.body.userInput).then( (aqiData) => {
       allData.renderAqi = aqiData;
     }));
 
     allFunctions.push(environment.getPermits(location).then( (permitData) => {
-      console.log(permitData);
       allData.renderPermits = permitData;
     }));
 
