@@ -27,10 +27,7 @@ block content
     }).addTo(map);
     console.log(#{allData.renderSchool[0].long_cen});
     console.log(#{allData.renderSchool[0].lat_cen});
-    
-    for (var i = 0; i < #{allData.renderSchool.length}; i++) {
-      L.marker([#{allData.renderSchool[i].lat_cen},#{allData.renderSchool[i].long_cen}]).addTo(map);
-    }
+  
     
     L.marker([#{allData.renderSchool[0].lat_cen},#{allData.renderSchool[0].long_cen}]).addTo(map);
     L.marker([#{allData.renderSchool[1].lat_cen},#{allData.renderSchool[1].long_cen}]).addTo(map);
