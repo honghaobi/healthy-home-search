@@ -29,6 +29,10 @@ router.post('/', function(req, res, next) {
       allData.rendercultCenters = cultureData;
     }));
 
+    allFunctions.push(community.getViewPoints(location).then( (viewpointData) => {
+      allData.renderViewpoints = viewpointData;
+    }))
+
     allFunctions.push(safety.getCrime(location).then(function(crimeData) {
       allData.renderCrime = crimeData;
     }));
