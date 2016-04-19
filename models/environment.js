@@ -18,5 +18,24 @@ module.exports = {
     .catch( (err) => {
       console.log(err);
     });
+  },
+
+  getPermits: (location) => {
+
+    var options = {
+      method: 'GET',
+      uri: `https://data.seattle.gov/resource/mags-97de.json?$where=within_circle(location, ${location.long}, ${location.lat},250)`,
+      qs: {
+        $$app_token: process.env.SODAKEY
+      },
+      json:true
+    }
+    return rp(options)
+      .then( (permitData) => {
+        return permitData;
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
   }
 }
