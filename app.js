@@ -4,54 +4,61 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var Google2Strategy = require('passport-google-oauth2').Strategy;
+var GoogleStrategy = require('passport-google-oauth2').Strategy;
 var passport = require('passport');
+require('dotenv').load();
 
 var routes = require('./routes/index');
+var auth = require('./routes/auth');
 var users = require('./routes/users');
 
 var app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-passport.use(new Google2Strategy({
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.HOST + "/auth/google/callback",
-  scope: ['r_emailaddress', 'r_basicprofile'],
-},
-function(accessToken, refreshToken, profile, done) {
-  User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    return done(err, user);
-  });
-}));
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.ititialize());
+
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+})
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.HOST + "/auth/google/callback",
+  passReqToCallback: true
+},
+function(accessToken, refreshToken, profile, done) {
+    return done(null, {id: profile.id,
+    displayName: profile.displayName});
+}));
+
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: [process.env.SESSION_KEY]
+// }));
+
+app.use(passport.initialize());
 app.use(passport.session());
 
-require('dotenv').load();
-
 app.use('/', routes);
+app.use('/auth', auth);
 app.use('/users', users);
-
-app.get('/auth/google', passport.authenticate('google', {state: 'SOME STATE'}),
-  function(req, res) {
-    //this function will not be called
-  });
-
-app.get('auth/google/callback', passport.authentiate('google', {
-  successRedirect: '/',
-  failureRedirect: '/login'
-}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
