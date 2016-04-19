@@ -162,7 +162,7 @@ block content
     var allData = !{JSON.stringify(allData)};
     console.log(allData);
     
-    var communityMap = new L.mapbox.map('community_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
+    var communityMap = new L.mapbox.map('community_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 15);
 
     L.mapbox.featureLayer({
       type: 'Feature',
@@ -261,7 +261,7 @@ block content
           "type": "Point"
         },
         "properties": {
-          "title": allData.renderCultCenters[l].location.name,
+          "title": allData.renderCultCenters[l].name,
           "school": false,
           "park": false,
           "viewpoint": false,
