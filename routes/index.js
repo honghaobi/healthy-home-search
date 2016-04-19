@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var search = require('../models/search');
 var community = require('../models/community');
+var safety = require('../models/safety');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,7 +20,10 @@ router.post('/', function(req, res, next) {
       if(schoolData.name) {
         return schoolData;
       }
-      console.log(schoolData);
+    });
+    safety.getCrime(location).then(function(crimeData) {
+      console.log(crimeData);
+      return crimeData;
     })
     res.render('result', {allData});
   })
