@@ -11,14 +11,11 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   search.getGeoCode(req.body.userInput).then(function(location){
     //here we are making api calls in promises then rendor the page:
-    var allData = {
-      renderLocation: location
-    }
+    var allData = {};
+    allData.renderLocation = location;
 
     community.getSchools(location).then(function(schoolData) {
-      if(schoolData.name) {
-        return schoolData;
-      }
+      allData.renderSchool = schoolData;
       console.log(schoolData);
       res.render('result', {allData});
     })

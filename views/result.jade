@@ -5,6 +5,7 @@ block content
   #map
   script.
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVucnliaSIsImEiOiJjaW42NmVvMmowZTFidXBra2xkM2N3cTE1In0.cdfJiLolXJoUefefWOKqew';
+    
     var map = new L.mapbox.map('map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
 
     L.mapbox.featureLayer({
@@ -15,7 +16,7 @@ block content
           #{allData.renderLocation.lat},
           #{allData.renderLocation.long} 
         ]
-    },
+      },
       properties: {
         title: 'My featured house',
         description: 'Healthy Search',
@@ -24,3 +25,20 @@ block content
         'marker-symbol': 'star',
         }
     }).addTo(map);
+    console.log(#{allData.renderSchool[0].long_cen});
+    console.log(#{allData.renderSchool[0].lat_cen});
+    
+    for (var i = 0; i < #{allData.renderSchool.length}; i++) {
+      L.marker([#{allData.renderSchool[i].lat_cen},#{allData.renderSchool[i].long_cen}]).addTo(map);
+    }
+    
+    L.marker([#{allData.renderSchool[0].lat_cen},#{allData.renderSchool[0].long_cen}]).addTo(map);
+    L.marker([#{allData.renderSchool[1].lat_cen},#{allData.renderSchool[1].long_cen}]).addTo(map);
+    L.marker([#{allData.renderSchool[2].lat_cen},#{allData.renderSchool[2].long_cen}]).addTo(map);
+    L.marker([#{allData.renderSchool[3].lat_cen},#{allData.renderSchool[3].long_cen}]).addTo(map);
+    L.marker([#{allData.renderSchool[4].lat_cen},#{allData.renderSchool[4].long_cen}]).addTo(map);
+    L.marker([#{allData.renderSchool[5].lat_cen},#{allData.renderSchool[5].long_cen}]).addTo(map);
+    L.marker([#{allData.renderSchool[6].lat_cen},#{allData.renderSchool[6].long_cen}]).addTo(map);
+    L.marker([#{allData.renderSchool[7].lat_cen},#{allData.renderSchool[7].long_cen}]).addTo(map);
+    L.marker([#{allData.renderSchool[8].lat_cen},#{allData.renderSchool[8].long_cen}]).addTo(map);
+    L.marker([#{allData.renderSchool[9].lat_cen},#{allData.renderSchool[9].long_cen}]).addTo(map);
