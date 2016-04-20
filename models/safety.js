@@ -55,7 +55,7 @@ module.exports = {
         finalcrimeData = JSON.stringify(finalcrimeData);
 
         fs.writeFile(path.join(__dirname, '../public/crime.json'), finalcrimeData, function(writeErr){
-          throw writeErr;
+          console.log(writeErr);
         });
 
         return finalcrimeData;
