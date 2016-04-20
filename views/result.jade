@@ -6,7 +6,6 @@ block content
     header
       .row
         nav.top-bar(data-topbar='', role='navigation')
-          // Start Logo
           ul.title-area
             li.name
 
@@ -15,7 +14,6 @@ block content
                 span Menu
 
 
-          // Start Navigation Menu
           section#mean_nav.top-bar-section
             ul.right
               li
@@ -25,11 +23,9 @@ block content
               li
                 a(href='#accessibility') Accessibility
               li
-                a(href='#safety') Safety
-              li
                 a(href='#environment') Environment
-          // End Navigation Menu
-    // Start Hero Caption
+              li
+                a(href='#safety') Safety
     section.caption
       .row
         h1.mean_cap
@@ -38,11 +34,8 @@ block content
           a.score_arrow.btn_details(href='#scores')
             span See Your Healthy Home Scores
             img.arrow(src='images/btn_arrow.png', alt='')
-    // End Hero Caption
-  // End Hero Section
-  // Start scores Section
+
   section#scores.scores
-    // Start scores Titles
     .row
       h1.mean_title Here are your Scores Below
       h2.sub_title Your Home is Our Priority
@@ -62,9 +55,8 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          
       .small-12.medium-3.large-3.columns
-      
-      
         img.serv_icon(src='images/icon1.png', alt='', title='')
         h1.mean_title 76
         .btn_holder
@@ -75,9 +67,8 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          
       .small-12.medium-3.large-3.columns
-      
-      
         img.serv_icon(src='images/icon3.png', alt='', title='')
         h1.mean_title 65
         .btn_holder
@@ -88,9 +79,8 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      .small-12.medium-3.large-3.columns
-      
-      
+          
+      .small-12.medium-3.large-3.columns  
         img.serv_icon(src='images/icon4.png', alt='', title='')
         h1.mean_title 97
         .btn_holder
@@ -101,11 +91,9 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          
-  section.break    
-  
+            
   section#community.community
-    .row
+    .expanded
       .large-7.columns
         #community_map
         nav.menu-ui
@@ -116,32 +104,21 @@ block content
           a(href='#', data-filter='cultural-spaces') Cultural Spaces
 
       .large-5.columns
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      
-  section.break    
-      
+        .community_sub
+          h2.sub_cap Community Score
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
   section#accessibility.accessibility
-    .row
-      .large-5.columns
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .expanded
       .large-7.columns
         #accessibility_map
-        
-  section.break    
-        
-  section#safety.safety
-    .row
-      .large-7.columns
-        img(src='https://placeimg.com/640/480/any')
       .large-5.columns
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          
-  section.break    
+        .accessibility_sub
+          h2.sub_cap_sec Accessibility Score
+          p Lorem ipsum dolor sit amet, conwsectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       
   section#environment.environment
-    .row
-      .large-5.columns
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .expanded
       .large-7.columns
         #environment_map
         nav.menu-ui
@@ -151,6 +128,19 @@ block content
           a(href='#', data-filter='commercial') Commercial
           a(href='#', data-filter='institutional') Institutional
           a(href='#', data-filter='indulstrial') Indulstrial
+      .large-5.columns
+        .environment_sub
+          h2.sub_cap Environment Score
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          
+  section#safety.safety
+    .expanded
+      .large-7.columns
+
+      .large-5.columns
+        .safety_sub
+          h2.sub_cap_sec Safety Score
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         
   .shadow
 
@@ -169,7 +159,9 @@ block content
     console.log(allData);
     
     var communityMap = new L.mapbox.map('community_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 15);
-
+    
+    L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(communityMap);
+    
     L.mapbox.featureLayer({
       type: 'Feature',
       geometry: {
@@ -291,6 +283,8 @@ block content
         
     
     var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 15);
+    
+    L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(accessibilityMap);
 
     L.mapbox.featureLayer({
       type: 'Feature',
@@ -458,4 +452,6 @@ block content
       });
       return false;
     });
+    
+    L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(environmentMap);
     
