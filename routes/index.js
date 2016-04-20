@@ -51,8 +51,12 @@ router.post('/', function(req, res, next) {
     }));
 
     allFunctions.push(accessibility.getParking(location).then( (parkingData) => {
-      console.log(parkingData);
       allData.renderParking = parkingData;
+    }));
+
+    allFunctions.push(accessibility.getWalkScore(location).then( (walkScoreData) => {
+      console.log(walkScoreData);
+      allData.renderWalkScore = walkScoreData;
     }));
 
     Promise.all(allFunctions).then(function(){
