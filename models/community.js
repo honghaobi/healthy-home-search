@@ -92,10 +92,8 @@ module.exports = {
       },
       json:true
     }
-    console.log('key', process.env.ZOMATOKEY);
     return rp(options)
       .then( (restaurantData) => {
-        console.log('zomato', restaurantData);
         return restaurantData;
       })
       .catch( (err) => {
