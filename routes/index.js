@@ -34,6 +34,11 @@ router.post('/', function(req, res, next) {
       allData.renderViewpoints = viewpointData;
     }))
 
+    allFunctions.push(community.getRestaurants(location).then( (restaurantData) => {
+      console.log(restaurantData);
+      allData.renderRestaurants = restaurantData;
+    }));
+
     allFunctions.push(safety.getCrime(location).then(function(crimeData) {
       allData.renderCrime = crimeData;
     }));
@@ -51,8 +56,12 @@ router.post('/', function(req, res, next) {
     }));
 
     allFunctions.push(accessibility.getParking(location).then( (parkingData) => {
-      console.log(parkingData);
       allData.renderParking = parkingData;
+    }));
+
+    allFunctions.push(accessibility.getWalkScore(location).then( (walkScoreData) => {
+      console.log(walkScoreData);
+      allData.renderWalkScore = walkScoreData;
     }));
 
     Promise.all(allFunctions).then(function(){

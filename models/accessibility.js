@@ -37,5 +37,22 @@ module.exports = {
       .catch(function(err) {
         console.log(err);
       });
+  },
+
+  getWalkScore: (location) => {
+    var options = {
+      method: 'GET',
+      uri: `http://api.walkscore.com/score?format=json&lat=${location.long}&lon=${location.lat}&wsapikey=${process.env.WALKSCORE}`,
+      json:true
+    }
+
+
+    return rp(options)
+      .then(function(parkingData) {
+        return parkingData;
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   }
 }

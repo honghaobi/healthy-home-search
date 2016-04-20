@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+
+  form(action='/', method='post')
+    p
+      input(name='newUserName', type='text', placeholder='New Username')
+    p
+      input(name='newUserPassword', type='text', placeholder='New Password')
+    p
+      input(value='Submit', type='submit')
