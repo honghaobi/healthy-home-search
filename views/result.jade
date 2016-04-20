@@ -112,6 +112,10 @@ block content
     .expanded
       .large-7.columns
         #accessibility_map
+        nav.menu-ui
+          a.active(href='#', data-filter='all') Show all
+          a(href='#', data-filter='bus-stop') Bus Stops
+          a(href='#', data-filter='parking') Parkings
       .large-5.columns
         .accessibility_sub
           h2.sub_cap_sec Accessibility Score
@@ -282,7 +286,7 @@ block content
     });
         
     
-    var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 15);
+    var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
     
     L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(accessibilityMap);
 
@@ -303,7 +307,62 @@ block content
         'marker-symbol': 'star',
         }
     }).addTo(accessibilityMap);
-        
+    
+    var accessibilityGeoJson = [];
+    
+    for (var p = 0; p < allData.renderTransit.data.list.length; p++) {
+      accessibilityGeoJson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderTransit.data.list[p].lon,
+            allData.renderTransit.data.list[p].lat
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": "Bus-Stop",
+          "description": allData.renderTransit.data.list[p].name,
+          "bus-stop": true,
+          "parking": false,
+          "marker-color": "#ba36af",
+          "marker-size": "medium"
+        }
+      });  
+    }
+      
+    for (var q = 0; q < allData.renderParking.length; q++) {
+      accessibilityGeoJson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderParking[q].shape.longitude,
+            allData.renderParking[q].shape.latitude
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": "Parking",
+          "description": allData.renderParking[q].fac_type || allData.renderParking[q].fac_name || allData.renderParking[q].webname,
+          "bus-stop": false,
+          "parking": true,
+          "marker-color": "#d04c00",
+          "marker-size": "medium",
+        }
+      });  
+    }
+      
+    var accessibilityMarkers = L.mapbox.featureLayer().setGeoJSON(accessibilityGeoJson).addTo(accessibilityMap);
+    
+    $('.menu-ui a').on('click', function() {
+      var filter = $(this).data('filter');
+      $(this).addClass('active').siblings().removeClass('active');
+      accessibilityMarkers.setFilter(function(f) {
+        return (filter === 'all') ? true : f.properties[filter] === true;
+      });
+      return false;
+    });
+    
     var environmentMap = new L.mapbox.map('environment_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
     
     L.mapbox.featureLayer({
@@ -327,7 +386,7 @@ block content
     var environmentGeoJson = [];
     
     for (var o = 0; o < allData.renderPermits.length; o++) {
-      if(allData.renderPermits[o].status !== 'Permit Closed' || allData.renderPermits[o].status !== 'Permit Closed'){
+      if(allData.renderPermits[o].status !== 'Permit Closed' && allData.renderPermits[o].status !== 'CANCELLED' && allData.renderPermits[o].status !== undefined){
         if(allData.renderPermits[o].category === 'SINGLE FAMILY / DUPLEX'){
           environmentGeoJson.push({
             "type": "Feature",
@@ -339,8 +398,8 @@ block content
               "type": "Point"
             },
             "properties": {
-              "title": allData.renderPermits[o].permit_type,
-              "description": 'Status: ' + allData.renderPermits[o].status,
+              "title": allData.renderPermits[o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
               "single-family": true,
               "multifamily": false,
               "commercial": false,
@@ -361,8 +420,8 @@ block content
               "type": "Point"
             },
             "properties": {
-              "title": allData.renderPermits[o].permit_type,
-              "description": 'Status: ' + allData.renderPermits[o].status,
+              "title": allData.renderPermits[o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
               "single-family": false,
               "multifamily": true,
               "commercial": false,
@@ -383,8 +442,8 @@ block content
               "type": "Point"
             },
             "properties": {
-              "title": allData.renderPermits[o].permit_type,
-              "description": 'Status: ' + allData.renderPermits[o].status,
+              "title": allData.renderPermits[o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
               "single-family": false,
               "multifamily": false,
               "commercial": true,
@@ -405,8 +464,8 @@ block content
               "type": "Point"
             },
             "properties": {
-              "title": allData.renderPermits[o].permit_type,
-              "description": 'Status: ' + allData.renderPermits[o].status,
+              "title": allData.renderPermits[o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
               "single-family": false,
               "multifamily": false,
               "commercial": false,
@@ -427,8 +486,8 @@ block content
               "type": "Point"
             },
             "properties": {
-              "title": allData.renderPermits[o].permit_type,
-              "description": 'Status: ' + allData.renderPermits[o].status,
+              "title": allData.renderPermits[o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
               "single-family": false,
               "multifamily": false,
               "commercial": false,
