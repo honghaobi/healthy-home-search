@@ -3,8 +3,7 @@ $(document).ready(function(){
 
 	/*  Foundation Init    */
 	$(document).foundation();
-
-
+	
 	/*    Mean navigation menu scroll to    */
     $('#mean_nav ul li a').click(function(e){
     	e.preventDefault();

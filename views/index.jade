@@ -1,10 +1,7 @@
 extends layout
 
 block content
-  #wrap
-    form(action='/', method='post', autocomplete='on')
-      input#search(name='userInput', type='text', placeholder="Your next Home")
-      input#search_submit(value='Search', type='submit')
+  #wrap  
     ul.cb-slideshow
       li
         span Image 01
@@ -18,3 +15,8 @@ block content
         span Image 05
       li
         span Image 06
+
+  form.search(action='/', method='post')
+    .text-input
+      input#input1(name='userInput', type='text', placeholder='You Next Home...')
+      label(for='input1') Address
