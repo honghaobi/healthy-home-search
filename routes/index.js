@@ -51,7 +51,6 @@ router.post('/', function(req, res, next) {
     }));
 
     allFunctions.push(accessibility.getParking(location).then( (parkingData) => {
-      console.log(parkingData);
       allData.renderParking = parkingData;
     }));
 
