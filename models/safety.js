@@ -29,6 +29,7 @@ module.exports = {
     return rp(options)
       .then(function(crimeData) {
         return crimeData;
+        
       })
       .catch(function(err) {
         console.log(err);

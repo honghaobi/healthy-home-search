@@ -6,7 +6,6 @@ block content
     header
       .row
         nav.top-bar(data-topbar='', role='navigation')
-          // Start Logo
           ul.title-area
             li.name
 
@@ -15,7 +14,6 @@ block content
                 span Menu
 
 
-          // Start Navigation Menu
           section#mean_nav.top-bar-section
             ul.right
               li
@@ -25,11 +23,9 @@ block content
               li
                 a(href='#accessibility') Accessibility
               li
-                a(href='#safety') Safety
-              li
                 a(href='#environment') Environment
-          // End Navigation Menu
-    // Start Hero Caption
+              li
+                a(href='#safety') Safety
     section.caption
       .row
         h1.mean_cap
@@ -38,11 +34,8 @@ block content
           a.score_arrow.btn_details(href='#scores')
             span See Your Healthy Home Scores
             img.arrow(src='images/btn_arrow.png', alt='')
-    // End Hero Caption
-  // End Hero Section
-  // Start scores Section
+
   section#scores.scores
-    // Start scores Titles
     .row
       h1.mean_title Here are your Scores Below
       h2.sub_title Your Home is Our Priority
@@ -62,9 +55,8 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          
       .small-12.medium-3.large-3.columns
-      
-      
         img.serv_icon(src='images/icon1.png', alt='', title='')
         h1.mean_title 76
         .btn_holder
@@ -75,9 +67,8 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          
       .small-12.medium-3.large-3.columns
-      
-      
         img.serv_icon(src='images/icon3.png', alt='', title='')
         h1.mean_title 65
         .btn_holder
@@ -88,9 +79,8 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      .small-12.medium-3.large-3.columns
-      
-      
+          
+      .small-12.medium-3.large-3.columns  
         img.serv_icon(src='images/icon4.png', alt='', title='')
         h1.mean_title 97
         .btn_holder
@@ -101,50 +91,60 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          
-  section.break    
-  
+            
   section#community.community
-    .row
+    .expanded
       .large-7.columns
         #community_map
         nav.menu-ui
           a.active(href='#', data-filter='all') Show all
-          a(href='#', data-filter='school') School
-          a(href='#', data-filter='park') Park
-          a(href='#', data-filter='viewpoint') Viewpoint
-          a(href='#', data-filter='cultural-space') Cultural Space
+          a(href='#', data-filter='schools') Schools
+          a(href='#', data-filter='parks') Parks
+          a(href='#', data-filter='viewpoints') Viewpoints
+          a(href='#', data-filter='cultural-spaces') Cultural Spaces
 
       .large-5.columns
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      
-  section.break    
-      
+        .community_sub
+          h2.sub_cap Community Score
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
   section#accessibility.accessibility
-    .row
-      .large-5.columns
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .expanded
       .large-7.columns
         #accessibility_map
-        
-  section.break    
-        
-  section#safety.safety
-    .row
-      .large-7.columns
-        img(src='https://placeimg.com/640/480/any')
+        nav.menu-ui
+          a.active(href='#', data-filter='all') Show all
+          a(href='#', data-filter='bus-stop') Bus Stops
+          a(href='#', data-filter='parking') Parkings
       .large-5.columns
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          
-  section.break    
+        .accessibility_sub
+          h2.sub_cap_sec Accessibility Score
+          p Lorem ipsum dolor sit amet, conwsectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       
   section#environment.environment
-    .row
-      .large-5.columns
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .expanded
       .large-7.columns
         #environment_map
-        
+        nav.menu-ui
+          a.active(href='#', data-filter='all') Show all
+          a(href='#', data-filter='single-family') Single Family
+          a(href='#', data-filter='multifamily') Multifamily
+          a(href='#', data-filter='commercial') Commercial
+          a(href='#', data-filter='institutional') Institutional
+          a(href='#', data-filter='indulstrial') Indulstrial
+      .large-5.columns
+        .environment_sub
+          h2.sub_cap Environment Score
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          
+  section#safety.safety
+    .expanded
+      .large-7.columns
+
+      .large-5.columns
+        .safety_sub
+          h2.sub_cap_sec Safety Score
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         
   .shadow
 
@@ -163,7 +163,9 @@ block content
     console.log(allData);
     
     var communityMap = new L.mapbox.map('community_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 15);
-
+    
+    L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(communityMap);
+    
     L.mapbox.featureLayer({
       type: 'Feature',
       geometry: {
@@ -182,10 +184,10 @@ block content
         }
     }).addTo(communityMap);
     
-    var geojson = [];
+    var communityGeoJson = [];
     
     for (var i = 0; i < allData.renderSchool.length; i++) {
-      geojson.push({
+      communityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
@@ -196,18 +198,18 @@ block content
         },
         "properties": {
           "title": allData.renderSchool[i].name,
-          "school": true,
-          "park": false,
-          "viewpoint": false,
-          "cultural-space": false,
+          "schools": true,
+          "parks": false,
+          "viewpoints": false,
+          "cultural-spaces": false,
           "marker-color": "#2f36b6",
-          "marker-size": "large",
+          "marker-size": "medium",
         }
       });  
     }
       
     for (var j = 0; j < allData.renderParks.length; j++) {
-      geojson.push({
+      communityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
@@ -218,18 +220,18 @@ block content
         },
         "properties": {
           "title": allData.renderParks[j].common_name,
-          "school": false,
-          "park": true,
-          "viewpoint": false,
-          "cultural-space": false,
+          "schools": false,
+          "parks": true,
+          "viewpoints": false,
+          "cultural-spaces": false,
           "marker-color": "#3ebc36",
-          "marker-size": "large",
+          "marker-size": "medium",
         }
       });  
     }
     
     for (var k = 0; k < allData.renderViewpoints.length; k++) {
-      geojson.push({
+      communityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
@@ -240,18 +242,18 @@ block content
         },
         "properties": {
           "title": allData.renderViewpoints[k].common_name,
-          "school": false,
-          "park": false,
-          "viewpoint": true,
-          "cultural-space": false,
+          "schools": false,
+          "parks": false,
+          "viewpoints": true,
+          "cultural-spaces": false,
           "marker-color": "#da6339",
-          "marker-size": "large",
+          "marker-size": "medium",
         }
       });  
     }
     
     for (var l = 0; l < allData.renderCultCenters.length; l++) {
-      geojson.push({
+      communityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
@@ -262,33 +264,31 @@ block content
         },
         "properties": {
           "title": allData.renderCultCenters[l].name,
-          "school": false,
-          "park": false,
-          "viewpoint": false,
-          "cultural-space": true,
+          "schools": false,
+          "parks": false,
+          "viewpoints": false,
+          "cultural-spaces": true,
           "marker-color": "#b64990",
-          "marker-size": "large",
+          "marker-size": "medium",
         }
       });  
     }
       
-    var markers = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(communityMap);
+    var communityMarkers = L.mapbox.featureLayer().setGeoJSON(communityGeoJson).addTo(communityMap);
     
     $('.menu-ui a').on('click', function() {
-    // For each filter link, get the 'data-filter' attribute value.
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
-      markers.setFilter(function(f) {
-        // If the data-filter attribute is set to "all", return
-        // all (true). Otherwise, filter on markers that have
-        // a value set to true based on the filter name.
+      communityMarkers.setFilter(function(f) {
         return (filter === 'all') ? true : f.properties[filter] === true;
       });
       return false;
     });
         
     
-    var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
+    var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
+    
+    L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(accessibilityMap);
 
     L.mapbox.featureLayer({
       type: 'Feature',
@@ -307,8 +307,63 @@ block content
         'marker-symbol': 'star',
         }
     }).addTo(accessibilityMap);
-        
-    var environmentMap = new L.mapbox.map('environment_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 13);
+    
+    var accessibilityGeoJson = [];
+    
+    for (var p = 0; p < allData.renderTransit.data.list.length; p++) {
+      accessibilityGeoJson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderTransit.data.list[p].lon,
+            allData.renderTransit.data.list[p].lat
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": "Bus-Stop",
+          "description": allData.renderTransit.data.list[p].name,
+          "bus-stop": true,
+          "parking": false,
+          "marker-color": "#ba36af",
+          "marker-size": "medium"
+        }
+      });  
+    }
+      
+    for (var q = 0; q < allData.renderParking.length; q++) {
+      accessibilityGeoJson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderParking[q].shape.longitude,
+            allData.renderParking[q].shape.latitude
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": "Parking",
+          "description": allData.renderParking[q].fac_type || allData.renderParking[q].fac_name || allData.renderParking[q].webname,
+          "bus-stop": false,
+          "parking": true,
+          "marker-color": "#d04c00",
+          "marker-size": "medium",
+        }
+      });  
+    }
+      
+    var accessibilityMarkers = L.mapbox.featureLayer().setGeoJSON(accessibilityGeoJson).addTo(accessibilityMap);
+    
+    $('.menu-ui a').on('click', function() {
+      var filter = $(this).data('filter');
+      $(this).addClass('active').siblings().removeClass('active');
+      accessibilityMarkers.setFilter(function(f) {
+        return (filter === 'all') ? true : f.properties[filter] === true;
+      });
+      return false;
+    });
+    
+    var environmentMap = new L.mapbox.map('environment_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
     
     L.mapbox.featureLayer({
       type: 'Feature',
@@ -328,8 +383,134 @@ block content
         }
     }).addTo(environmentMap);
     
-    for (var i = 0; i < allData.renderParks.length; i++) {
-      L.marker([allData.renderParks[i].latitude,allData.renderParks[i].longitude]).addTo(environmentMap);
+    var environmentGeoJson = [];
+    
+    for (var o = 0; o < allData.renderPermits.length; o++) {
+      if(allData.renderPermits[o].status !== 'Permit Closed' && allData.renderPermits[o].status !== 'CANCELLED' && allData.renderPermits[o].status !== undefined){
+        if(allData.renderPermits[o].category === 'SINGLE FAMILY / DUPLEX'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[o].longitude,
+                allData.renderPermits[o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
+              "single-family": true,
+              "multifamily": false,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": false,
+              "marker-color": "#da2e00",
+              "marker-size": "medium",
+            }
+          });  
+        } else if (allData.renderPermits[o].category === 'MULTIFAMILY'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[o].longitude,
+                allData.renderPermits[o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
+              "single-family": false,
+              "multifamily": true,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": false,
+              "marker-color": "#00dab6",
+              "marker-size": "medium",
+            }
+          });  
+        } else if (allData.renderPermits[o].category === 'COMMERCIAL'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[o].longitude,
+                allData.renderPermits[o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
+              "single-family": false,
+              "multifamily": false,
+              "commercial": true,
+              "indulstrial": false,
+              "institutional": false,
+              "marker-color": "#008ada",
+              "marker-size": "medium",
+            }
+          });  
+        } else if (allData.renderPermits[o].category === 'INSTITUTIONAL'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[o].longitude,
+                allData.renderPermits[o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
+              "single-family": false,
+              "multifamily": false,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": true,
+              "marker-color": "#007123",
+              "marker-size": "medium",
+            }
+          }); 
+        } else if (allData.renderPermits[o].category === 'INDULSTRIAL'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[o].longitude,
+                allData.renderPermits[o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
+              "single-family": false,
+              "multifamily": false,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": true,
+              "marker-color": "#001071",
+              "marker-size": "medium",
+            }
+          }); 
+        }
+      }
     }
     
+    var environmentMarkers = L.mapbox.featureLayer().setGeoJSON(environmentGeoJson).addTo(environmentMap);
+    
+    $('.menu-ui a').on('click', function() {
+      var filter = $(this).data('filter');
+      $(this).addClass('active').siblings().removeClass('active');
+      environmentMarkers.setFilter(function(f) {
+        return (filter === 'all') ? true : f.properties[filter] === true;
+      });
+      return false;
+    });
+    
+    L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(environmentMap);
     

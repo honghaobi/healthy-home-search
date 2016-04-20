@@ -17,6 +17,7 @@
     "knex": "^0.10.0",
     "method-override": "^2.3.5",
     "morgan": "~1.6.1",
+    "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "passport-google-oauth1": "^1.0.0",
     "passport-google-oauth2": "^0.1.6",

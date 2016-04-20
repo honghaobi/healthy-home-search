@@ -83,8 +83,8 @@ module.exports = {
       method: 'GET',
       uri: `https://developers.zomato.com/api/v2.1/geocode`,
       qs: {
-        lat: '47.643966',
-        lon: '-122.396583'
+        lat: location.lat,
+        lon: location.long
       },
       headers: {
         'Accept': 'application/json',

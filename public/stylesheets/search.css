@@ -1,79 +1,73 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 
-::-webkit-input-placeholder {
-   color: #55adb6;
+form.search {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  font-family: Montserrat;
+  background: #313E50;
 }
 
-:-moz-placeholder { /* Firefox 18- */
-   color: #55adb6;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: #55adb6;
-}
-
-:-ms-input-placeholder {
-   color: #55adb6;
-}
-
-#wrap {
-  margin: 50px 100px;
-  display: inline-block;
+.text-input {
   position: relative;
-  height: 60px;
-  float: right;
-  padding: 0;
-  position: relative;
+  margin-top: 50px;
 }
-
-#search {
-  height: 70px;
-  font-size: 55px;
+.text-input input[type="text"] {
   display: inline-block;
-  font-family: "Lato";
-  font-weight: 300;
-  border: none;
+  width: 500px;
+  height: 40px;
+  box-sizing: border-box;
   outline: none;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 10px 10px 10px 100px;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+.text-input input[type="text"] + label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  line-height: 40px;
   color: white;
-  padding: 3px;
-  padding-right: 60px;
-  width: 0px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
-  z-index: 3;
-  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
-  cursor: pointer;
+  border-radius: 3px 0 0 3px;
+  padding: 0 20px;
+  background: #55adb6;
+  -webkit-transform: translateZ(0) translateX(0);
+          transform: translateZ(0) translateX(0);
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
-
-#search:focus:hover {
-  border-bottom: 5px solid #55adb6;
+.text-input input[type="text"]:focus + label {
+  -webkit-transform: translateY(-120%) translateX(0%);
+          transform: translateY(-120%) translateX(0%);
+  border-radius: 3px;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
 }
-
-#search:focus {
-  width: 700px;
-  z-index: 1;
-  border-bottom: 5px solid #55adb6;
-  cursor: text;
-}
-#search_submit {
-  height: 65px;
-  width: 65px;
-  display: inline-block;
-  float: right;
-  background: url(../images/house.png) center center no-repeat;
-  text-indent: -10000px;
-  border: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  cursor: pointer;
-	opacity: 0.7;
-  transition: opacity .8s ease;
-}
-
-#search_submit:hover {
-  opacity: 1;
+.text-input input[type="text"]:focus {
+  padding: 10px;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
