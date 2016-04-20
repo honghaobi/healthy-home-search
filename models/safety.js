@@ -28,7 +28,29 @@ module.exports = {
 
     return rp(options)
       .then(function(crimeData) {
-        return crimeData;
+
+          var organizedCrimeCountObj = {}
+
+          for (var i = 0; i < crimeData.length; i++) {
+            if (organizedCrimeCountObj[crimeData[i].summarized_offense_description]) {
+              organizedCrimeCountObj[crimeData[i].summarized_offense_description] += 1;
+            } else {
+              organizedCrimeCountObj[crimeData[i].summarized_offense_description] = 1;
+            }
+          }
+
+           var organizedCrimeCountArray = [];
+
+           for (var j = 0; j < Object.keys(organizedCrimeCountObj).length; j++) {
+             organizedCrimeCountArray.push({'name':Object.keys(organizedCrimeCountObj)[j], 'size':organizedCrimeCountObj[Object.keys(organizedCrimeCountObj)[j]]})
+           }
+
+           var finalcrimeData = {
+             name:"crimes",
+             children: organizedCrimeCountArray
+           };
+           console.log(finalcrimeData);
+        return finalcrimeData;
       })
       .catch(function(err) {
         console.log(err);
