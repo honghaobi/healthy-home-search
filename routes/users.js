@@ -16,4 +16,15 @@ router.post('/', function(req, res, next) {
   });
 });
 
+router.post('/signin', (req, res, next) => {
+  Users.authenticateUser(req.body.email, req.body.password, (err, user) => {
+    if (err) {
+      res.render('users/signin', {error: err});
+    } else {
+      req.session.user = user;
+      res.redirect('/');
+    }
+  });
+});
+
 module.exports = router;
