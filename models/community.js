@@ -76,5 +76,24 @@ module.exports = {
       .catch( (err) => {
         console.log(err);
       });
+  },
+
+  getRestaurants: (location) => {
+    var options = {
+      method: 'GET',
+      uri:
+      `https://developers.zomato.com/api/v2.1.json?$select=name,latitude,longitude&geocode?lat=47.643966&lon=-122.396583`,
+      qs: {
+        $$app_token: process.env.ZOMATOKEY
+      },
+      json:true
+    }
+    return rp(options)
+      .then( (restaurantData) => {
+        return restaurantData;
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
   }
 }

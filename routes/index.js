@@ -34,6 +34,11 @@ router.post('/', function(req, res, next) {
       allData.renderViewpoints = viewpointData;
     }))
 
+    allFunctions.push(community.getRestaurants(location).then( (restaurantData) => {
+      console.log(restaurantData);
+      allData.renderRestaurants = restaurantData;
+    }));
+
     allFunctions.push(safety.getCrime(location).then(function(crimeData) {
       allData.renderCrime = crimeData;
     }));
