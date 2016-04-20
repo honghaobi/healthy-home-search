@@ -333,116 +333,118 @@ block content
     var environmentGeoJson = [];
     
     for (var o = 0; o < allData.renderPermits.length; o++) {
-      if(allData.renderPermits[o].category === 'SINGLE FAMILY / DUPLEX'){
-        environmentGeoJson.push({
-          "type": "Feature",
-          "geometry": {
-            "coordinates": [
-              allData.renderPermits[o].longitude,
-              allData.renderPermits[o].latitude
-            ],
-            "type": "Point"
-          },
-          "properties": {
-            "title": allData.renderPermits[o].permit_type,
-            "description": 'Status: ' + allData.renderPermits[o].status,
-            "single-family": true,
-            "multifamily": false,
-            "commercial": false,
-            "indulstrial": false,
-            "institutional": false,
-            "marker-color": "#da2e00",
-            "marker-size": "large",
-          }
-        });  
-      } else if (allData.renderPermits[o].category === 'MULTIFAMILY'){
-        environmentGeoJson.push({
-          "type": "Feature",
-          "geometry": {
-            "coordinates": [
-              allData.renderPermits[o].longitude,
-              allData.renderPermits[o].latitude
-            ],
-            "type": "Point"
-          },
-          "properties": {
-            "title": allData.renderPermits[o].permit_type,
-            "description": 'Status: ' + allData.renderPermits[o].status,
-            "single-family": false,
-            "multifamily": true,
-            "commercial": false,
-            "indulstrial": false,
-            "institutional": false,
-            "marker-color": "#00dab6",
-            "marker-size": "large",
-          }
-        });  
-      } else if (allData.renderPermits[o].category === 'COMMERCIAL'){
-        environmentGeoJson.push({
-          "type": "Feature",
-          "geometry": {
-            "coordinates": [
-              allData.renderPermits[o].longitude,
-              allData.renderPermits[o].latitude
-            ],
-            "type": "Point"
-          },
-          "properties": {
-            "title": allData.renderPermits[o].permit_type,
-            "description": 'Status: ' + allData.renderPermits[o].status,
-            "single-family": false,
-            "multifamily": false,
-            "commercial": true,
-            "indulstrial": false,
-            "institutional": false,
-            "marker-color": "#008ada",
-            "marker-size": "large",
-          }
-        });  
-      } else if (allData.renderPermits[o].category === 'INSTITUTIONAL'){
-        environmentGeoJson.push({
-          "type": "Feature",
-          "geometry": {
-            "coordinates": [
-              allData.renderPermits[o].longitude,
-              allData.renderPermits[o].latitude
-            ],
-            "type": "Point"
-          },
-          "properties": {
-            "title": allData.renderPermits[o].permit_type,
-            "description": 'Status: ' + allData.renderPermits[o].status,
-            "single-family": false,
-            "multifamily": false,
-            "commercial": false,
-            "indulstrial": false,
-            "institutional": true,
-            "marker-color": "#007123",
-            "marker-size": "large",
-          }
-        }); 
-      } else if (allData.renderPermits[o].category === 'INDULSTRIAL'){
-        environmentGeoJson.push({
-          "type": "Feature",
-          "geometry": {
-            "coordinates": [
-              allData.renderPermits[o].longitude,
-              allData.renderPermits[o].latitude
-            ],
-            "type": "Point"
-          },
-          "properties": {
-            "title": allData.renderPermits[o].permit_type,
-            "description": 'Status: ' + allData.renderPermits[o].status,
-            "single-family": false,
-            "multifamily": false,
-            "commercial": false,
-            "indulstrial": false,
-            "institutional": true,
-            "marker-color": "#001071",
-            "marker-size": "large",
-          }
-        }); 
+      if(allData.renderPermits[o].status !== 'Permit Closed' || allData.renderPermits[o].status !== 'Permit Closed'){
+        if(allData.renderPermits[o].category === 'SINGLE FAMILY / DUPLEX'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[o].longitude,
+                allData.renderPermits[o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[o].permit_type,
+              "description": 'Status: ' + allData.renderPermits[o].status,
+              "single-family": true,
+              "multifamily": false,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": false,
+              "marker-color": "#da2e00",
+              "marker-size": "large",
+            }
+          });  
+        } else if (allData.renderPermits[o].category === 'MULTIFAMILY'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[o].longitude,
+                allData.renderPermits[o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[o].permit_type,
+              "description": 'Status: ' + allData.renderPermits[o].status,
+              "single-family": false,
+              "multifamily": true,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": false,
+              "marker-color": "#00dab6",
+              "marker-size": "large",
+            }
+          });  
+        } else if (allData.renderPermits[o].category === 'COMMERCIAL'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[o].longitude,
+                allData.renderPermits[o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[o].permit_type,
+              "description": 'Status: ' + allData.renderPermits[o].status,
+              "single-family": false,
+              "multifamily": false,
+              "commercial": true,
+              "indulstrial": false,
+              "institutional": false,
+              "marker-color": "#008ada",
+              "marker-size": "large",
+            }
+          });  
+        } else if (allData.renderPermits[o].category === 'INSTITUTIONAL'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[o].longitude,
+                allData.renderPermits[o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[o].permit_type,
+              "description": 'Status: ' + allData.renderPermits[o].status,
+              "single-family": false,
+              "multifamily": false,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": true,
+              "marker-color": "#007123",
+              "marker-size": "large",
+            }
+          }); 
+        } else if (allData.renderPermits[o].category === 'INDULSTRIAL'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[o].longitude,
+                allData.renderPermits[o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[o].permit_type,
+              "description": 'Status: ' + allData.renderPermits[o].status,
+              "single-family": false,
+              "multifamily": false,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": true,
+              "marker-color": "#001071",
+              "marker-size": "large",
+            }
+          }); 
+        }
       }
     }
     
