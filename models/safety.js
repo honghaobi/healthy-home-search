@@ -1,5 +1,7 @@
 var rp = require('request-promise');
 var env = require('require-env');
+var fs = require('fs');
+var path = require('path');
 
 module.exports = {
   getCrime: (location) => {
@@ -49,6 +51,12 @@ module.exports = {
              name:"crimes",
              children: organizedCrimeCountArray
            };
+
+        finalcrimeData = JSON.stringify(finalcrimeData);
+
+        fs.writeFile(path.join(__dirname, '../public/crime.json'), finalcrimeData, function(writeErr){
+          throw writeErr;
+        });
 
         return finalcrimeData;
       })
