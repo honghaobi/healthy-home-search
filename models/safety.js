@@ -6,7 +6,7 @@ module.exports = {
     var today = new Date();
     var thisYear = today.getFullYear();
     var thisMonth = today.getMonth();
-    var subMonth = (thisMonth - 2);
+    var subMonth = (thisMonth - 12);
 
     if(subMonth < 1) {
       var lastYear = (thisYear - 1);
@@ -49,7 +49,7 @@ module.exports = {
              name:"crimes",
              children: organizedCrimeCountArray
            };
-           console.log(finalcrimeData);
+
         return finalcrimeData;
       })
       .catch(function(err) {

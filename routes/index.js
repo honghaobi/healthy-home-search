@@ -35,12 +35,11 @@ router.post('/', function(req, res, next) {
     }))
 
     allFunctions.push(community.getRestaurants(location).then( (restaurantData) => {
-      console.log(restaurantData);
       allData.renderRestaurants = restaurantData;
     }));
 
-    allFunctions.push(safety.getCrime(location).then(function(crimeData) {
-      allData.renderCrime = crimeData;
+    allFunctions.push(safety.getCrime(location).then(function(finalcrimeData) {
+      allData.renderCrime = finalcrimeData;
     }));
 
     allFunctions.push(environment.getAqi(req.body.userInput).then( (aqiData) => {
@@ -60,7 +59,6 @@ router.post('/', function(req, res, next) {
     }));
 
     allFunctions.push(accessibility.getWalkScore(location).then( (walkScoreData) => {
-      console.log(walkScoreData);
       allData.renderWalkScore = walkScoreData;
     }));
 
