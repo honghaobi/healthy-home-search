@@ -100,6 +100,7 @@ block content
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='schools') Schools
           a(href='#', data-filter='parks') Parks
+          a(href='#', data-filter='restaurants') Restaurants
           a(href='#', data-filter='viewpoints') Viewpoints
           a(href='#', data-filter='cultural-spaces') Cultural Spaces
 
@@ -201,6 +202,7 @@ block content
           "title": allData.renderSchool[i].name,
           "schools": true,
           "parks": false,
+          "restaurants": false,
           "viewpoints": false,
           "cultural-spaces": false,
           "marker-color": "#2f36b6",
@@ -223,9 +225,34 @@ block content
           "title": allData.renderParks[j].common_name,
           "schools": false,
           "parks": true,
+          "restaurants": false,
           "viewpoints": false,
           "cultural-spaces": false,
           "marker-color": "#3ebc36",
+          "marker-size": "medium",
+        }
+      });  
+    }
+    
+  
+    
+    for (var r = 1; r <= 9; r++) {
+      communityGeoJson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderRestaurants.nearby_restaurants[r].restaurant.location.longitude, allData.renderRestaurants.nearby_restaurants[r].restaurant.location.latitude
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": allData.renderRestaurants.nearby_restaurants[r].restaurant.name,
+          "schools": false,
+          "parks": false,
+          "restaurants": true,
+          "viewpoints": false,
+          "cultural-spaces": true,
+          "marker-color": "#7bd0b5",
           "marker-size": "medium",
         }
       });  
@@ -245,6 +272,7 @@ block content
           "title": allData.renderViewpoints[k].common_name,
           "schools": false,
           "parks": false,
+          "restaurants": false,
           "viewpoints": true,
           "cultural-spaces": false,
           "marker-color": "#da6339",
@@ -267,6 +295,7 @@ block content
           "title": allData.renderCultCenters[l].name,
           "schools": false,
           "parks": false,
+          "restaurants": false,
           "viewpoints": false,
           "cultural-spaces": true,
           "marker-color": "#b64990",

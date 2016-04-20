@@ -2,10 +2,12 @@ extends ../layout
 
 block content
 
-  form(action='/', method='post')
+  form(action='/users', method='post')
     p
-      input(name='newUserName', type='text', placeholder='New Username')
+      input(name='user_name', type='text', placeholder='New Username')
     p
-      input(name='newUserPassword', type='text', placeholder='New Password')
+      input(name='email', type='text', placeholder='New Email')
+    p
+      input(name='password', type='password', placeholder='New Password')
     p
       input(value='Submit', type='submit')
