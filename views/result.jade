@@ -44,9 +44,15 @@ block content
     .row.scores_list
       .small-12.medium-3.large-3.columns
       
+        -  var schoolScore = allData.renderSchool[0];
+        -  var parkScore = allData.renderParks[0];
+        -  var cultScore = allData.renderCultCenters[0];
+        -  var viewScore = allData.renderViewpoints[0];
+          
+        -  var comScore = Math.floor((schoolScore + parkScore + cultScore + viewScore) / 4);
       
         img.serv_icon(src='images/icon2.png', alt='', title='')
-        h1.mean_title 92
+        h1.mean_title #{comScore}
         .btn_holder
           a.btn_fancy(href='#community')
             .solid_layer
@@ -58,7 +64,7 @@ block content
           
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icon1.png', alt='', title='')
-        h1.mean_title 76
+        h1.mean_title #{allData.renderTransit[0]}
         .btn_holder
           a.btn_fancy(href='#accessibility')
             .solid_layer
@@ -70,7 +76,7 @@ block content
           
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icon3.png', alt='', title='')
-        h1.mean_title 65
+        h1.mean_title #{allData.renderCrime[0]}
         .btn_holder
           a.btn_fancy(href='#safety')
             .solid_layer
@@ -82,7 +88,7 @@ block content
           
       .small-12.medium-3.large-3.columns  
         img.serv_icon(src='images/icon4.png', alt='', title='')
-        h1.mean_title 97
+        h1.mean_title #{allData.renderPermits[0]}
         .btn_holder
           a.btn_fancy(href='#environment')
             .solid_layer
@@ -115,7 +121,7 @@ block content
         nav.menu-ui
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='bus-stop') Bus Stops
-          a(href='#', data-filter='parking') Parkings
+          a(href='#', data-filter='parking') Parking Lots/Garages
       .large-5.columns
         .accessibility_sub
           h2.sub_cap_sec Accessibility Score
@@ -189,18 +195,18 @@ block content
     
     var communityGeoJson = [];
     
-    for (var i = 0; i < allData.renderSchool.length; i++) {
+    for (var i = 0; i < allData.renderSchool[1].length; i++) {
       communityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
-            allData.renderSchool[i].long_cen,
-            allData.renderSchool[i].lat_cen
+            allData.renderSchool[1][i].long_cen,
+            allData.renderSchool[1][i].lat_cen
           ],
           "type": "Point"
         },
         "properties": {
-          "title": allData.renderSchool[i].name,
+          "title": allData.renderSchool[1][i].name,
           "schools": true,
           "parks": false,
           "restaurants": false,
@@ -212,18 +218,18 @@ block content
       });  
     }
       
-    for (var j = 0; j < allData.renderParks.length; j++) {
+    for (var j = 0; j < allData.renderParks[1].length; j++) {
       communityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
-            allData.renderParks[j].longitude,
-            allData.renderParks[j].latitude
+            allData.renderParks[1][j].longitude,
+            allData.renderParks[1][j].latitude
           ],
           "type": "Point"
         },
         "properties": {
-          "title": allData.renderParks[j].common_name,
+          "title": allData.renderParks[1][j].common_name,
           "schools": false,
           "parks": true,
           "restaurants": false,
@@ -234,8 +240,7 @@ block content
         }
       });  
     }
-    
-  
+      
     
     for (var r = 1; r <= 9; r++) {
       communityGeoJson.push({
@@ -259,18 +264,18 @@ block content
       });  
     }
     
-    for (var k = 0; k < allData.renderViewpoints.length; k++) {
+    for (var k = 0; k < allData.renderViewpoints[1].length; k++) {
       communityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
-            allData.renderViewpoints[k].longitude,
-            allData.renderViewpoints[k].latitude
+            allData.renderViewpoints[1][k].longitude,
+            allData.renderViewpoints[1][k].latitude
           ],
           "type": "Point"
         },
         "properties": {
-          "title": allData.renderViewpoints[k].common_name,
+          "title": allData.renderViewpoints[1][k].common_name,
           "schools": false,
           "parks": false,
           "restaurants": false,
@@ -282,18 +287,18 @@ block content
       });  
     }
     
-    for (var l = 0; l < allData.renderCultCenters.length; l++) {
+    for (var l = 0; l < allData.renderCultCenters[1].length; l++) {
       communityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
-            allData.renderCultCenters[l].location.coordinates[0],
-            allData.renderCultCenters[l].location.coordinates[1]
+            allData.renderCultCenters[1][l].location.coordinates[0],
+            allData.renderCultCenters[1][l].location.coordinates[1]
           ],
           "type": "Point"
         },
         "properties": {
-          "title": allData.renderCultCenters[l].name,
+          "title": allData.renderCultCenters[1][l].name,
           "schools": false,
           "parks": false,
           "restaurants": false,
@@ -341,19 +346,19 @@ block content
     
     var accessibilityGeoJson = [];
     
-    for (var p = 0; p < allData.renderTransit.data.list.length; p++) {
+    for (var p = 0; p < allData.renderTransit[1].data.list.length; p++) {
       accessibilityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
-            allData.renderTransit.data.list[p].lon,
-            allData.renderTransit.data.list[p].lat
+            allData.renderTransit[1].data.list[p].lon,
+            allData.renderTransit[1].data.list[p].lat
           ],
           "type": "Point"
         },
         "properties": {
           "title": "Bus-Stop",
-          "description": allData.renderTransit.data.list[p].name,
+          "description": allData.renderTransit[1].data.list[p].name,
           "bus-stop": true,
           "parking": false,
           "marker-color": "#ba36af",
@@ -416,21 +421,21 @@ block content
     
     var environmentGeoJson = [];
     
-    for (var o = 0; o < allData.renderPermits.length; o++) {
-      if(allData.renderPermits[o].status !== 'Permit Closed' && allData.renderPermits[o].status !== 'CANCELLED' && allData.renderPermits[o].status !== undefined){
-        if(allData.renderPermits[o].category === 'SINGLE FAMILY / DUPLEX'){
+    for (var o = 0; o < allData.renderPermits[1].length; o++) {
+      if(allData.renderPermits[1][o].status !== 'Permit Closed' && allData.renderPermits[1][o].status !== 'CANCELLED' && allData.renderPermits[1][o].status !== undefined){
+        if(allData.renderPermits[1][o].category === 'SINGLE FAMILY / DUPLEX'){
           environmentGeoJson.push({
             "type": "Feature",
             "geometry": {
               "coordinates": [
-                allData.renderPermits[o].longitude,
-                allData.renderPermits[o].latitude
+                allData.renderPermits[1][o].longitude,
+                allData.renderPermits[1][o].latitude
               ],
               "type": "Point"
             },
             "properties": {
-              "title": allData.renderPermits[o].status,
-              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
+              "title": allData.renderPermits[1][o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
               "single-family": true,
               "multifamily": false,
               "commercial": false,
@@ -440,19 +445,19 @@ block content
               "marker-size": "medium",
             }
           });  
-        } else if (allData.renderPermits[o].category === 'MULTIFAMILY'){
+        } else if (allData.renderPermits[1][o].category === 'MULTIFAMILY'){
           environmentGeoJson.push({
             "type": "Feature",
             "geometry": {
               "coordinates": [
-                allData.renderPermits[o].longitude,
-                allData.renderPermits[o].latitude
+                allData.renderPermits[1][o].longitude,
+                allData.renderPermits[1][o].latitude
               ],
               "type": "Point"
             },
             "properties": {
-              "title": allData.renderPermits[o].status,
-              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
+              "title": allData.renderPermits[1][o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
               "single-family": false,
               "multifamily": true,
               "commercial": false,
@@ -462,19 +467,19 @@ block content
               "marker-size": "medium",
             }
           });  
-        } else if (allData.renderPermits[o].category === 'COMMERCIAL'){
+        } else if (allData.renderPermits[1][o].category === 'COMMERCIAL'){
           environmentGeoJson.push({
             "type": "Feature",
             "geometry": {
               "coordinates": [
-                allData.renderPermits[o].longitude,
-                allData.renderPermits[o].latitude
+                allData.renderPermits[1][o].longitude,
+                allData.renderPermits[1][o].latitude
               ],
               "type": "Point"
             },
             "properties": {
-              "title": allData.renderPermits[o].status,
-              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
+              "title": allData.renderPermits[1][o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
               "single-family": false,
               "multifamily": false,
               "commercial": true,
@@ -484,19 +489,19 @@ block content
               "marker-size": "medium",
             }
           });  
-        } else if (allData.renderPermits[o].category === 'INSTITUTIONAL'){
+        } else if (allData.renderPermits[1][o].category === 'INSTITUTIONAL'){
           environmentGeoJson.push({
             "type": "Feature",
             "geometry": {
               "coordinates": [
-                allData.renderPermits[o].longitude,
-                allData.renderPermits[o].latitude
+                allData.renderPermits[1][o].longitude,
+                allData.renderPermits[1][o].latitude
               ],
               "type": "Point"
             },
             "properties": {
-              "title": allData.renderPermits[o].status,
-              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
+              "title": allData.renderPermits[1][o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
               "single-family": false,
               "multifamily": false,
               "commercial": false,
@@ -506,19 +511,19 @@ block content
               "marker-size": "medium",
             }
           }); 
-        } else if (allData.renderPermits[o].category === 'INDULSTRIAL'){
+        } else if (allData.renderPermits[1][o].category === 'INDULSTRIAL'){
           environmentGeoJson.push({
             "type": "Feature",
             "geometry": {
               "coordinates": [
-                allData.renderPermits[o].longitude,
-                allData.renderPermits[o].latitude
+                allData.renderPermits[1][o].longitude,
+                allData.renderPermits[1][o].latitude
               ],
               "type": "Point"
             },
             "properties": {
-              "title": allData.renderPermits[o].status,
-              "description": 'Permit Type for this Project is ' + allData.renderPermits[o].permit_type + ' And The Project is ' + allData.renderPermits[o].description,
+              "title": allData.renderPermits[1][o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
               "single-family": false,
               "multifamily": false,
               "commercial": false,

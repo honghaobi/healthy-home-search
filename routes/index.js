@@ -35,7 +35,6 @@ router.post('/', function(req, res, next) {
     }))
 
     allFunctions.push(community.getRestaurants(location).then( (restaurantData) => {
-      console.log(restaurantData);
       allData.renderRestaurants = restaurantData;
     }));
 
