@@ -35,22 +35,22 @@ module.exports = {
       .then( (permitData) => {
         return permitData;
       })
-      // .then( (permitData) => {
-      //   var totPermit = Object.keys(permitData).length
-      //   var permitAvg = 232.62;
-      //   var stD = 139.59;
-      //   var zScore = ( -(totPermit - permitAvg) / stD)
-      //
-      //   var permitGrade = Math.floor(((zScore + 2) / 4) * 100);
-      //
-      //   if (permitGrade > 100) {
-      //     return [99, permitData];
-      //   } else if (permitGrade < 5) {
-      //     return [5, permitData];
-      //   } else {
-      //     return [permitGrade, permitData];
-      //   }
-      // })
+      .then( (permitData) => {
+        var totPermit = Object.keys(permitData).length
+        var permitAvg = 232.62;
+        var stD = 139.59;
+        var zScore = ( -(totPermit - permitAvg) / stD)
+
+        var permitGrade = Math.floor(((zScore + 2) / 4) * 100);
+
+        if (permitGrade > 100) {
+          return [99, permitData];
+        } else if (permitGrade < 5) {
+          return [5, permitData];
+        } else {
+          return [permitGrade, permitData];
+        }
+      })
       .catch( (err) => {
         console.log(err);
       });
