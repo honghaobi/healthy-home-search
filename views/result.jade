@@ -2,6 +2,20 @@ extends layout
 
 block content
 
+  section.log
+    if user
+      button.success
+        a(href='user/#{user.id}') Profile
+      button.alert
+        a(href='signout') Sign Out
+      button.save_button.success Save
+    else
+      button.success
+        a(href='register') Sign In
+      button.success
+        a(href='register') Sign Up
+
+
   section.main
     header
       .row
@@ -26,15 +40,18 @@ block content
                 a(href='#environment') Environment
               li
                 a(href='#safety') Safety
+                
     section.caption
       .row
         h1.mean_cap
-          | Hi #{user.full_name},  Let us Help You to Find Your Next
+          if user
+            | Hi #{user.full_name},  Let us Help You to Find Your Next
+          else
+            | Let us Help You to Find Your Next
           h2.sub_cap Healthy Living
           a.score_arrow.btn_details(href='#scores')
             span See Your Healthy Home Scores
-            img.arrow(src='images/btn_arrow.png', alt='')      
-          button.save_button.success Save
+            img.arrow(src='images/btn_arrow.png', alt='')
             
   section#scores.scores
     .row
@@ -556,4 +573,4 @@ block content
       environmentMarkers.setFilter(function(f) {
         return (filter === 'all') ? true : f.properties[filter] === true;
       });
-    }
+    })
