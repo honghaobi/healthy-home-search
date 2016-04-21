@@ -23,6 +23,50 @@ form.search {
   background: #313E50;
 }
 
+form.signup-form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  font-family: Montserrat;
+}
+
+form.signin-form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  font-family: Montserrat;
+}
+
 .text-input {
   position: relative;
   margin-top: 50px;
@@ -39,6 +83,7 @@ form.search {
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
 }
+
 .text-input input[type="text"] + label {
   position: absolute;
   top: 0;
@@ -72,6 +117,63 @@ form.search {
           transition-delay: 0.2s;
 }
 
+.register-container {
+  background-color: rgba(150, 150, 150, 0.7);
+  height: 100vh;
+  width: 500px;
+}
+
+.text-input-register {
+  position: relative;
+  margin-top: 20px;
+}
+
+.text-input-register input[type="text"] {
+  display: inline-block;
+  width: 350px;
+  height: 40px;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 10px 10px 10px 100px;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+
+.text-input-register input[type="text"] + label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  line-height: 40px;
+  color: white;
+  border-radius: 3px 0 0 3px;
+  padding: 0 20px;
+  background: #55adb6;
+  -webkit-transform: translateZ(0) translateX(0);
+          transform: translateZ(0) translateX(0);
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+.text-input-register input[type="text"]:focus + label {
+  -webkit-transform: translateY(0%) translateX(-90%);
+          transform: translateY(0%) translateX(-90%);
+  border-radius: 3px;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+.text-input-register input[type="text"]:focus {
+  padding: 10px;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+
 .signin{
   font-size: 0.875rem;
   font-family: Montserrat;
@@ -87,6 +189,16 @@ form.search {
   background: #E96956;
 }
 
-.signin:hover{
+.submit{
+  font-size: 0.875rem;
+  font-family: Montserrat;
+  margin-top: 20px;
+  height: 40px;
+  width: 70%;
+  line-height: 40px;
+  border-style: none;
+  border-radius: 3px 3px 3px 3px;
+  padding: none;
   color: white;
+  background: #E96956;
 }
