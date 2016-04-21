@@ -22,10 +22,16 @@ router.post('/register/signin', (req, res, next) => {
     if (err) {
       res.render('register', {error: err});
     } else {
+      console.log('res locals', res.locals);
       req.session.user = user;
       res.redirect('/');
     }
   });
+});
+
+router.get('/signout', (req, res, next) => {
+  req.session = null;
+  res.redirect('/');
 });
 
 module.exports = router;

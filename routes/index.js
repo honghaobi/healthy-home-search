@@ -8,6 +8,7 @@ var accessibility = require('../models/accessibility');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    console.log('INDEX: ', req.session)
     res.render('index');
 });
 
@@ -18,7 +19,7 @@ router.post('/', function(req, res, next) {
     allData.renderLocation = location;
     var allFunctions = [];
 
-    allFunctions.push(community.getSchools(location).then(function(schoolData) {
+    allFunctions.push(community.getSchools(location).then((schoolData) =>{
       allData.renderSchool = schoolData;
     }));
 
@@ -35,7 +36,6 @@ router.post('/', function(req, res, next) {
     }))
 
     allFunctions.push(community.getRestaurants(location).then( (restaurantData) => {
-      console.log(restaurantData);
       allData.renderRestaurants = restaurantData;
     }));
 
@@ -63,7 +63,8 @@ router.post('/', function(req, res, next) {
       allData.renderWalkScore = walkScoreData;
     }));
 
-    Promise.all(allFunctions).then(function(){
+    Promise.all(allFunctions).then(() => {
+      res.locals.user = req.session.user;
       res.render('result', {allData});
     });
   });
