@@ -3,7 +3,6 @@ var env = require('require-env');
 
 module.exports = {
   getAqi: (userInput) => {
-    console.log(userInput);
     userInput = userInput.replace(/\s+/g, '+');
 
     var options = {
@@ -15,7 +14,7 @@ module.exports = {
     }
   return rp(options)
     .then( (aqiData) => {
-      return aqiData;
+      return JSON.parse(aqiData);
     })
     .catch( (err) => {
       console.log(err);
