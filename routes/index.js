@@ -55,6 +55,7 @@ router.post('/', function(req, res, next) {
 
     allFunctions.push(safety.getCrime(location).then(function(finalcrimeData) {
       allData.renderCrime = finalcrimeData;
+      req.session.crimeNum = allData.renderCrime[0];
     }));
 
     allFunctions.push(environment.getAqi(req.body.userInput).then( (aqiData) => {
@@ -69,6 +70,7 @@ router.post('/', function(req, res, next) {
 
     allFunctions.push(accessibility.getTransit(location).then( (transitData) => {
       allData.renderTransit = transitData;
+      req.session.transitNum = allData.renderTransit[0];
     }));
 
     allFunctions.push(accessibility.getParking(location).then( (parkingData) => {
@@ -86,7 +88,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
-router.get('/saveSearch/:id/userinput/:cs/:ac/:sc/:es', function(req, res, next) {
+router.get('/saveSearch/:id/:ac/:sc', function(req, res, next) {
 
     var comScore = Math.floor((req.session.schoolNum + req.session.parksNum + req.session.cultNum + req.session.viewNum) / 4);
 
@@ -104,7 +106,7 @@ router.get('/saveSearch/:id/userinput/:cs/:ac/:sc/:es', function(req, res, next)
     console.log('sc= ' + req.params.sc);
     console.log('es= ' + enviroScore);
 
-    Searches().insert({user_id:req.params.id, address: req.session.userInput, community: comScore, accessablility: req.params.ac, environment: enviroScore, safety: req.params.sc, date_time: timestamp}).then(function(){
+    Searches().insert({user_id:req.params.id, address: req.session.userInput, community: comScore, accessablility: req.session.transitNum, environment: enviroScore, safety: req.session.crimeNum, date_time: timestamp}).then(function(){
       console.log('inserted');
     }).catch(function(err){
       console.log(err);

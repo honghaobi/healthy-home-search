@@ -34,9 +34,9 @@ block content
           a.score_arrow.btn_details(href='#scores')
             span See Your Healthy Home Scores
             img.arrow(src='images/btn_arrow.png', alt='')
-          a(href='/saveSearch/#{user.id}/userinput/{comScore}/#{allData.renderTransit[0]}/#{allData.renderCrime[0]}/#{enviroGrade}') save search
-          
-          
+          a(href='/saveSearch/#{user.id}') save search
+
+
   section#scores.scores
     .row
       h1.mean_title Here are your Scores Below
@@ -45,10 +45,7 @@ block content
     // Start scores List
     .row.scores_list
       .small-12.medium-3.large-3.columns
-<<<<<<< HEAD
 
-
-=======
 
         -  var schoolScore = allData.renderSchool[0];
         -  var parkScore = allData.renderParks[0];
@@ -57,7 +54,6 @@ block content
 
         -  var comScore = Math.floor((schoolScore + parkScore + cultScore + viewScore) / 4);
 
->>>>>>> 68977a50c92f36788e8100bc7199a42b65824d17
         img.serv_icon(src='images/icon2.png', alt='', title='')
         h1.mean_title #{comScore}
         .btn_holder
