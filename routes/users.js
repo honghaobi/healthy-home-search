@@ -22,7 +22,6 @@ router.post('/register/signin', (req, res, next) => {
     if (err) {
       res.render('register', {error: err});
     } else {
-      console.log('res locals', res.locals);
       req.session.user = user;
       res.redirect('/');
     }
