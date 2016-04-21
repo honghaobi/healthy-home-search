@@ -3,7 +3,6 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var session = require('cookie-session');
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
@@ -35,8 +34,8 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
 })
 
 passport.use(new GoogleStrategy({
@@ -47,14 +46,14 @@ passport.use(new GoogleStrategy({
 },
 function(request, accessToken, refreshToken, profile, done) {
   console.log(profile);
+  // check if a row exists in the user table w/ the profile.id (google id)
+  // if it does, then done(null, user);
+  // otherwise, you'd want to create a new user record
+  // and then call done(null, user);
     return done(null, {id: profile.id,
-    displayName: profile.displayName});
+    displayName: profile.full_name});
 }));
 
-app.use(cookieSession({
-  name: 'session',
-  keys: [process.env.SESSION_KEY]
-}));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -66,7 +65,7 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/', users);
-app.use('/', auth);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
