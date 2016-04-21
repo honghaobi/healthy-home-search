@@ -3,7 +3,19 @@ $(document).ready(function(){
 
 	/*  Foundation Init    */
 	$(document).foundation();
-	
+
+		$('.save_button').on('click', function(event) {
+		  $.ajax({
+				method: "POST",
+				url: "/save"
+			}).done(function(info){
+				console.log('saved');
+			}).fail(function(err){
+				console.log('failed');
+			})
+		});
+
+
 	/*    Mean navigation menu scroll to    */
     $('#mean_nav ul li a').click(function(e){
     	e.preventDefault();

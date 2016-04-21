@@ -1,0 +1,34 @@
+extends layout
+
+block content
+
+  .callout
+    .row
+      h1=user[0].full_name
+      h1=user[0].email
+      table.hover
+        thead
+          tr
+            th(width='500') Search Address
+            th(width='200') Community Score
+            th(width='200') Accessibility Score
+            th(width='200') Environment Score
+            th(width='200') Safety Score
+            th(width='300') Date Searched
+            th(width='300') Go to Search
+            th(width='300') Remove
+        tbody        
+          for search in searches
+            tr
+              td=search.address
+              td=search.community
+              td=search.accessablility
+              td=search.environment
+              td=search.safety
+              td=search.date_time
+              td
+                form(action = '/', method = 'post')
+                  input(name='userInput', type='hidden', value=search.address)
+                  input(type='submit', value='search')
+              td
+                a.alert.button(href='/user/' + user[0].id + '/delete/' + search.id) Remove
