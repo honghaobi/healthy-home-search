@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     table.string('full_name');
     table.string('email');
     table.string('password_digest');
-    table.boolean('isGoogle').notNullable();
+    table.boolean('isGoogle').notNullable().defaultTo(false);
   })
 };
 

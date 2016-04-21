@@ -18,7 +18,7 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/signin', (req, res, next) => {
-  Users.authenticateUser(req.body.user_name, req.body.password, (err, user) => {
+  Users.authenticateUser(req.body.full_name, req.body.password, (err, user) => {
     if (err) {
       res.render('users/signin', {error: err});
     } else {
