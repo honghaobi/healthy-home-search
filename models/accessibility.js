@@ -14,6 +14,23 @@ module.exports = {
       .then(function(transitData) {
         return transitData;
       })
+      // .then( (transitData) => {
+      //   var totTrans = Object.keys(transitData).length
+      //   var transAvg = 20.96;
+      //   var stD = 13.5;
+      //   var zScore = ( -(totTrans - transAvg) / stD)
+      //
+      //   var transGrade = Math.floor((((zScore) + 1.5) / 3) * 100);
+      //   console.log(transGrade);
+      //
+      //   if (transGrade > 100) {
+      //     return [99, transitData];
+      //   } else if (transGrade < 5) {
+      //     return [5, transitData];
+      //   } else {
+      //     return [transGrade, transitData];
+      //   }
+      // })
       .catch(function(err) {
         console.log(err);
       });
