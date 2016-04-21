@@ -26,17 +26,17 @@ Users.createUser = (data, callback) => {
   });
 }
 
-Users.authenticateUser = (email, password, callback) => {
-  Users().where({email: email}).first().then(user => {
+Users.authenticateUser = (full_name, password, callback) => {
+  Users().where({full_name: full_name}).first().then(user => {
     if (!user) {
-      return callback("Email and password don't match");
+      return callback("Name and password don't match");
     }
     bcrypt.compare(password, user.password_digest, function(err, isMatch) {
       console.log(err);
       if (err) {
-        return callback("Email and password don't match");
+        return callback("Name and password don't match");
       } else {
-        return callback(undfined, user);
+        return callback(undefined, user);
       }
     });
   });
