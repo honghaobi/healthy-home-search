@@ -3,12 +3,8 @@ var router = express.Router();
 var passport = require('passport');
 
 router.get('/google', passport.authenticate('google', {
-  scope: [
-    'https://www.googleapis.com/auth/plus.login',
-    'https://www.googleapis.com/auth/plus.profile.emails.read'
-  ]
+  scope: ['email']
 }));
-
 
 router.get('/google/callback', passport.authenticate('google', {
   successRedirect: '/',
@@ -20,11 +16,5 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-// function ensureAuthenticated(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     return next();
-//   }
-//   res.redirect('/login');
-// }
 
 module.exports = router;

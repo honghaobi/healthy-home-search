@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(session({keys: [process.env.SESSION_KEY1, process.env.SESSION_KEY2]}));
 app.use(function(req, res, next) {
   res.locals.user = req.user;
@@ -33,32 +34,38 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
 })
 
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.HOST + "/auth/google/callback",
+  callbackURL: "/auth/google/callback",
   passReqToCallback: true
 },
-function(accessToken, refreshToken, profile, done) {
+function(request, accessToken, refreshToken, profile, done) {
+  console.log(profile);
+  // check if a row exists in the user table w/ the profile.id (google id)
+  // if it does, then done(null, user);
+  // otherwise, you'd want to create a new user record
+  // and then call done(null, user);
     return done(null, {id: profile.id,
-    displayName: profile.displayName});
+    displayName: profile.full_name});
 }));
 
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: [process.env.SESSION_KEY]
-// }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
 app.use('/', routes);
 app.use('/', users);
-app.use('/', auth);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
