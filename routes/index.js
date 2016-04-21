@@ -17,12 +17,13 @@ function Searches() {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log('INDEX: ', req.session)
-    res.render('index');
+  res.render('index');
 });
 
 router.post('/', function(req, res, next) {
+
   req.session.userInput = req.body.userInput;
+
   search.getGeoCode(req.body.userInput).then(function(location){
     //here we are making api calls in promises then rendor the page:
     var allData = {};
@@ -88,33 +89,35 @@ router.post('/', function(req, res, next) {
   });
 });
 
-router.get('/saveSearch/:id/:ac/:sc', function(req, res, next) {
+router.post('/save', function(req, res, next) {
 
     var comScore = Math.floor((req.session.schoolNum + req.session.parksNum + req.session.cultNum + req.session.viewNum) / 4);
 
     var permitGrade = req.session.permitNum;
     var aqiGrade = ((req.session.aqiNum) + 30);
     var enviroScore = Math.ceil((permitGrade + aqiGrade) / 2);
-
     var timestamp = new Date();
-    console.log(timestamp);
 
-    console.log('userinput =' + req.session.userInput);
-    console.log('id = ' + req.params.id);
-    console.log('cs= ' + comScore);
-    console.log('ac= ' + req.params.ac);
-    console.log('sc= ' + req.params.sc);
-    console.log('es= ' + enviroScore);
-
-    Searches().insert({user_id:req.params.id, address: req.session.userInput, community: comScore, accessablility: req.session.transitNum, environment: enviroScore, safety: req.session.crimeNum, date_time: timestamp}).then(function(){
-      console.log('inserted');
+    Searches().insert({user_id:req.session.user.id, address: req.session.userInput, community: comScore, accessablility: req.session.transitNum, environment: enviroScore, safety: req.session.crimeNum, date_time: timestamp}).then(function(){
+      res.send(200);
     }).catch(function(err){
       console.log(err);
     })
-
-
 });
 
+router.get('/user/:id', function(req, res, next) {
+  Users().select().where({id:req.params.id}).then(function(user){
+    Searches().select().where({user_id:req.params.id}).then(function(searches){
+      res.render('user', {user, searches});
+    });
+  });
+});
 
+router.get('/user/:user_id/delete/:search_id', function(req, res, next) {
+console.log('user id ' + req.params.user_id);
+  Searches().del().where({id:req.params.search_id}).then(function(){
+    res.redirect('../../../user/' + req.params.user_id);
+  })
+});
 
 module.exports = router;
