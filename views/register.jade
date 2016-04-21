@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+  form(action='../register/signup', method='post')
+    p
+      input(name='full_name', type='text', placeholder='New Username')
+    p
+      input(name='email', type='text', placeholder='New Email')
+    p
+      input(name='password', type='password', placeholder='New Password')
+    p
+      input(value='Submit', type='submit')
+
+  form(action='../register/signin', method='post')
+    p
+      input(name='full_name', type='text', placeholder='Username')
+    p
+      input(name='password', type='password', placeholder='Password')
+    p
+      input(value='Submit', type='submit')
