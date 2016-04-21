@@ -86,9 +86,13 @@ block content
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
           
+      - var transitGrade = allData.renderPermits[0];
+      - var aqiGrade = ((allData.renderAqi.breezometer_aqi) + 30);
+      - var enviroGrade = Math.ceil((transitGrade + aqiGrade) / 2);
+          
       .small-12.medium-3.large-3.columns  
         img.serv_icon(src='images/icon4.png', alt='', title='')
-        h1.mean_title #{allData.renderPermits[0]}
+        h1.mean_title #{enviroGrade}
         .btn_holder
           a.btn_fancy(href='#environment')
             .solid_layer
@@ -367,19 +371,19 @@ block content
       });  
     }
       
-    for (var q = 0; q < allData.renderParking.length; q++) {
+    for (var q = 0; q < allData.renderParking[1].length; q++) {
       accessibilityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
-            allData.renderParking[q].shape.longitude,
-            allData.renderParking[q].shape.latitude
+            allData.renderParking[1][q].shape.longitude,
+            allData.renderParking[1][q].shape.latitude
           ],
           "type": "Point"
         },
         "properties": {
           "title": "Parking",
-          "description": allData.renderParking[q].fac_type || allData.renderParking[q].fac_name || allData.renderParking[q].webname,
+          "description": allData.renderParking[1][q].fac_type || allData.renderParking[1][q].fac_name || allData.renderParking[1][q].webname,
           "bus-stop": false,
           "parking": true,
           "marker-color": "#d04c00",

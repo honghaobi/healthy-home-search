@@ -50,6 +50,22 @@ module.exports = {
       .then(function(parkingData) {
         return parkingData;
       })
+      .then( (parkingData) => {
+        var totParking = parkingData.length;
+        var parkingAvg = 2.03;
+        var stD = 4.27;
+        var zScore = ((totParking - parkingAvg) / stD)
+
+        var parkingGrade = Math.floor((((zScore) + 1.5) / 3) * 100);
+
+        if (parkingGrade > 100) {
+          return [99, parkingData];
+        } else if (parkingGrade < 5) {
+          return [5, parkingData];
+        } else {
+          return [parkingGrade, parkingData];
+        }
+      })
       .catch(function(err) {
         console.log(err);
       });
