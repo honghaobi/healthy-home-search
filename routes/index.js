@@ -35,6 +35,7 @@ router.post('/', function(req, res, next) {
     }))
 
     allFunctions.push(community.getRestaurants(location).then( (restaurantData) => {
+      console.log(restaurantData);
       allData.renderRestaurants = restaurantData;
     }));
 
@@ -63,6 +64,14 @@ router.post('/', function(req, res, next) {
     }));
 
     Promise.all(allFunctions).then(function(){
+      // run your algorithm on all this data
+      // generate all the scores:
+      var scores = {
+
+      }
+      // knex.insert('searches', scores)
+      
+      // render:
       res.render('result', {allData});
     });
   });

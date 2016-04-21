@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 var passport = require('passport');
@@ -24,10 +25,6 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) {
-  res.locals.user = req.user;
-  next();
-});
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -40,21 +37,27 @@ passport.deserializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.HOST + "/auth/google/callback",
+  callbackURL: "/auth/google/callback",
   passReqToCallback: true
 },
-function(accessToken, refreshToken, profile, done) {
+function(request, accessToken, refreshToken, profile, done) {
+  console.log(profile);
     return done(null, {id: profile.id,
     displayName: profile.displayName});
 }));
 
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: [process.env.SESSION_KEY]
-// }));
+app.use(cookieSession({
+  name: 'session',
+  keys: [process.env.SESSION_KEY]
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
 
 app.use('/', routes);
 app.use('/auth', auth);

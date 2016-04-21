@@ -4,8 +4,8 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('full_name');
     table.string('email');
-    table.string('password');
-    table.boolean('isGoogle').notNullable();
+    table.string('password_digest');
+    table.boolean('isGoogle').notNullable().defaultTo(false);
   })
 };
 

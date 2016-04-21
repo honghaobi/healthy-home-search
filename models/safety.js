@@ -58,7 +58,7 @@ module.exports = {
           console.log(writeErr);
         });
 
-        return finalcrimeData;
+        return JSON.parse(finalcrimeData);
       })
       .catch(function(err) {
         console.log(err);
