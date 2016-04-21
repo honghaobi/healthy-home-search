@@ -29,12 +29,14 @@ block content
     section.caption
       .row
         h1.mean_cap
-          | Let us Help You to Find Your Next
+          | Hi #{user.full_name},  Let us Help You to Find Your Next
           h2.sub_cap Healthy Living
           a.score_arrow.btn_details(href='#scores')
             span See Your Healthy Home Scores
             img.arrow(src='images/btn_arrow.png', alt='')
-
+          a(href='/saveSearch/#{user.id}/userinput/{comScore}/#{allData.renderTransit[0]}/#{allData.renderCrime[0]}/#{enviroGrade}') save search
+          
+          
   section#scores.scores
     .row
       h1.mean_title Here are your Scores Below

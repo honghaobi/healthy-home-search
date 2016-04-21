@@ -28,4 +28,9 @@ router.post('/register/signin', (req, res, next) => {
   });
 });
 
+router.get('/signout', (req, res, next) => {
+  req.session = null;
+  res.redirect('/');
+});
+
 module.exports = router;
