@@ -29,7 +29,7 @@ block content
     section.caption
       .row
         h1.mean_cap
-          | Let us Help You to Find Your Next
+          | Hi #{user.full_name},  Let us Help You to Find Your Next
           h2.sub_cap Healthy Living
           a.score_arrow.btn_details(href='#scores')
             span See Your Healthy Home Scores
@@ -43,10 +43,21 @@ block content
     // Start scores List
     .row.scores_list
       .small-12.medium-3.large-3.columns
+<<<<<<< HEAD
 
 
+=======
+
+        -  var schoolScore = allData.renderSchool[0];
+        -  var parkScore = allData.renderParks[0];
+        -  var cultScore = allData.renderCultCenters[0];
+        -  var viewScore = allData.renderViewpoints[0];
+
+        -  var comScore = Math.floor((schoolScore + parkScore + cultScore + viewScore) / 4);
+
+>>>>>>> 68977a50c92f36788e8100bc7199a42b65824d17
         img.serv_icon(src='images/icon2.png', alt='', title='')
-        h1.mean_title 92
+        h1.mean_title #{comScore}
         .btn_holder
           a.btn_fancy(href='#community')
             .solid_layer
@@ -58,7 +69,7 @@ block content
 
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icon1.png', alt='', title='')
-        h1.mean_title 76
+        h1.mean_title #{allData.renderTransit[0]}
         .btn_holder
           a.btn_fancy(href='#accessibility')
             .solid_layer
@@ -70,7 +81,7 @@ block content
 
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icon3.png', alt='', title='')
-        h1.mean_title 65
+        h1.mean_title #{allData.renderCrime[0]}
         .btn_holder
           a.btn_fancy(href='#safety')
             .solid_layer
@@ -80,9 +91,13 @@ block content
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
+      - var transitGrade = allData.renderPermits[0];
+      - var aqiGrade = ((allData.renderAqi.breezometer_aqi) + 30);
+      - var enviroGrade = Math.ceil((transitGrade + aqiGrade) / 2);
+
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icon4.png', alt='', title='')
-        h1.mean_title 97
+        h1.mean_title #{enviroGrade}
         .btn_holder
           a.btn_fancy(href='#environment')
             .solid_layer
@@ -115,7 +130,7 @@ block content
         nav.menu-ui
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='bus-stop') Bus Stops
-          a(href='#', data-filter='parking') Parkings
+          a(href='#', data-filter='parking') Parking Lots/Garages
       .large-5.columns
         .accessibility_sub
           h2.sub_cap_sec Accessibility Score
@@ -192,18 +207,18 @@ block content
 
     var communityGeoJson = [];
 
-    for (var i = 0; i < allData.renderSchool.length; i++) {
+    for (var i = 0; i < allData.renderSchool[1].length; i++) {
       communityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
-            allData.renderSchool[i].long_cen,
-            allData.renderSchool[i].lat_cen
+            allData.renderSchool[1][i].long_cen,
+            allData.renderSchool[1][i].lat_cen
           ],
           "type": "Point"
         },
         "properties": {
-          "title": allData.renderSchool[i].name,
+          "title": allData.renderSchool[1][i].name,
           "schools": true,
           "parks": false,
           "restaurants": false,
@@ -215,18 +230,18 @@ block content
       });
     }
 
-    for (var j = 0; j < allData.renderParks.length; j++) {
+    for (var j = 0; j < allData.renderParks[1].length; j++) {
       communityGeoJson.push({
         "type": "Feature",
         "geometry": {
           "coordinates": [
-            allData.renderParks[j].longitude,
-            allData.renderParks[j].latitude
+            allData.renderParks[1][j].longitude,
+            allData.renderParks[1][j].latitude
           ],
           "type": "Point"
         },
         "properties": {
-          "title": allData.renderParks[j].common_name,
+          "title": allData.renderParks[1][j].common_name,
           "schools": false,
           "parks": true,
           "restaurants": false,
@@ -259,5 +274,289 @@ block content
           "marker-color": "#7bd0b5",
           "marker-size": "medium",
         }
+
+      });
+    }
+
+    for (var k = 0; k < allData.renderViewpoints[1].length; k++) {
+      communityGeoJson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderViewpoints[1][k].longitude,
+            allData.renderViewpoints[1][k].latitude
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": allData.renderViewpoints[1][k].common_name,
+          "schools": false,
+          "parks": false,
+          "restaurants": false,
+          "viewpoints": true,
+          "cultural-spaces": false,
+          "marker-color": "#da6339",
+          "marker-size": "medium",
+        }
+      });
+    }
+
+    for (var l = 0; l < allData.renderCultCenters[1].length; l++) {
+      communityGeoJson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderCultCenters[1][l].location.coordinates[0],
+            allData.renderCultCenters[1][l].location.coordinates[1]
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": allData.renderCultCenters[1][l].name,
+          "schools": false,
+          "parks": false,
+          "restaurants": false,
+          "viewpoints": false,
+          "cultural-spaces": true,
+          "marker-color": "#b64990",
+          "marker-size": "medium",
+        }
+      });
+    }
+
+    var communityMarkers = L.mapbox.featureLayer().setGeoJSON(communityGeoJson).addTo(communityMap);
+
+    $('.menu-ui a').on('click', function() {
+      var filter = $(this).data('filter');
+      $(this).addClass('active').siblings().removeClass('active');
+      communityMarkers.setFilter(function(f) {
+        return (filter === 'all') ? true : f.properties[filter] === true;
+      });
+      return false;
+    });
+
+
+    var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
+
+    L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(accessibilityMap);
+
+    L.mapbox.featureLayer({
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [
+          #{allData.renderLocation.lat},
+          #{allData.renderLocation.long}
+        ]
+      },
+      properties: {
+        title: 'My featured house',
+        description: 'Healthy Search',
+        'marker-size': 'large',
+        'marker-color': '#5dfd92',
+        'marker-symbol': 'star',
+        }
+    }).addTo(accessibilityMap);
+
+    var accessibilityGeoJson = [];
+
+    for (var p = 0; p < allData.renderTransit[1].data.list.length; p++) {
+      accessibilityGeoJson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderTransit[1].data.list[p].lon,
+            allData.renderTransit[1].data.list[p].lat
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": "Bus-Stop",
+          "description": allData.renderTransit[1].data.list[p].name,
+          "bus-stop": true,
+          "parking": false,
+          "marker-color": "#ba36af",
+          "marker-size": "medium"
+        }
+      });
+    }
+
+    for (var q = 0; q < allData.renderParking[1].length; q++) {
+      accessibilityGeoJson.push({
+        "type": "Feature",
+        "geometry": {
+          "coordinates": [
+            allData.renderParking[1][q].shape.longitude,
+            allData.renderParking[1][q].shape.latitude
+          ],
+          "type": "Point"
+        },
+        "properties": {
+          "title": "Parking",
+          "description": allData.renderParking[1][q].fac_type || allData.renderParking[1][q].fac_name || allData.renderParking[1][q].webname,
+          "bus-stop": false,
+          "parking": true,
+          "marker-color": "#d04c00",
+          "marker-size": "medium",
+        }
+      });
+    }
+
+    var accessibilityMarkers = L.mapbox.featureLayer().setGeoJSON(accessibilityGeoJson).addTo(accessibilityMap);
+
+    $('.menu-ui a').on('click', function() {
+      var filter = $(this).data('filter');
+      $(this).addClass('active').siblings().removeClass('active');
+      accessibilityMarkers.setFilter(function(f) {
+        return (filter === 'all') ? true : f.properties[filter] === true;
+      });
+      return false;
+    });
+
+    var environmentMap = new L.mapbox.map('environment_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
+
+    L.mapbox.featureLayer({
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [
+          #{allData.renderLocation.lat},
+          #{allData.renderLocation.long}
+        ]
+      },
+      properties: {
+        title: 'My featured house',
+        description: 'Healthy Search',
+        'marker-size': 'large',
+        'marker-color': '#5dfd92',
+        'marker-symbol': 'star',
+        }
+    }).addTo(environmentMap);
+
+    var environmentGeoJson = [];
+
+    for (var o = 0; o < allData.renderPermits[1].length; o++) {
+      if(allData.renderPermits[1][o].status !== 'Permit Closed' && allData.renderPermits[1][o].status !== 'CANCELLED' && allData.renderPermits[1][o].status !== undefined){
+        if(allData.renderPermits[1][o].category === 'SINGLE FAMILY / DUPLEX'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[1][o].longitude,
+                allData.renderPermits[1][o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[1][o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
+              "single-family": true,
+              "multifamily": false,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": false,
+              "marker-color": "#da2e00",
+              "marker-size": "medium",
+            }
+          });
+        } else if (allData.renderPermits[1][o].category === 'MULTIFAMILY'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[1][o].longitude,
+                allData.renderPermits[1][o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[1][o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
+              "single-family": false,
+              "multifamily": true,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": false,
+              "marker-color": "#00dab6",
+              "marker-size": "medium",
+            }
+          });
+        } else if (allData.renderPermits[1][o].category === 'COMMERCIAL'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[1][o].longitude,
+                allData.renderPermits[1][o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[1][o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
+              "single-family": false,
+              "multifamily": false,
+              "commercial": true,
+              "indulstrial": false,
+              "institutional": false,
+              "marker-color": "#008ada",
+              "marker-size": "medium",
+            }
+          });
+        } else if (allData.renderPermits[1][o].category === 'INSTITUTIONAL'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[1][o].longitude,
+                allData.renderPermits[1][o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[1][o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
+              "single-family": false,
+              "multifamily": false,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": true,
+              "marker-color": "#007123",
+              "marker-size": "medium",
+            }
+          });
+        } else if (allData.renderPermits[1][o].category === 'INDULSTRIAL'){
+          environmentGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
+                allData.renderPermits[1][o].longitude,
+                allData.renderPermits[1][o].latitude
+              ],
+              "type": "Point"
+            },
+            "properties": {
+              "title": allData.renderPermits[1][o].status,
+              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
+              "single-family": false,
+              "multifamily": false,
+              "commercial": false,
+              "indulstrial": false,
+              "institutional": true,
+              "marker-color": "#001071",
+              "marker-size": "medium",
+            }
+          });
+        }
+      }
+    }
+
+    var environmentMarkers = L.mapbox.featureLayer().setGeoJSON(environmentGeoJson).addTo(environmentMap);
+
+    $('.menu-ui a').on('click', function() {
+      var filter = $(this).data('filter');
+      $(this).addClass('active').siblings().removeClass('active');
+      environmentMarkers.setFilter(function(f) {
+        return (filter === 'all') ? true : f.properties[filter] === true;
       });
     }

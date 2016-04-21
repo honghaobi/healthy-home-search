@@ -57,8 +57,27 @@ module.exports = {
         fs.writeFile(path.join(__dirname, '../public/crime.json'), finalcrimeData, function(writeErr){
           console.log(writeErr);
         });
-
         return JSON.parse(finalcrimeData);
+      })
+      .then( (crimeData) => {
+        var totCrimes = 0;
+
+        for (var i = 0; i < Object.keys(crimeData.children).length; i++) {
+           totCrimes += crimeData.children[i].size;
+        }
+
+        var avg = 1088.57;
+        var stD = 234.07;
+        var zScore = ( -(totCrimes - avg) / stD)
+        var crimeGrade = Math.floor((((zScore + 2) / 4) * 100) + 20);
+
+        if (crimeGrade > 100) {
+          return [99, crimeData];
+        } else if (crimeGrade < 5) {
+          return [5, crimeData];
+        } else {
+          return [crimeGrade, crimeData];
+        }
       })
       .catch(function(err) {
         console.log(err);

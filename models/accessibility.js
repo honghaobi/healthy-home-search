@@ -14,6 +14,22 @@ module.exports = {
       .then(function(transitData) {
         return transitData;
       })
+      .then( (transitData) => {
+        var totTrans = Object.keys(transitData).length
+        var transAvg = 20.96;
+        var stD = 13.5;
+        var zScore = ( -(totTrans - transAvg) / stD)
+
+        var transGrade = Math.floor((((zScore) + 1.5) / 3) * 100);
+
+        if (transGrade > 100) {
+          return [99, transitData];
+        } else if (transGrade < 5) {
+          return [5, transitData];
+        } else {
+          return [transGrade, transitData];
+        }
+      })
       .catch(function(err) {
         console.log(err);
       });
@@ -22,7 +38,7 @@ module.exports = {
   getParking: (location) => {
     var options = {
       method: 'GET',
-      uri: `https://data.seattle.gov/resource/3neb-8edu.json?$where=within_circle(shape,${location.long},${location.lat},1500)`,
+      uri: `https://data.seattle.gov/resource/3neb-8edu.json?$where=within_circle(shape,${location.long},${location.lat},500)`,
       ps: {
         $$app_token: process.env.SODAKEY
       },
@@ -33,6 +49,22 @@ module.exports = {
     return rp(options)
       .then(function(parkingData) {
         return parkingData;
+      })
+      .then( (parkingData) => {
+        var totParking = parkingData.length;
+        var parkingAvg = 2.03;
+        var stD = 4.27;
+        var zScore = ((totParking - parkingAvg) / stD)
+
+        var parkingGrade = Math.floor((((zScore) + 1.5) / 3) * 100);
+
+        if (parkingGrade > 100) {
+          return [99, parkingData];
+        } else if (parkingGrade < 5) {
+          return [5, parkingData];
+        } else {
+          return [parkingGrade, parkingData];
+        }
       })
       .catch(function(err) {
         console.log(err);
