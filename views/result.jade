@@ -43,8 +43,8 @@ block content
     // Start scores List
     .row.scores_list
       .small-12.medium-3.large-3.columns
-      
-      
+
+
         img.serv_icon(src='images/icon2.png', alt='', title='')
         h1.mean_title 92
         .btn_holder
@@ -55,7 +55,7 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          
+
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icon1.png', alt='', title='')
         h1.mean_title 76
@@ -67,7 +67,7 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          
+
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icon3.png', alt='', title='')
         h1.mean_title 65
@@ -79,8 +79,8 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          
-      .small-12.medium-3.large-3.columns  
+
+      .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icon4.png', alt='', title='')
         h1.mean_title 97
         .btn_holder
@@ -91,7 +91,7 @@ block content
         br
         p
           | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            
+
   section#community.community
     .expanded
       .large-7.columns
@@ -120,7 +120,7 @@ block content
         .accessibility_sub
           h2.sub_cap_sec Accessibility Score
           p Lorem ipsum dolor sit amet, conwsectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      
+
   section#environment.environment
     .expanded
       .large-7.columns
@@ -136,16 +136,18 @@ block content
         .environment_sub
           h2.sub_cap Environment Score
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          
+
   section#safety.safety
     .expanded
       .large-7.columns
+
+        .crime_graph
 
       .large-5.columns
         .safety_sub
           h2.sub_cap_sec Safety Score
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        
+
   .shadow
 
 
@@ -155,24 +157,24 @@ block content
     .border_layer
     .text_layer
       img.top_arrow(src='images/top_arrow.png', alt='Back to top', title='')
-  
+
   script.
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVucnliaSIsImEiOiJjaW42NmVvMmowZTFidXBra2xkM2N3cTE1In0.cdfJiLolXJoUefefWOKqew';
-    
+
     var allData = !{JSON.stringify(allData)};
     console.log(allData);
-    
+
     var communityMap = new L.mapbox.map('community_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 15);
-    
+
     L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(communityMap);
-    
+
     L.mapbox.featureLayer({
       type: 'Feature',
       geometry: {
         type: 'Point',
         coordinates: [
           #{allData.renderLocation.lat},
-          #{allData.renderLocation.long} 
+          #{allData.renderLocation.long}
         ]
       },
       properties: {
@@ -183,9 +185,9 @@ block content
         'marker-symbol': 'star',
         }
     }).addTo(communityMap);
-    
+
     var communityGeoJson = [];
-    
+
     for (var i = 0; i < allData.renderSchool.length; i++) {
       communityGeoJson.push({
         "type": "Feature",
@@ -205,9 +207,9 @@ block content
           "marker-color": "#2f36b6",
           "marker-size": "medium",
         }
-      });  
+      });
     }
-      
+
     for (var j = 0; j < allData.renderParks.length; j++) {
       communityGeoJson.push({
         "type": "Feature",
@@ -227,9 +229,9 @@ block content
           "marker-color": "#3ebc36",
           "marker-size": "medium",
         }
-      });  
+      });
     }
-    
+
     for (var k = 0; k < allData.renderViewpoints.length; k++) {
       communityGeoJson.push({
         "type": "Feature",
@@ -249,9 +251,9 @@ block content
           "marker-color": "#da6339",
           "marker-size": "medium",
         }
-      });  
+      });
     }
-    
+
     for (var l = 0; l < allData.renderCultCenters.length; l++) {
       communityGeoJson.push({
         "type": "Feature",
@@ -271,11 +273,11 @@ block content
           "marker-color": "#b64990",
           "marker-size": "medium",
         }
-      });  
+      });
     }
-      
+
     var communityMarkers = L.mapbox.featureLayer().setGeoJSON(communityGeoJson).addTo(communityMap);
-    
+
     $('.menu-ui a').on('click', function() {
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
@@ -284,10 +286,10 @@ block content
       });
       return false;
     });
-        
-    
+
+
     var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
-    
+
     L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(accessibilityMap);
 
     L.mapbox.featureLayer({
@@ -296,7 +298,7 @@ block content
         type: 'Point',
         coordinates: [
           #{allData.renderLocation.lat},
-          #{allData.renderLocation.long} 
+          #{allData.renderLocation.long}
         ]
       },
       properties: {
@@ -307,9 +309,9 @@ block content
         'marker-symbol': 'star',
         }
     }).addTo(accessibilityMap);
-    
+
     var accessibilityGeoJson = [];
-    
+
     for (var p = 0; p < allData.renderTransit.data.list.length; p++) {
       accessibilityGeoJson.push({
         "type": "Feature",
@@ -328,9 +330,9 @@ block content
           "marker-color": "#ba36af",
           "marker-size": "medium"
         }
-      });  
+      });
     }
-      
+
     for (var q = 0; q < allData.renderParking.length; q++) {
       accessibilityGeoJson.push({
         "type": "Feature",
@@ -349,11 +351,11 @@ block content
           "marker-color": "#d04c00",
           "marker-size": "medium",
         }
-      });  
+      });
     }
-      
+
     var accessibilityMarkers = L.mapbox.featureLayer().setGeoJSON(accessibilityGeoJson).addTo(accessibilityMap);
-    
+
     $('.menu-ui a').on('click', function() {
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
@@ -362,16 +364,16 @@ block content
       });
       return false;
     });
-    
+
     var environmentMap = new L.mapbox.map('environment_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
-    
+
     L.mapbox.featureLayer({
       type: 'Feature',
       geometry: {
         type: 'Point',
         coordinates: [
           #{allData.renderLocation.lat},
-          #{allData.renderLocation.long} 
+          #{allData.renderLocation.long}
         ]
       },
       properties: {
@@ -382,9 +384,9 @@ block content
         'marker-symbol': 'star',
         }
     }).addTo(environmentMap);
-    
+
     var environmentGeoJson = [];
-    
+
     for (var o = 0; o < allData.renderPermits.length; o++) {
       if(allData.renderPermits[o].status !== 'Permit Closed' && allData.renderPermits[o].status !== 'CANCELLED' && allData.renderPermits[o].status !== undefined){
         if(allData.renderPermits[o].category === 'SINGLE FAMILY / DUPLEX'){
@@ -408,7 +410,7 @@ block content
               "marker-color": "#da2e00",
               "marker-size": "medium",
             }
-          });  
+          });
         } else if (allData.renderPermits[o].category === 'MULTIFAMILY'){
           environmentGeoJson.push({
             "type": "Feature",
@@ -430,7 +432,7 @@ block content
               "marker-color": "#00dab6",
               "marker-size": "medium",
             }
-          });  
+          });
         } else if (allData.renderPermits[o].category === 'COMMERCIAL'){
           environmentGeoJson.push({
             "type": "Feature",
@@ -452,7 +454,7 @@ block content
               "marker-color": "#008ada",
               "marker-size": "medium",
             }
-          });  
+          });
         } else if (allData.renderPermits[o].category === 'INSTITUTIONAL'){
           environmentGeoJson.push({
             "type": "Feature",
@@ -474,7 +476,7 @@ block content
               "marker-color": "#007123",
               "marker-size": "medium",
             }
-          }); 
+          });
         } else if (allData.renderPermits[o].category === 'INDULSTRIAL'){
           environmentGeoJson.push({
             "type": "Feature",
@@ -496,13 +498,13 @@ block content
               "marker-color": "#001071",
               "marker-size": "medium",
             }
-          }); 
+          });
         }
       }
     }
-    
+
     var environmentMarkers = L.mapbox.featureLayer().setGeoJSON(environmentGeoJson).addTo(environmentMap);
-    
+
     $('.menu-ui a').on('click', function() {
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
@@ -511,6 +513,56 @@ block content
       });
       return false;
     });
-    
+
     L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(environmentMap);
-    
+
+    var diameter = 960,
+        format = d3.format(",d"),
+        color = d3.scale.category20c();
+
+    var bubble = d3.layout.pack()
+        .sort(null)
+        .size([diameter, diameter])
+        .padding(1.5);
+
+    var svg = d3.select(".crime_graph").append("svg")
+        .attr("width", diameter)
+        .attr("height", diameter)
+        .attr("class", "bubble");
+
+    d3.json("crime.json", function(error, root) {
+      if (error) throw error;
+
+      var node = svg.selectAll(".node")
+          .data(bubble.nodes(classes(root))
+          .filter(function(d) { return !d.children; }))
+        .enter().append("g")
+          .attr("class", "node")
+          .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+      node.append("title")
+          .text(function(d) { return d.className + ": " + format(d.value); });
+
+      node.append("circle")
+          .attr("r", function(d) { return d.r; })
+          .style("fill", function(d) { return color(d.packageName); });
+
+      node.append("text")
+          .attr("dy", ".3em")
+          .style("text-anchor", "middle")
+          .text(function(d) { return d.className.substring(0, d.r / 3); });
+    });
+
+    function classes(root) {
+      var classes = [];
+
+      function recurse(name, node) {
+        if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+        else classes.push({packageName: name, className: node.name, value: node.size});
+      }
+
+      recurse(null, root);
+      return {children: classes};
+    }
+
+    d3.select(self.frameElement).style("height", diameter + "px");

@@ -1,12 +1,14 @@
 var rp = require('request-promise');
 var env = require('require-env');
+var fs = require('fs');
+var path = require('path');
 
 module.exports = {
   getCrime: (location) => {
     var today = new Date();
     var thisYear = today.getFullYear();
     var thisMonth = today.getMonth();
-    var subMonth = (thisMonth - 2);
+    var subMonth = (thisMonth - 12);
 
     if(subMonth < 1) {
       var lastYear = (thisYear - 1);
@@ -28,8 +30,35 @@ module.exports = {
 
     return rp(options)
       .then(function(crimeData) {
-        return crimeData;
-        
+
+          var organizedCrimeCountObj = {}
+
+          for (var i = 0; i < crimeData.length; i++) {
+            if (organizedCrimeCountObj[crimeData[i].summarized_offense_description]) {
+              organizedCrimeCountObj[crimeData[i].summarized_offense_description] += 1;
+            } else {
+              organizedCrimeCountObj[crimeData[i].summarized_offense_description] = 1;
+            }
+          }
+
+           var organizedCrimeCountArray = [];
+
+           for (var j = 0; j < Object.keys(organizedCrimeCountObj).length; j++) {
+             organizedCrimeCountArray.push({'name':Object.keys(organizedCrimeCountObj)[j], 'size':organizedCrimeCountObj[Object.keys(organizedCrimeCountObj)[j]]})
+           }
+
+           var finalcrimeData = {
+             name:"crimes",
+             children: organizedCrimeCountArray
+           };
+
+        finalcrimeData = JSON.stringify(finalcrimeData);
+        console.log(Object.keys(finalcrimeData).length);
+        fs.writeFile(path.join(__dirname, '../public/crime.json'), finalcrimeData, function(writeErr){
+          console.log(writeErr);
+        });
+
+        return finalcrimeData;
       })
       .catch(function(err) {
         console.log(err);

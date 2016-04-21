@@ -83,8 +83,8 @@ module.exports = {
       method: 'GET',
       uri: `https://developers.zomato.com/api/v2.1/geocode`,
       qs: {
-        lat: location.lat,
-        lon: location.long
+        lat: location.long,
+        lon: location.lat
       },
       headers: {
         'Accept': 'application/json',
@@ -92,10 +92,8 @@ module.exports = {
       },
       json:true
     }
-    console.log('key', process.env.ZOMATOKEY);
     return rp(options)
       .then( (restaurantData) => {
-        console.log('zomato', restaurantData);
         return restaurantData;
       })
       .catch( (err) => {
