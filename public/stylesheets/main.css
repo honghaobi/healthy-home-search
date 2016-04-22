@@ -194,11 +194,11 @@ h1.logo-name{
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  top: 210px;
+  top: 250px;
 }
 
 span.logo-sub {
-	font-family: "lato-light", Helvetica, Arial, sans-serif;
+	font-family: "lato-bold", Helvetica, Arial, sans-serif;
 	color: #55adb6;
 }
 
