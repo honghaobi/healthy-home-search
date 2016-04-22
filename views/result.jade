@@ -13,7 +13,6 @@ block content
               a(href='#')
                 span Menu
 
-
           section#mean_nav.top-bar-section                
             ul.right
               li
@@ -44,12 +43,16 @@ block content
       .row
         if user
           h1.mean_cap Hi #{user.full_name}, 
-          h2.sub_cap Discover #{allData.renderRestaurants.location.title}
+          h2.sub_cap Discover 
+            span.neighbor #{allData.renderRestaurants.location.title}
+            span.with With Neighbor
+            span.good Good
         else
-          h2.sub_cap Discover #{allData.renderRestaurants.location.title}
+          h2.sub_cap Discover #{allData.renderRestaurants.location.title}With Neighbor
+            span.logo-sub Good
         
         a.score_arrow.btn_details(href='#scores')
-          span See Your Healthy Home Scores
+          span.peach See Your Healthy Home Scores
           img.arrow(src='images/btn_arrow.png', alt='')
             
   section#scores.scores
