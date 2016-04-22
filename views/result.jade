@@ -127,7 +127,7 @@ block content
     .expanded
       .large-7.columns
         #community_map
-        nav.menu-ui
+        nav.menu-ui.cm
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='schools') Schools
           a(href='#', data-filter='parks') Parks
@@ -143,7 +143,7 @@ block content
     .expanded
       .large-7.columns
         #accessibility_map
-        nav.menu-ui
+        nav.menu-ui.am
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='bus-stop') Bus Stops
           a(href='#', data-filter='parking') Parking Lots/Garages
@@ -161,7 +161,7 @@ block content
     .expanded
       .large-7.columns
         #environment_map
-        nav.menu-ui
+        nav.menu-ui.em
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='single-family') Single Family
           a(href='#', data-filter='multifamily') Multifamily
@@ -350,7 +350,8 @@ block content
 
     var communityMarkers = L.mapbox.featureLayer().setGeoJSON(communityGeoJson).addTo(communityMap);
 
-    $('.menu-ui a').on('click', function() {
+    $('.cm a').on('click', function(e) {
+      e.preventDefault();
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
       communityMarkers.setFilter(function(f) {
@@ -430,7 +431,8 @@ block content
 
     var accessibilityMarkers = L.mapbox.featureLayer().setGeoJSON(accessibilityGeoJson).addTo(accessibilityMap);
 
-    $('.menu-ui a').on('click', function() {
+    $('.am a').on('click', function(e) {
+      e.preventDefault();
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
       accessibilityMarkers.setFilter(function(f) {
@@ -579,7 +581,8 @@ block content
 
     var environmentMarkers = L.mapbox.featureLayer().setGeoJSON(environmentGeoJson).addTo(environmentMap);
 
-    $('.menu-ui a').on('click', function() {
+    $('.em a').on('click', function(e) {
+      e.preventDefault();
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
       environmentMarkers.setFilter(function(f) {
@@ -616,7 +619,7 @@ block content
 
       node.append("circle")
           .attr("r", function(d) { return d.r; })
-          .style("fill", function(d) { return color(d.name); });
+          .style("fill", function(d) { return color(d.packageName); });
 
       node.append("text")
           .attr("dy", ".1em")
