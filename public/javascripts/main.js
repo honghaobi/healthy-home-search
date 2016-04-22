@@ -9,9 +9,6 @@ $(document).ready(function(){
 				url: "/save"
 			}).done(function(info){
 				$('.render-success').show().fadeIn('slow');
-				window.setTimeout(function(){
-					$('.render-success').fadeOut('slow');
-				},2000);
 				console.log('saved');
 			}).fail(function(err){
 				console.log('failed');
@@ -44,6 +41,10 @@ $(document).ready(function(){
 		$('.score_arrow').click(function(e){
 			e.preventDefault();
 			scrollTo($(this).attr('href'), 900, 'easeInOutCubic');
+			setTimeout(function(){
+				console.log('yolo');
+			    $('.odometer').html(98);
+			}, 2000);
 		});
 
     /*    Back to top button    */

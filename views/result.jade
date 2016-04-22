@@ -31,7 +31,7 @@ block content
                 li
                   a.signout(href='signout') Sign Out
                 li
-                  a.save_button(href='#') Save Search
+                  a.save_button(href='#') Save Your Search
               else
                 li
                   a.register(href='#') Sign In
@@ -113,7 +113,7 @@ block content
 
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icons/ic_public_black_48dp/web/ic_public_black_48dp_2x.png', alt='', title='')
-        h1.mean_title_score #{enviroGrade}
+        h1#odometer.mean_title_score.odometer #{enviroGrade}
         .btn_holder
           a.btn_fancy(href='#environment')
             .solid_layer
@@ -137,8 +137,8 @@ block content
 
       .large-5.columns
         .community_sub
-          h2.sub_cap Community Score
-
+          h2.sub_cap Community 
+  .cube
   section#accessibility.accessibility
     .expanded
       .large-7.columns
@@ -147,15 +147,16 @@ block content
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='bus-stop') Bus Stops
           a(href='#', data-filter='parking') Parking Lots/Garages
+          
       .large-5.columns
         .accessibility_sub
-          h2.sub_cap_sec Accessibility Score
+          h2.sub_cap_sec Accessibility
           
           div(class="wscore")
             img(src="https://cdn.walk.sc/images/api-logo.png")
             h3 #{allData.renderWalkScore.walkscore}
             p #{allData.renderWalkScore.description}
-
+  .cube
   section#environment.environment
     .expanded
       .large-7.columns
@@ -169,11 +170,11 @@ block content
           a(href='#', data-filter='indulstrial') Indulstrial
       .large-5.columns
         .environment_sub
-          h2.sub_cap Environment Score
+          h2.sub_cap Environment
 
           h3 #{allData.renderAqi.breezometer_aqi}
           p #{allData.renderAqi.breezometer_description}
-
+  .break
   section#safety.safety
     .expanded
       .large-7.columns
@@ -182,7 +183,7 @@ block content
 
       .large-5.columns
         .safety_sub
-          h2.sub_cap_sec Safety Score
+          h2.sub_cap_third Safety
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
   .shadow
@@ -215,10 +216,10 @@ block content
         ]
       },
       properties: {
-        title: 'My featured house',
-        description: 'Healthy Search',
+        title: 'My Potential Home',
+        description: 'By NeighborGood',
         'marker-size': 'large',
-        'marker-color': '#5dfd92',
+        'marker-color': '#E96956',
         'marker-symbol': 'star',
         }
     }).addTo(communityMap);
@@ -242,8 +243,9 @@ block content
           "restaurants": false,
           "viewpoints": false,
           "cultural-spaces": false,
-          "marker-color": "#2f36b6",
+          "marker-color": "#63afb8",
           "marker-size": "medium",
+          "marker-symbol": "school"
         }
       });
     }
@@ -267,6 +269,7 @@ block content
           "cultural-spaces": false,
           "marker-color": "#3ebc36",
           "marker-size": "medium",
+          "marker-symbol": "park"
         }
       });
     }
@@ -288,9 +291,10 @@ block content
           "parks": false,
           "restaurants": true,
           "viewpoints": false,
-          "cultural-spaces": true,
+          "cultural-spaces": false,
           "marker-color": "#7bd0b5",
           "marker-size": "medium",
+          "marker-symbol": "bar"
         }
 
       });
@@ -313,8 +317,9 @@ block content
           "restaurants": false,
           "viewpoints": true,
           "cultural-spaces": false,
-          "marker-color": "#da6339",
+          "marker-color": "#b1c128",
           "marker-size": "medium",
+          "marker-symbol": "star"
         }
       });
     }
@@ -336,8 +341,9 @@ block content
           "restaurants": false,
           "viewpoints": false,
           "cultural-spaces": true,
-          "marker-color": "#b64990",
+          "marker-color": "#b65bc1",
           "marker-size": "medium",
+          "marker-symbol": "music"
         }
       });
     }
@@ -368,10 +374,10 @@ block content
         ]
       },
       properties: {
-        title: 'My featured house',
-        description: 'Healthy Search',
+        title: 'My Potential Home',
+        description: 'By NeighborGood',
         'marker-size': 'large',
-        'marker-color': '#5dfd92',
+        'marker-color': '#E96956',
         'marker-symbol': 'star',
         }
     }).addTo(accessibilityMap);
@@ -393,8 +399,9 @@ block content
           "description": allData.renderTransit[1].data.list[p].name,
           "bus-stop": true,
           "parking": false,
-          "marker-color": "#ba36af",
-          "marker-size": "medium"
+          "marker-color": "#4c8bc1",
+          "marker-size": "medium",
+          "marker-symbol": "bus"
         }
       });
     }
@@ -414,8 +421,9 @@ block content
           "description": allData.renderParking[1][q].fac_type || allData.renderParking[1][q].fac_name || allData.renderParking[1][q].webname,
           "bus-stop": false,
           "parking": true,
-          "marker-color": "#d04c00",
+          "marker-color": "#63afb8",
           "marker-size": "medium",
+          "marker-symbol": "car"
         }
       });
     }
@@ -443,10 +451,10 @@ block content
         ]
       },
       properties: {
-        title: 'My featured house',
-        description: 'Healthy Search',
+        title: 'My Potential Home',
+        description: 'By NeighborGood',
         'marker-size': 'large',
-        'marker-color': '#5dfd92',
+        'marker-color': '#E96956',
         'marker-symbol': 'star',
         }
     }).addTo(environmentMap);
@@ -473,7 +481,7 @@ block content
               "commercial": false,
               "indulstrial": false,
               "institutional": false,
-              "marker-color": "#da2e00",
+              "marker-color": "#63afb8",
               "marker-size": "medium",
             }
           });
