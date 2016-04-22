@@ -58,6 +58,7 @@ function(req, accessToken, refreshToken, profile, done) {
     } else {
       Users().insert({google_id: profile.id,
       full_name: profile.displayName, email: profile.email}).then(user => {
+        req.session.user = user;
         return done(null, user);
       });
     };
