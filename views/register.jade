@@ -7,6 +7,7 @@ block content
     .large-6.columns
       .register-container
         form.signup-form(action='../register/signup', method='post')
+          h2.reg Register
           .text-input-register
             input#input1(name='full_name', type='text', placeholder='Henry', required)
             label(for='input1') Name
@@ -22,6 +23,7 @@ block content
     .large-6.columns
       .register-container
         form.signin-form(action='../register/signin', method='post')
+          h2.sign Sign In
           .text-input-register
             input#input4(name='full_name', type='text', placeholder='Henry', required)
             label(for='input4') Name
