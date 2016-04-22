@@ -42,6 +42,11 @@ $(document).ready(function(){
 			scrollTo($(this).attr('href'), 900, 'easeInOutCubic');
 		});
 
+		$('.btn_fancy').click(function(e){
+			e.preventDefault();
+			scrollTo($(this).attr('href'), 900, 'easeInOutCubic');
+		});
+
     /*    Back to top button    */
     var back_top = $('#back_top');
 
