@@ -15,10 +15,10 @@ module.exports = {
         return transitData;
       })
       .then( (transitData) => {
-        var totTrans = Object.keys(transitData).length
+        var totTrans = transitData.data.list.length
         var transAvg = 20.96;
         var stD = 13.5;
-        var zScore = ( -(totTrans - transAvg) / stD)
+        var zScore = ((totTrans - transAvg) / stD);
 
         var transGrade = Math.floor((((zScore) + 1.5) / 3) * 100);
 
