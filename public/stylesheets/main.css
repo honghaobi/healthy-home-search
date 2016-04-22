@@ -440,7 +440,7 @@ header .top-bar-section ul li a.register {
 }
 
 .scores{
-	padding: 140px 0;
+	padding: 40px 0;
 }
 
 .mean_title,
@@ -458,6 +458,16 @@ header .top-bar-section ul li a.register {
 	text-transform: uppercase;
 }
 
+.mean_title_score{
+  margin-top: -30px;
+  margin-bottom: -70px;
+	font-size: 90px;
+  color: #E96956;
+	font-family: "raleway-bold", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
 .sub_title{
 	font-size: 22px;
 	font-family: "raleway-light", Helvetica, Arial, sans-serif;
@@ -470,7 +480,8 @@ header .top-bar-section ul li a.register {
 }
 
 .scores .scores_list .serv_icon{
-	margin-bottom: 10px;
+	width: 50%;
+  margin-top: -30px;
 }
 
 p{

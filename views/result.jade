@@ -16,7 +16,7 @@ block content
           section#mean_nav.top-bar-section                
             ul.right
               li
-                a(href='#scores') Healthy Scores
+                a(href='#scores') Your NeighborGood Scores
               li
                 a(href='#community') Community
               li
@@ -73,7 +73,7 @@ block content
         -  var comScore = Math.floor((schoolScore + parkScore + cultScore + viewScore) / 4);
 
         img.serv_icon(src='images/icons/ic_local_activity_black_48dp/web/ic_local_activity_black_48dp_2x.png', alt='', title='')
-        h1.mean_title #{comScore}
+        h1.mean_title_score #{comScore}
         .btn_holder
           a.btn_fancy(href='#community')
             .solid_layer
@@ -85,7 +85,7 @@ block content
 
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icons/ic_airport_shuttle_black_48dp/web/ic_airport_shuttle_black_48dp_2x.png', alt='', title='')
-        h1.mean_title #{allData.renderTransit[0]}
+        h1.mean_title_score #{allData.renderTransit[0]}
         .btn_holder
           a.btn_fancy(href='#accessibility')
             .solid_layer
@@ -97,7 +97,7 @@ block content
 
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icons/ic_vpn_key_black_48dp/web/ic_vpn_key_black_48dp_2x.png', alt='', title='')
-        h1.mean_title #{allData.renderCrime[0]}
+        h1.mean_title_score #{allData.renderCrime[0]}
         .btn_holder
           a.btn_fancy(href='#safety')
             .solid_layer
@@ -113,7 +113,7 @@ block content
 
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icons/ic_public_black_48dp/web/ic_public_black_48dp_2x.png', alt='', title='')
-        h1.mean_title #{enviroGrade}
+        h1.mean_title_score #{enviroGrade}
         .btn_holder
           a.btn_fancy(href='#environment')
             .solid_layer
