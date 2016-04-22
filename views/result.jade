@@ -170,10 +170,11 @@ block content
           else
             p Booyah! Your accessibility score is #{allData.renderTransit[0]}. This is a paradise for public transportation. The #{allData.renderTransit[1].data.list.length} bus stops within a half mile provide a wealth of options to travel to your desired location. Dependance upon a car is not needed for this location.
           p Your score is based upon the bus stops in the local area. Your score has been compared to the overall average of all areas within Seattle. You may also see the number of public parking lots and parking garages within walking distance to the inputed address.
-
+          
+          br
+          
           img#walkScoreLogo(src="https://cdn.walk.sc/images/api-logo.png")
           h5 #{allData.renderWalkScore.walkscore} (#{allData.renderWalkScore.description})
-          p
   .cube
   section#environment.environment
     .expanded
@@ -199,6 +200,9 @@ block content
           else
             p Oh yeah! The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. An awesome place with little to no building permits in the area. This area currently has no high level of building projects projected to start in the foreseeable future. This area will not be filled with high noise, traffic, and congestion that can occur from a high level amount of permits.
           p #{allData.renderAqi.dominant_pollutant_text.main} #{allData.renderAqi.dominant_pollutant_text.causes} #{allData.renderAqi.dominant_pollutant_text.effects}
+          
+          br
+          
           img#breezLogo(src='images/breezometer-logo.png')
           h6 BreezoMeter AQI: #{allData.renderAqi.breezometer_aqi}
           p #{allData.renderAqi.breezometer_description}
