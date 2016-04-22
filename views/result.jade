@@ -194,13 +194,13 @@ block content
           h2.sub_cap Environment
 
           if enviroGrade <= 24
-            p.font-large-white The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. If you are looking for a quite area with less sound population and construction occurring in your area, this will not be the place for you. This area has a high concentration of open building permits that will increase the amount of noise and traffic in the area. These factors could increase your stress and effect your health negatively.
+            p.font-large-white The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. If you are looking for a quite area with less sound population and construction occurring in your area, this will not be the place for you. This area has a high concentration of open building permits that will increase the amount of noise and traffic in the area.
           else if enviroGrade >= 25 && enviroGrade <= 49
             p.font-large-white The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. We are all looking for an area that we can come home and relax after a hard days of work. This area will be busy with all the new construction that is going on in the area. This is not the best area for a low level of construction traffic, but hey, things could be worst.
           else if enviroGrade >= 50 && enviroGrade <= 74
             p.font-large-white The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. This is an area with a small amount of open building permits. This will be a relatively quite and less active area, in regards to permits, compared to other parts of Seattle. If you are looking for a quite neighborhood for your home, this may be the place.
           else
-            p.font-large-white Oh yeah! The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. An awesome place with little to no building permits in the area. This area currently has no high level of building projects projected to start in the foreseeable future. This area will not be filled with high noise, traffic, and congestion that can occur from a high level amount of permits.
+            p.font-large-white Oh yeah! The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. An awesome place with little to no building permits in the area. This area will not be filled with high noise, traffic, and congestion that can occur from a high level amount of permits.
           p.font-large-white #{allData.renderAqi.dominant_pollutant_text.main} #{allData.renderAqi.dominant_pollutant_text.causes} #{allData.renderAqi.dominant_pollutant_text.effects}
           
           br
