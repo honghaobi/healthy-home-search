@@ -2,33 +2,35 @@ extends layout
 
 block content
 
-  .callout
-    .row
-      h1=user[0].full_name
-      h1=user[0].email
-      table.hover
-        thead
+  img.bg(src='../images/userprofile.jpg', alt='userprofile')
+  
+  .row
+    .user-info
+      h3.sub_cap=user[0].full_name
+      h3.sub_cap_sec=user[0].email
+    table.user-table
+      thead.trans8
+        tr
+          th(width='200') Search Address
+          th(width='100') Community Score
+          th(width='100') Accessibility Score
+          th(width='100') Environment Score
+          th(width='100') Safety Score
+          th(width='100') Date Searched
+          th(width='100') Go to Result
+          th(width='100') Delete
+      tbody.trans6      
+        for search in searches
           tr
-            th(width='500') Search Address
-            th(width='200') Community Score
-            th(width='200') Accessibility Score
-            th(width='200') Environment Score
-            th(width='200') Safety Score
-            th(width='300') Date Searched
-            th(width='300') Go to Search
-            th(width='300') Remove
-        tbody        
-          for search in searches
-            tr
-              td=search.address
-              td=search.community
-              td=search.accessablility
-              td=search.environment
-              td=search.safety
-              td=search.date_time
-              td
-                form(action = '/', method = 'post')
-                  input(name='userInput', type='hidden', value=search.address)
-                  input(type='submit', value='search')
-              td
-                a.alert.button(href='/user/' + user[0].id + '/delete/' + search.id) Remove
+            td=search.address
+            td.score-num=search.community
+            td.score-num=search.accessablility
+            td.score-num=search.environment
+            td.score-num=search.safety
+            td=search.date_time
+            td
+              form(action = '/', method = 'post')
+                input(name='userInput', type='hidden', value=search.address)
+                button.success.reg(type='submit', value='search') Result
+            td
+              a.alert.button.reg(href='/user/' + user[0].id + '/delete/' + search.id) Delete

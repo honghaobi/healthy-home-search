@@ -2,18 +2,24 @@ extends layout
 
 block content
 
-  section.log
-    if user
-      button.success
-        a(href='user/#{user.id}') Profile
-      button.alert
-        a(href='signout') Sign Out
-      button.save_button.success Save
-    else
-      button.success
-        a(href='register') Sign In
-      button.success
-        a(href='register') Sign Up
+  section.fix
+    ul.main-nav  
+      if user
+        li
+          button.log.profile
+            a.white(href='user/#{user.id}') Profile
+        li
+          button.log.signout
+            a.white(href='signout') Sign Out
+        li
+          button.log.save.save_button Save
+      else
+        li
+          button.log.signin
+            a.white(href='register') Sign In
+        li
+          button.log.signup
+            a.white(href='register') Sign Up
 
 
   section.main
@@ -57,8 +63,8 @@ block content
     .row
       h1.mean_title How Your Neighborhood Scores
       h2.sub_title Live Where You Love
-    // End scores Titles
-    // Start scores List
+
+
     .row.scores_list
       .small-12.medium-3.large-3.columns
 

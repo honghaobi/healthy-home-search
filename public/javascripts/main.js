@@ -15,6 +15,8 @@ $(document).ready(function(){
 			})
 		});
 
+		$('.main-nav').addClass('sticky');
+
 
 	/*    Mean navigation menu scroll to    */
     $('#mean_nav ul li a').click(function(e){
