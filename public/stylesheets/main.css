@@ -770,6 +770,18 @@ nav.menu-ui a:hover{
   color:#FFF;
   }
 
+#breezLogo {
+    height: 25%;
+    width: 25%;
+    float: left;
+  }
+
+#walkScoreLogo {
+  float: left;
+  padding-right: 10px;
+  padding-top: 2px;
+}
+
 /*    Footer    */
 
 footer{

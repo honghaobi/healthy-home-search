@@ -94,7 +94,7 @@ router.post('/save', function(req, res, next) {
     var comScore = Math.floor((req.session.schoolNum + req.session.parksNum + req.session.cultNum + req.session.viewNum) / 4);
 
     var permitGrade = req.session.permitNum;
-    var aqiGrade = ((req.session.aqiNum) + 30);
+    var aqiGrade = ((req.session.aqiNum) + 10);
     var enviroScore = Math.ceil((permitGrade + aqiGrade) / 2);
     var timestamp = new Date();
 
@@ -114,7 +114,6 @@ router.get('/user/:id', function(req, res, next) {
 });
 
 router.get('/user/:user_id/delete/:search_id', function(req, res, next) {
-console.log('user id ' + req.params.user_id);
   Searches().del().where({id:req.params.search_id}).then(function(){
     res.redirect('../../../user/' + req.params.user_id);
   })

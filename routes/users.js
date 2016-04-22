@@ -43,7 +43,6 @@ router.post('/register/signup', function(req, res, next) {
     users.createUser(req.body, (err, data) => {
       res.redirect('/');
     });
-
   });
 });
 
