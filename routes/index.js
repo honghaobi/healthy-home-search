@@ -114,7 +114,6 @@ router.get('/user/:id', function(req, res, next) {
 });
 
 router.get('/user/:user_id/delete/:search_id', function(req, res, next) {
-console.log('user id ' + req.params.user_id);
   Searches().del().where({id:req.params.search_id}).then(function(){
     res.redirect('../../../user/' + req.params.user_id);
   })

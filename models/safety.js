@@ -53,7 +53,7 @@ module.exports = {
            };
 
         finalcrimeData = JSON.stringify(finalcrimeData);
-        console.log(Object.keys(finalcrimeData).length);
+        
         fs.writeFile(path.join(__dirname, '../public/crime.json'), finalcrimeData, function(writeErr){
           console.log(writeErr);
         });

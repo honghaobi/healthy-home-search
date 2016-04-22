@@ -13,6 +13,7 @@ router.get('/register', function(req, res, next) {
 
 router.post('/register/signup', function(req, res, next) {
   users.createUser(req.body, (err, data) => {
+    req.session.user = user;
     res.redirect('/');
   });
 });
