@@ -22,7 +22,7 @@ module.exports = {
         var stD = 2.38;
         var zScore = ((totSchools - schoolAvg) / stD)
 
-        var schoolGrade = Math.floor(((((zScore) + 2) / 4) * 100) + 20);
+        var schoolGrade = Math.floor(((((zScore) + 2) / 4) * 100) + 10);
 
         if (schoolGrade > 100) {
           return [99, schoolData];
@@ -57,7 +57,7 @@ module.exports = {
         var stD = 7.22;
         var zScore = ((totParks - parkAvg) / stD)
 
-        var parkGrade = Math.floor(((((zScore) + 2) / 4) * 100) + 20);
+        var parkGrade = Math.floor(((((zScore) + 2) / 4) * 100) + 10);
 
         if (parkGrade > 100) {
           return [99, parkData];
@@ -92,7 +92,7 @@ module.exports = {
         var stD = 54.1;
         var zScore = ((totCulture - cultAvg) / stD)
 
-        var cultureGrade = Math.floor(((((zScore) + 2) / 4) * 100) + 20);
+        var cultureGrade = Math.floor(((((zScore) + 2) / 4) * 100) + 10);
 
         if (cultureGrade > 100) {
           return [99, cultureData];
@@ -127,7 +127,7 @@ module.exports = {
         var stD = 2.17;
         var zScore = ((totViews - viewAvg) / stD)
 
-        var viewGrade = Math.floor(((((zScore) + 2) / 4) * 100) + 20);
+        var viewGrade = Math.floor(((((zScore) + 2) / 4) * 100) + 10);
 
         if (viewGrade > 100) {
           return [99, viewpointData];
