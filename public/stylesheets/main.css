@@ -184,33 +184,25 @@
 	margin-top: 140px;
 }
 
-/*h1.logo-name {
-  	font-family: "lato-light", Helvetica, Arial, sans-serif;
-  	font-weight: lighter;
-  	font-size: 60px;
-  	color: #fff;
-  	text-transform: uppercase;
-  	line-height: 70px;
-  	margin-bottom: 50px;
-}*/
-
-h1.mean_cap, h1.logo-sub {
-	font-family: "lato-black", Helvetica, Arial, sans-serif;
-	font-size: 60px;
-	color: #fff;
-	text-transform: uppercase;
-	line-height: 70px;
-}
-
-h2.sub_cap, h1.logo-name{
+h1.logo-name{
 	font-family: "lato-light", Helvetica, Arial, sans-serif;
 	font-weight: lighter;
 	font-size: 60px;
 	color: #fff;
 	text-transform: uppercase;
 	line-height: 70px;
-	margin-bottom: 50px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 210px;
 }
+
+span.logo-sub {
+	font-family: "lato-light", Helvetica, Arial, sans-serif;
+	color: #55adb6;
+  font-weight: 600;
+}
+
 
 h2.sub_cap_sec{
 	font-family: "lato-light", Helvetica, Arial, sans-serif;
