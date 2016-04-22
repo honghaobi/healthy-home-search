@@ -2,30 +2,10 @@ extends layout
 
 block content
 
-  section.fix
-    ul.main-nav  
-      if user
-        li
-          button.log.profile
-            a.white(href='user/#{user.id}') Profile
-        li
-          button.log.signout
-            a.white(href='signout') Sign Out
-        li
-          button.log.save.save_button Save
-      else
-        li
-          button.log.signin
-            a.white(href='register') Sign In
-        li
-          button.log.signup
-            a.white(href='register') Sign Up
-
-
   section.main
     header
       .row
-        nav.top-bar(data-topbar='', role='navigation')
+        nav.main-nav.top-bar(data-topbar='', role='navigation')
           ul.title-area
             li.name
 
@@ -34,7 +14,7 @@ block content
                 span Menu
 
 
-          section#mean_nav.top-bar-section
+          section#mean_nav.top-bar-section                
             ul.right
               li
                 a(href='#scores') Healthy Scores
@@ -46,7 +26,20 @@ block content
                 a(href='#environment') Environment
               li
                 a(href='#safety') Safety
-                
+              if user
+                li
+                  a.prof(href='user/#{user.id}') Profile
+                li
+                  a.signout(href='signout') Sign Out
+                li
+                  a.save_button(href='#') Save Search
+              else
+                li
+                  a.register(href='#') Sign In
+                li
+                  a.register(href='#') Sign Up
+    .render-success(display='none')
+      h2.sub_cap You Search Have Been Saved In Your Profile
     section.caption
       .row
         if user

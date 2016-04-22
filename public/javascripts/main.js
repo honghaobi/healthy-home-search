@@ -8,14 +8,32 @@ $(document).ready(function(){
 				method: "POST",
 				url: "/save"
 			}).done(function(info){
+				$('.render-success').show().fadeIn('slow');
+				window.setTimeout(function(){
+					$('.render-success').fadeOut('slow');
+				},2000);
 				console.log('saved');
 			}).fail(function(err){
 				console.log('failed');
-			})
+			});
 		});
 
-		$('.main-nav').addClass('sticky');
+		$('.prof').on('click', function(event) {
+				window.location.href= "/user/" + user.id;
+		});
 
+		$('.signout').on('click', function(event) {
+				window.location.href= "signout";
+		});
+
+		$('.register').on('click', function(event) {
+				window.location.href= "register"
+		});
+
+		$('.prof').on('click', function(event) {
+			console.log('yolo');
+				window.location.href= "/user/" + user.id;
+		});
 
 	/*    Mean navigation menu scroll to    */
     $('#mean_nav ul li a').click(function(e){

@@ -27,7 +27,7 @@ block content
             td.score-num=search.accessablility
             td.score-num=search.environment
             td.score-num=search.safety
-            td=search.date_time
+            td #{search.date_time.toDateString().substr(4,12)}
             td
               form(action = '/', method = 'post')
                 input(name='userInput', type='hidden', value=search.address)
