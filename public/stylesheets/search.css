@@ -189,10 +189,49 @@ form.signin-form {
   background: #E96956;
 }
 
+.google_button{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 130px;
+  font-size: 0.875rem;
+  font-family: Montserrat;
+  height: 40px;
+  width: 70%;
+  border-style: none;
+  padding: none;
+  color: white;
+  background: #3169f6;
+}
+
+.google_button:hover{
+  color: white;
+  background: #3169f6;
+}
+
+.or{
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .submit{
   font-size: 0.875rem;
   font-family: Montserrat;
   margin-top: 20px;
+  height: 40px;
+  width: 70%;
+  line-height: 40px;
+  border-style: none;
+  border-radius: 3px 3px 3px 3px;
+  padding: none;
+  color: white;
+  background: #E96956;
+}
+
+.submit2{
+  font-size: 0.875rem;
+  font-family: Montserrat;
+  margin-top: 15px;
   height: 40px;
   width: 70%;
   line-height: 40px;

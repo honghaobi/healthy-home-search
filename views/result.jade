@@ -43,20 +43,20 @@ block content
                 
     section.caption
       .row
-        h1.mean_cap
-          if user
-            | Hi #{user.full_name},  Let us Help You to Find Your Next
-          else
-            | Let us Help You to Find Your Next
-          h2.sub_cap Healthy Living
-          a.score_arrow.btn_details(href='#scores')
-            span See Your Healthy Home Scores
-            img.arrow(src='images/btn_arrow.png', alt='')
+        if user
+          h1.mean_cap Hi #{user.full_name}, 
+          h2.sub_cap Discover #{allData.renderRestaurants.location.title}
+        else
+          h2.sub_cap Discover #{allData.renderRestaurants.location.title}
+        
+        a.score_arrow.btn_details(href='#scores')
+          span See Your Healthy Home Scores
+          img.arrow(src='images/btn_arrow.png', alt='')
             
   section#scores.scores
     .row
-      h1.mean_title Here are your Scores Below
-      h2.sub_title Your Home is Our Priority
+      h1.mean_title How Your Neighborhood Scores
+      h2.sub_title Live Where You Love
     // End scores Titles
     // Start scores List
     .row.scores_list
@@ -79,7 +79,7 @@ block content
             .text_layer Community
         br
         p
-          | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          | Everyday life can be very busy. Make sure that all your work and fun activities are close to home. When the community is close, everything is close.
 
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icon1.png', alt='', title='')
@@ -91,7 +91,7 @@ block content
             .text_layer Accessibility
         br
         p
-          | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          | Travel time to work and entrainment can take away from serious time that can be used for over things. We will show you how accessible your new home will be to transit locations.
 
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icon3.png', alt='', title='')
@@ -103,7 +103,7 @@ block content
             .text_layer Safety
         br
         p
-          | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          | Safety is an important factor in reducing your stress at home. Become aware of criminal activity that has occurred within the neighborhood.
 
       - var transitGrade = allData.renderPermits[0];
       - var aqiGrade = ((allData.renderAqi.breezometer_aqi) + 30);
@@ -119,7 +119,7 @@ block content
             .text_layer Environment
         br
         p
-          | Ruis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          | 
 
   section#community.community
     .expanded
