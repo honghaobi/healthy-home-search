@@ -2,24 +2,10 @@ extends layout
 
 block content
 
-  section.log
-    if user
-      button.success
-        a(href='user/#{user.id}') Profile
-      button.alert
-        a(href='signout') Sign Out
-      button.save_button.success Save
-    else
-      button.success
-        a(href='register') Sign In
-      button.success
-        a(href='register') Sign Up
-
-
   section.main
     header
       .row
-        nav.top-bar(data-topbar='', role='navigation')
+        nav.main-nav.top-bar(data-topbar='', role='navigation')
           ul.title-area
             li.name
 
@@ -27,11 +13,10 @@ block content
               a(href='#')
                 span Menu
 
-
           section#mean_nav.top-bar-section
             ul.right
               li
-                a(href='#scores') Healthy Scores
+                a(href='#scores') Your NeighborGood Scores
               li
                 a(href='#community') Community
               li
@@ -40,25 +25,42 @@ block content
                 a(href='#environment') Environment
               li
                 a(href='#safety') Safety
-
+              if user
+                li
+                  a.prof(href='user/#{user.id}') Profile
+                li
+                  a.signout(href='signout') Sign Out
+                li
+                  a.save_button(href='#') Save Your Search
+              else
+                li
+                  a.register(href='#') Sign In
+                li
+                  a.register(href='#') Sign Up
+    .render-success(display='none')
+      h2.sub_cap You Search Have Been Saved In Your Profile
     section.caption
       .row
-        h1.mean_cap
-          if user
-            | Hi #{user.full_name},  Let us Help You to Find Your Next
-          else
-            | Let us Help You to Find Your Next
-          h2.sub_cap Healthy Living
-          a.score_arrow.btn_details(href='#scores')
-            span See Your Healthy Home Scores
-            img.arrow(src='images/btn_arrow.png', alt='')
+        if user
+          h1.mean_cap Hi #{user.full_name},
+          h2.sub_cap Discover
+            span.neighbor #{allData.renderRestaurants.location.title}
+            span.with With Neighbor
+            span.good Good
+        else
+          h2.sub_cap Discover #{allData.renderRestaurants.location.title}With Neighbor
+            span.logo-sub Good
+
+        a.score_arrow.btn_details(href='#scores')
+          span.peach See Your Healthy Home Scores
+          img.arrow(src='images/btn_arrow.png', alt='')
 
   section#scores.scores
     .row
-      h1.mean_title Here are your Scores Below
-      h2.sub_title Your Home is Our Priority
-    // End scores Titles
-    // Start scores List
+      h1.mean_title How Your Neighborhood Scores
+      h2.sub_title Live Where You Love
+
+
     .row.scores_list
       .small-12.medium-3.large-3.columns
 
@@ -70,8 +72,8 @@ block content
 
         -  var comScore = Math.floor((schoolScore + parkScore + cultScore + viewScore) / 4);
 
-        img.serv_icon(src='images/icon2.png', alt='', title='')
-        h1.mean_title #{comScore}
+        img.serv_icon(src='images/icons/ic_local_activity_black_48dp/web/ic_local_activity_black_48dp_2x.png', alt='', title='')
+        h1.mean_title_score #{comScore}
         .btn_holder
           a.btn_fancy(href='#community')
             .solid_layer
@@ -82,8 +84,8 @@ block content
           | Everyday life can be very busy. Make sure that all your life activities are close to home. When the community is close, everything is close.
 
       .small-12.medium-3.large-3.columns
-        img.serv_icon(src='images/icon1.png', alt='', title='')
-        h1.mean_title #{allData.renderTransit[0]}
+        img.serv_icon(src='images/icons/ic_airport_shuttle_black_48dp/web/ic_airport_shuttle_black_48dp_2x.png', alt='', title='')
+        h1.mean_title_score #{allData.renderTransit[0]}
         .btn_holder
           a.btn_fancy(href='#accessibility')
             .solid_layer
@@ -94,8 +96,8 @@ block content
           | Travel time to work and entrainment can take away from precious time that can be used for other things. We will show you how accessible your new home will be to transit locations.
 
       .small-12.medium-3.large-3.columns
-        img.serv_icon(src='images/icon3.png', alt='', title='')
-        h1.mean_title #{allData.renderCrime[0]}
+        img.serv_icon(src='images/icons/ic_vpn_key_black_48dp/web/ic_vpn_key_black_48dp_2x.png', alt='', title='')
+        h1.mean_title_score #{allData.renderCrime[0]}
         .btn_holder
           a.btn_fancy(href='#safety')
             .solid_layer
@@ -110,8 +112,8 @@ block content
       - var enviroGrade = Math.ceil((transitGrade + aqiGrade) / 2);
 
       .small-12.medium-3.large-3.columns
-        img.serv_icon(src='images/icon4.png', alt='', title='')
-        h1.mean_title #{enviroGrade}
+        img.serv_icon(src='images/icons/ic_public_black_48dp/web/ic_public_black_48dp_2x.png', alt='', title='')
+        h1#odometer.mean_title_score.odometer #{enviroGrade}
         .btn_holder
           a.btn_fancy(href='#environment')
             .solid_layer
@@ -125,7 +127,7 @@ block content
     .expanded
       .large-7.columns
         #community_map
-        nav.menu-ui
+        nav.menu-ui.cm
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='schools') Schools
           a(href='#', data-filter='parks') Parks
@@ -145,15 +147,16 @@ block content
           else
             p Awesome! Your community score is #{comScore}. A wonderful place to live! You are walking distance to many of your community locations. You may never need to leave your community for your daily activities and live it up in your night life.
           p Your score is based upon 5 key community categories in your area: school, parks, restaurants, viewpoints, and cultural spaces. The totals in these categories in your area will be compared to the overall average of all areas within Seattle.
-
+  .cube
   section#accessibility.accessibility
     .expanded
       .large-7.columns
         #accessibility_map
-        nav.menu-ui
+        nav.menu-ui.am
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='bus-stop') Bus Stops
           a(href='#', data-filter='parking') Parking Lots/Garages
+
       .large-5.columns
         .accessibility_sub
           h2.sub_cap_sec Accessibility Score
@@ -168,14 +171,15 @@ block content
             p Booyah! Your accessibility score is #{allData.renderTransit[0]}. This is a paradise for public transportation. The #{allData.renderTransit[1].data.list.length} bus stops within a half mile provide a wealth of options to travel to your desired location. Dependance upon a car is not needed for this location.
           p Your score is based upon the bus stops in the local area. Your score has been compared to the overall average of all areas within Seattle. You may also see the number of public parking lots and parking garages within walking distance to the inputed address.
 
-          h3 #{allData.renderWalkScore.walkscore}
-          p #{allData.renderWalkScore.description}
-
+          img#walkScoreLogo(src="https://cdn.walk.sc/images/api-logo.png")
+          h5 #{allData.renderWalkScore.walkscore} (#{allData.renderWalkScore.description})
+          p
+  .cube
   section#environment.environment
     .expanded
       .large-7.columns
         #environment_map
-        nav.menu-ui
+        nav.menu-ui.em
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='single-family') Single Family
           a(href='#', data-filter='multifamily') Multifamily
@@ -184,7 +188,7 @@ block content
           a(href='#', data-filter='indulstrial') Indulstrial
       .large-5.columns
         .environment_sub
-          h2.sub_cap Environment Score
+          h2.sub_cap Environment
 
           if enviroGrade <= 24
             p The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. If you are looking for a quite area with less sound population and construction occurring in your area, this will not be the place for you. This area has a high concentration of open building permits that will increase the amount of noise and traffic in the area. These factors could increase your stress and effect your health negatively.
@@ -194,12 +198,11 @@ block content
             p The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. This is an area with a small amount of open building permits. This will be a relatively quite and less active area, in regards to permits, compared to other parts of Seattle. If you are looking for a quite neighborhood for your home, this may be the place.
           else
             p Oh yeah! The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. An awesome place with little to no building permits in the area. This area currently has no high level of building projects projected to start in the foreseeable future. This area will not be filled with high noise, traffic, and congestion that can occur from a high level amount of permits.
-          p
-            #{allData.renderAqi.dominant_pollutant_text.main} #{allData.renderAqi.dominant_pollutant_text.causes} #{allData.renderAqi.dominant_pollutant_text.effects}
+          p #{allData.renderAqi.dominant_pollutant_text.main} #{allData.renderAqi.dominant_pollutant_text.causes} #{allData.renderAqi.dominant_pollutant_text.effects}
           img#breezLogo(src='images/breezometer-logo.png')
           h6 BreezoMeter AQI: #{allData.renderAqi.breezometer_aqi}
           p #{allData.renderAqi.breezometer_description}
-
+  .break
   section#safety.safety
     .expanded
       .large-7.columns
@@ -249,10 +252,10 @@ block content
         ]
       },
       properties: {
-        title: 'My featured house',
-        description: 'Healthy Search',
+        title: 'My Potential Home',
+        description: 'By NeighborGood',
         'marker-size': 'large',
-        'marker-color': '#5dfd92',
+        'marker-color': '#E96956',
         'marker-symbol': 'star',
         }
     }).addTo(communityMap);
@@ -276,8 +279,9 @@ block content
           "restaurants": false,
           "viewpoints": false,
           "cultural-spaces": false,
-          "marker-color": "#2f36b6",
+          "marker-color": "#63afb8",
           "marker-size": "medium",
+          "marker-symbol": "school"
         }
       });
     }
@@ -301,6 +305,7 @@ block content
           "cultural-spaces": false,
           "marker-color": "#3ebc36",
           "marker-size": "medium",
+          "marker-symbol": "park"
         }
       });
     }
@@ -322,9 +327,10 @@ block content
           "parks": false,
           "restaurants": true,
           "viewpoints": false,
-          "cultural-spaces": true,
+          "cultural-spaces": false,
           "marker-color": "#7bd0b5",
           "marker-size": "medium",
+          "marker-symbol": "bar"
         }
 
       });
@@ -347,8 +353,9 @@ block content
           "restaurants": false,
           "viewpoints": true,
           "cultural-spaces": false,
-          "marker-color": "#da6339",
+          "marker-color": "#b1c128",
           "marker-size": "medium",
+          "marker-symbol": "star"
         }
       });
     }
@@ -370,15 +377,17 @@ block content
           "restaurants": false,
           "viewpoints": false,
           "cultural-spaces": true,
-          "marker-color": "#b64990",
+          "marker-color": "#b65bc1",
           "marker-size": "medium",
+          "marker-symbol": "music"
         }
       });
     }
 
     var communityMarkers = L.mapbox.featureLayer().setGeoJSON(communityGeoJson).addTo(communityMap);
 
-    $('.menu-ui a').on('click', function() {
+    $('.cm a').on('click', function(e) {
+      e.preventDefault();
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
       communityMarkers.setFilter(function(f) {
@@ -402,10 +411,10 @@ block content
         ]
       },
       properties: {
-        title: 'My featured house',
-        description: 'Healthy Search',
+        title: 'My Potential Home',
+        description: 'By NeighborGood',
         'marker-size': 'large',
-        'marker-color': '#5dfd92',
+        'marker-color': '#E96956',
         'marker-symbol': 'star',
         }
     }).addTo(accessibilityMap);
@@ -427,8 +436,9 @@ block content
           "description": allData.renderTransit[1].data.list[p].name,
           "bus-stop": true,
           "parking": false,
-          "marker-color": "#ba36af",
-          "marker-size": "medium"
+          "marker-color": "#4c8bc1",
+          "marker-size": "medium",
+          "marker-symbol": "bus"
         }
       });
     }
@@ -448,15 +458,17 @@ block content
           "description": allData.renderParking[1][q].fac_type || allData.renderParking[1][q].fac_name || allData.renderParking[1][q].webname,
           "bus-stop": false,
           "parking": true,
-          "marker-color": "#d04c00",
+          "marker-color": "#63afb8",
           "marker-size": "medium",
+          "marker-symbol": "car"
         }
       });
     }
 
     var accessibilityMarkers = L.mapbox.featureLayer().setGeoJSON(accessibilityGeoJson).addTo(accessibilityMap);
 
-    $('.menu-ui a').on('click', function() {
+    $('.am a').on('click', function(e) {
+      e.preventDefault();
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
       accessibilityMarkers.setFilter(function(f) {
@@ -477,10 +489,10 @@ block content
         ]
       },
       properties: {
-        title: 'My featured house',
-        description: 'Healthy Search',
+        title: 'My Potential Home',
+        description: 'By NeighborGood',
         'marker-size': 'large',
-        'marker-color': '#5dfd92',
+        'marker-color': '#E96956',
         'marker-symbol': 'star',
         }
     }).addTo(environmentMap);
@@ -507,7 +519,7 @@ block content
               "commercial": false,
               "indulstrial": false,
               "institutional": false,
-              "marker-color": "#da2e00",
+              "marker-color": "#63afb8",
               "marker-size": "medium",
             }
           });
@@ -597,6 +609,7 @@ block content
               "institutional": true,
               "marker-color": "#001071",
               "marker-size": "medium",
+              "marker-symbol": "harbor"
             }
           });
         }
@@ -605,10 +618,62 @@ block content
 
     var environmentMarkers = L.mapbox.featureLayer().setGeoJSON(environmentGeoJson).addTo(environmentMap);
 
-    $('.menu-ui a').on('click', function() {
+    $('.em a').on('click', function(e) {
+      e.preventDefault();
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
       environmentMarkers.setFilter(function(f) {
         return (filter === 'all') ? true : f.properties[filter] === true;
       });
-    })
+    });
+
+    var diameter = 720,
+        format = d3.format(",d"),
+        color = d3.scale.category20c();
+
+    var bubble = d3.layout.pack()
+        .sort(null)
+        .size([diameter, diameter])
+        .padding(1.5);
+
+    var svg = d3.select(".crime_graph").append("svg")
+        .attr("width", diameter)
+        .attr("height", diameter)
+        .attr("class", "bubble");
+
+    d3.json("crime.json", function(error, root) {
+      if (error) throw error;
+
+      var node = svg.selectAll(".node")
+          .data(bubble.nodes(classes(root))
+          .filter(function(d) { return !d.children; }))
+        .enter().append("g")
+          .attr("class", "node")
+          .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+      node.append("title")
+          .text(function(d) { return d.className + ": " + format(d.value); });
+
+      node.append("circle")
+          .attr("r", function(d) { return d.r; })
+          .style("fill", function(d) { return color(d.packageName); });
+
+      node.append("text")
+          .attr("dy", ".1em")
+          .style("text-anchor","middle")
+          .text(function(d) { return d.className.substring(0, d.r / 3); });
+    });
+
+    function classes(root) {
+      var classes = [];
+
+      function recurse(name, node) {
+        if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+        else classes.push({packageName: name, className: node.name, value: node.size});
+      }
+
+      recurse(null, root);
+      return {children: classes};
+    }
+
+    d3.select(self.frameElement).style("height", diameter + "px");

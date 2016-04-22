@@ -128,7 +128,7 @@ form.signin-form {
   margin-top: 20px;
 }
 
-.text-input-register input[type="text"] {
+.text-input-register input[type="text"], .text-input-register input[type="email"] {
   display: inline-block;
   width: 350px;
   height: 40px;
@@ -141,7 +141,7 @@ form.signin-form {
   transition: all 0.1s ease-out;
 }
 
-.text-input-register input[type="text"] + label {
+.text-input-register input[type="text"] + label, .text-input-register input[type="email"] + label  {
   position: absolute;
   top: 0;
   left: 0;
@@ -159,14 +159,14 @@ form.signin-form {
   -webkit-transition-delay: 0.2s;
           transition-delay: 0.2s;
 }
-.text-input-register input[type="text"]:focus + label {
+.text-input-register input[type="text"]:focus + label, .text-input-register input[type="email"]:focus + label {
   -webkit-transform: translateY(0%) translateX(-90%);
           transform: translateY(0%) translateX(-90%);
   border-radius: 3px;
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
 }
-.text-input-register input[type="text"]:focus {
+.text-input-register input[type="text"]:focus, .text-input-register input[type="email"]:focus {
   padding: 10px;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
@@ -189,10 +189,54 @@ form.signin-form {
   background: #E96956;
 }
 
+.signin:hover{
+  color: white;
+  background: #E96956;
+}
+
+.google_button{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 130px;
+  font-size: 0.875rem;
+  font-family: Montserrat;
+  height: 40px;
+  width: 70%;
+  border-style: none;
+  padding: none;
+  color: white;
+  background: #3169f6;
+}
+
+.google_button:hover{
+  color: white;
+  background: #3169f6;
+}
+
+.or{
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .submit{
   font-size: 0.875rem;
   font-family: Montserrat;
   margin-top: 20px;
+  height: 40px;
+  width: 70%;
+  line-height: 40px;
+  border-style: none;
+  border-radius: 3px 3px 3px 3px;
+  padding: none;
+  color: white;
+  background: #E96956;
+}
+
+.submit2{
+  font-size: 0.875rem;
+  font-family: Montserrat;
+  margin-top: 15px;
   height: 40px;
   width: 70%;
   line-height: 40px;

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('cookie-session');
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 var passport = require('passport');
+
 require('dotenv').load();
 
 var routes = require('./routes/index');
@@ -14,6 +15,11 @@ var auth = require('./routes/auth');
 var users = require('./routes/users');
 
 var app = express();
+var knex = require('./db/knex');
+
+function Users() {
+  return knex('users');
+}
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -44,14 +50,19 @@ passport.use(new GoogleStrategy({
   callbackURL: "/auth/google/callback",
   passReqToCallback: true
 },
-function(request, accessToken, refreshToken, profile, done) {
-  console.log(profile);
-  // check if a row exists in the user table w/ the profile.id (google id)
-  // if it does, then done(null, user);
-  // otherwise, you'd want to create a new user record
-  // and then call done(null, user);
-    return done(null, {id: profile.id,
-    displayName: profile.full_name});
+function(req, accessToken, refreshToken, profile, done) {
+  Users().where({google_id: profile.id}).first().then(user => {
+    if(user) {
+      req.session.user = user;
+      return done(null, user);
+    } else {
+      Users().insert({google_id: profile.id,
+      full_name: profile.displayName, email: profile.email}).then(user => {
+        req.session.user = user;
+        return done(null, user);
+      });
+    };
+  });
 }));
 
 
