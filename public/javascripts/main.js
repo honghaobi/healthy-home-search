@@ -9,6 +9,9 @@ $(document).ready(function(){
 				url: "/save"
 			}).done(function(info){
 				$('.render-success').show().fadeIn('slow');
+				window.setTimeout(function(){
+					$('.render-success').fadeOut('slow');
+				}, 2000);
 				console.log('saved');
 			}).fail(function(err){
 				console.log('failed');
