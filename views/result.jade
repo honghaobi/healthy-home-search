@@ -148,9 +148,11 @@ block content
       .large-5.columns
         .accessibility_sub
           h2.sub_cap_sec Accessibility Score
-
-          h3 #{allData.renderWalkScore.walkscore}
-          p #{allData.renderWalkScore.description}
+          
+          div(class="wscore")
+            img(src="https://cdn.walk.sc/images/api-logo.png")
+            h3 #{allData.renderWalkScore.walkscore}
+            p #{allData.renderWalkScore.description}
 
   section#environment.environment
     .expanded
