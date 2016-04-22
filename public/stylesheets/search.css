@@ -189,6 +189,11 @@ form.signin-form {
   background: #E96956;
 }
 
+.signin:hover{
+  color: white;
+  background: #E96956;
+}
+
 .google_button{
   padding-top: 10px;
   padding-bottom: 10px;

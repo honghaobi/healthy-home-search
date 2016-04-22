@@ -2,24 +2,10 @@ extends layout
 
 block content
 
-  section.log
-    if user
-      button.success
-        a(href='user/#{user.id}') Profile
-      button.alert
-        a(href='signout') Sign Out
-      button.save_button.success Save
-    else
-      button.success
-        a(href='register') Sign In
-      button.success
-        a(href='register') Sign Up
-
-
   section.main
     header
       .row
-        nav.top-bar(data-topbar='', role='navigation')
+        nav.main-nav.top-bar(data-topbar='', role='navigation')
           ul.title-area
             li.name
 
@@ -27,11 +13,10 @@ block content
               a(href='#')
                 span Menu
 
-
-          section#mean_nav.top-bar-section
+          section#mean_nav.top-bar-section                
             ul.right
               li
-                a(href='#scores') Healthy Scores
+                a(href='#scores') Your NeighborGood Scores
               li
                 a(href='#community') Community
               li
@@ -40,25 +25,42 @@ block content
                 a(href='#environment') Environment
               li
                 a(href='#safety') Safety
-                
+              if user
+                li
+                  a.prof(href='user/#{user.id}') Profile
+                li
+                  a.signout(href='signout') Sign Out
+                li
+                  a.save_button(href='#') Save Your Search
+              else
+                li
+                  a.register(href='#') Sign In
+                li
+                  a.register(href='#') Sign Up
+    .render-success(display='none')
+      h2.sub_cap You Search Have Been Saved In Your Profile
     section.caption
       .row
         if user
           h1.mean_cap Hi #{user.full_name}, 
-          h2.sub_cap Discover #{allData.renderRestaurants.location.title}
+          h2.sub_cap Discover 
+            span.neighbor #{allData.renderRestaurants.location.title}
+            span.with With Neighbor
+            span.good Good
         else
-          h2.sub_cap Discover #{allData.renderRestaurants.location.title}
+          h2.sub_cap Discover #{allData.renderRestaurants.location.title}With Neighbor
+            span.logo-sub Good
         
         a.score_arrow.btn_details(href='#scores')
-          span See Your Healthy Home Scores
+          span.peach See Your Healthy Home Scores
           img.arrow(src='images/btn_arrow.png', alt='')
             
   section#scores.scores
     .row
       h1.mean_title How Your Neighborhood Scores
       h2.sub_title Live Where You Love
-    // End scores Titles
-    // Start scores List
+
+
     .row.scores_list
       .small-12.medium-3.large-3.columns
 
@@ -70,8 +72,8 @@ block content
 
         -  var comScore = Math.floor((schoolScore + parkScore + cultScore + viewScore) / 4);
 
-        img.serv_icon(src='images/icon2.png', alt='', title='')
-        h1.mean_title #{comScore}
+        img.serv_icon(src='images/icons/ic_local_activity_black_48dp/web/ic_local_activity_black_48dp_2x.png', alt='', title='')
+        h1.mean_title_score #{comScore}
         .btn_holder
           a.btn_fancy(href='#community')
             .solid_layer
@@ -82,8 +84,8 @@ block content
           | Everyday life can be very busy. Make sure that all your work and fun activities are close to home. When the community is close, everything is close.
 
       .small-12.medium-3.large-3.columns
-        img.serv_icon(src='images/icon1.png', alt='', title='')
-        h1.mean_title #{allData.renderTransit[0]}
+        img.serv_icon(src='images/icons/ic_airport_shuttle_black_48dp/web/ic_airport_shuttle_black_48dp_2x.png', alt='', title='')
+        h1.mean_title_score #{allData.renderTransit[0]}
         .btn_holder
           a.btn_fancy(href='#accessibility')
             .solid_layer
@@ -94,8 +96,8 @@ block content
           | Travel time to work and entrainment can take away from serious time that can be used for over things. We will show you how accessible your new home will be to transit locations.
 
       .small-12.medium-3.large-3.columns
-        img.serv_icon(src='images/icon3.png', alt='', title='')
-        h1.mean_title #{allData.renderCrime[0]}
+        img.serv_icon(src='images/icons/ic_vpn_key_black_48dp/web/ic_vpn_key_black_48dp_2x.png', alt='', title='')
+        h1.mean_title_score #{allData.renderCrime[0]}
         .btn_holder
           a.btn_fancy(href='#safety')
             .solid_layer
@@ -110,8 +112,8 @@ block content
       - var enviroGrade = Math.ceil((transitGrade + aqiGrade) / 2);
 
       .small-12.medium-3.large-3.columns
-        img.serv_icon(src='images/icon4.png', alt='', title='')
-        h1.mean_title #{enviroGrade}
+        img.serv_icon(src='images/icons/ic_public_black_48dp/web/ic_public_black_48dp_2x.png', alt='', title='')
+        h1#odometer.mean_title_score.odometer #{enviroGrade}
         .btn_holder
           a.btn_fancy(href='#environment')
             .solid_layer
@@ -125,7 +127,7 @@ block content
     .expanded
       .large-7.columns
         #community_map
-        nav.menu-ui
+        nav.menu-ui.cm
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='schools') Schools
           a(href='#', data-filter='parks') Parks
@@ -135,30 +137,31 @@ block content
 
       .large-5.columns
         .community_sub
-          h2.sub_cap Community Score
-
+          h2.sub_cap Community 
+  .cube
   section#accessibility.accessibility
     .expanded
       .large-7.columns
         #accessibility_map
-        nav.menu-ui
+        nav.menu-ui.am
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='bus-stop') Bus Stops
           a(href='#', data-filter='parking') Parking Lots/Garages
+          
       .large-5.columns
         .accessibility_sub
-          h2.sub_cap_sec Accessibility Score
+          h2.sub_cap_sec Accessibility
           
           div(class="wscore")
             img(src="https://cdn.walk.sc/images/api-logo.png")
             h3 #{allData.renderWalkScore.walkscore}
             p #{allData.renderWalkScore.description}
-
+  .cube
   section#environment.environment
     .expanded
       .large-7.columns
         #environment_map
-        nav.menu-ui
+        nav.menu-ui.em
           a.active(href='#', data-filter='all') Show all
           a(href='#', data-filter='single-family') Single Family
           a(href='#', data-filter='multifamily') Multifamily
@@ -167,11 +170,11 @@ block content
           a(href='#', data-filter='indulstrial') Indulstrial
       .large-5.columns
         .environment_sub
-          h2.sub_cap Environment Score
+          h2.sub_cap Environment
 
           h3 #{allData.renderAqi.breezometer_aqi}
           p #{allData.renderAqi.breezometer_description}
-
+  .break
   section#safety.safety
     .expanded
       .large-7.columns
@@ -180,7 +183,7 @@ block content
 
       .large-5.columns
         .safety_sub
-          h2.sub_cap_sec Safety Score
+          h2.sub_cap_third Safety
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
   .shadow
@@ -213,10 +216,10 @@ block content
         ]
       },
       properties: {
-        title: 'My featured house',
-        description: 'Healthy Search',
+        title: 'My Potential Home',
+        description: 'By NeighborGood',
         'marker-size': 'large',
-        'marker-color': '#5dfd92',
+        'marker-color': '#E96956',
         'marker-symbol': 'star',
         }
     }).addTo(communityMap);
@@ -240,8 +243,9 @@ block content
           "restaurants": false,
           "viewpoints": false,
           "cultural-spaces": false,
-          "marker-color": "#2f36b6",
+          "marker-color": "#63afb8",
           "marker-size": "medium",
+          "marker-symbol": "school"
         }
       });
     }
@@ -265,6 +269,7 @@ block content
           "cultural-spaces": false,
           "marker-color": "#3ebc36",
           "marker-size": "medium",
+          "marker-symbol": "park"
         }
       });
     }
@@ -286,9 +291,10 @@ block content
           "parks": false,
           "restaurants": true,
           "viewpoints": false,
-          "cultural-spaces": true,
+          "cultural-spaces": false,
           "marker-color": "#7bd0b5",
           "marker-size": "medium",
+          "marker-symbol": "bar"
         }
 
       });
@@ -311,8 +317,9 @@ block content
           "restaurants": false,
           "viewpoints": true,
           "cultural-spaces": false,
-          "marker-color": "#da6339",
+          "marker-color": "#b1c128",
           "marker-size": "medium",
+          "marker-symbol": "star"
         }
       });
     }
@@ -334,15 +341,17 @@ block content
           "restaurants": false,
           "viewpoints": false,
           "cultural-spaces": true,
-          "marker-color": "#b64990",
+          "marker-color": "#b65bc1",
           "marker-size": "medium",
+          "marker-symbol": "music"
         }
       });
     }
 
     var communityMarkers = L.mapbox.featureLayer().setGeoJSON(communityGeoJson).addTo(communityMap);
 
-    $('.menu-ui a').on('click', function() {
+    $('.cm a').on('click', function(e) {
+      e.preventDefault();
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
       communityMarkers.setFilter(function(f) {
@@ -366,10 +375,10 @@ block content
         ]
       },
       properties: {
-        title: 'My featured house',
-        description: 'Healthy Search',
+        title: 'My Potential Home',
+        description: 'By NeighborGood',
         'marker-size': 'large',
-        'marker-color': '#5dfd92',
+        'marker-color': '#E96956',
         'marker-symbol': 'star',
         }
     }).addTo(accessibilityMap);
@@ -391,8 +400,9 @@ block content
           "description": allData.renderTransit[1].data.list[p].name,
           "bus-stop": true,
           "parking": false,
-          "marker-color": "#ba36af",
-          "marker-size": "medium"
+          "marker-color": "#4c8bc1",
+          "marker-size": "medium",
+          "marker-symbol": "bus"
         }
       });
     }
@@ -412,15 +422,17 @@ block content
           "description": allData.renderParking[1][q].fac_type || allData.renderParking[1][q].fac_name || allData.renderParking[1][q].webname,
           "bus-stop": false,
           "parking": true,
-          "marker-color": "#d04c00",
+          "marker-color": "#63afb8",
           "marker-size": "medium",
+          "marker-symbol": "car"
         }
       });
     }
 
     var accessibilityMarkers = L.mapbox.featureLayer().setGeoJSON(accessibilityGeoJson).addTo(accessibilityMap);
 
-    $('.menu-ui a').on('click', function() {
+    $('.am a').on('click', function(e) {
+      e.preventDefault();
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
       accessibilityMarkers.setFilter(function(f) {
@@ -441,10 +453,10 @@ block content
         ]
       },
       properties: {
-        title: 'My featured house',
-        description: 'Healthy Search',
+        title: 'My Potential Home',
+        description: 'By NeighborGood',
         'marker-size': 'large',
-        'marker-color': '#5dfd92',
+        'marker-color': '#E96956',
         'marker-symbol': 'star',
         }
     }).addTo(environmentMap);
@@ -471,7 +483,7 @@ block content
               "commercial": false,
               "indulstrial": false,
               "institutional": false,
-              "marker-color": "#da2e00",
+              "marker-color": "#63afb8",
               "marker-size": "medium",
             }
           });
@@ -569,7 +581,8 @@ block content
 
     var environmentMarkers = L.mapbox.featureLayer().setGeoJSON(environmentGeoJson).addTo(environmentMap);
 
-    $('.menu-ui a').on('click', function() {
+    $('.em a').on('click', function(e) {
+      e.preventDefault();
       var filter = $(this).data('filter');
       $(this).addClass('active').siblings().removeClass('active');
       environmentMarkers.setFilter(function(f) {

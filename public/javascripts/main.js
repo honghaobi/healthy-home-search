@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
 	/*  Foundation Init    */
 	$(document).foundation();
 
@@ -9,12 +8,28 @@ $(document).ready(function(){
 				method: "POST",
 				url: "/save"
 			}).done(function(info){
+				$('.render-success').show().fadeIn('slow');
 				console.log('saved');
 			}).fail(function(err){
 				console.log('failed');
-			})
+			});
 		});
 
+		$('.prof').on('click', function(event) {
+				window.location.href= "/user/" + user.id;
+		});
+
+		$('.signout').on('click', function(event) {
+				window.location.href= "signout";
+		});
+
+		$('.register').on('click', function(event) {
+				window.location.href= "register"
+		});
+
+		$('.prof').on('click', function(event) {
+				window.location.href= "/user/" + user.id;
+		});
 
 	/*    Mean navigation menu scroll to    */
     $('#mean_nav ul li a').click(function(e){
@@ -23,6 +38,11 @@ $(document).ready(function(){
     });
 
 		$('.score_arrow').click(function(e){
+			e.preventDefault();
+			scrollTo($(this).attr('href'), 900, 'easeInOutCubic');
+		});
+
+		$('.btn_fancy').click(function(e){
 			e.preventDefault();
 			scrollTo($(this).attr('href'), 900, 'easeInOutCubic');
 		});
