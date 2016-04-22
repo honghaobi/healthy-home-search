@@ -137,16 +137,16 @@ block content
 
       .large-5.columns
         .community_sub
-          h2.sub_cap Community Score
+          h2.sub_cap Community
           if comScore <= 24
-            p Your community score is #{comScore}. This location might require you to travel a bit farther to find parks and other wonderful community amenities.
+            p.font-large-white Your community score is #{comScore}. This location might require you to travel a bit farther to find parks and other wonderful community amenities.
           else if comScore >= 25 && comScore <= 49
-            p Your community score is #{comScore}. This location will require moderate use of transportation to get to all your daily activities.
+            p.font-large-white Your community score is #{comScore}. This location will require moderate use of transportation to get to all your daily activities.
           else if comScore >= 50 && comScore <= 74
-            p Your community score is #{comScore}. This is a great area to live. You are walking distance from a lot of community locations will help to reduce the time spent to travel to get to your destination.
+            p.font-large-white Your community score is #{comScore}. This is a great area to live. You are walking distance from a lot of community locations will help to reduce the time spent to travel to get to your destination.
           else
-            p Awesome! Your community score is #{comScore}. A wonderful place to live! You are walking distance to many of your community locations. You may never need to leave your community for your daily activities and live it up in your night life.
-          p Your score is based upon 5 key community categories in your area: school, parks, restaurants, viewpoints, and cultural spaces. The totals in these categories in your area will be compared to the overall average of all areas within Seattle.
+            p.font-large-white Awesome! Your community score is #{comScore}. A wonderful place to live! You are walking distance to many of your community locations. You may never need to leave your community for your daily activities and live it up in your night life.
+          p.font-large-white Your score is based upon 5 key community categories in your area: school, parks, restaurants, viewpoints, and cultural spaces. The totals in these categories in your area will be compared to the overall average of all areas within Seattle.
   .cube
   section#accessibility.accessibility
     .expanded
@@ -159,22 +159,22 @@ block content
 
       .large-5.columns
         .accessibility_sub
-          h2.sub_cap_sec Accessibility Score
+          h2.sub_cap_sec Accessibility
 
           if allData.renderTransit[0] <= 24
-            p Your accessibility score is #{allData.renderTransit[0]}. You may want to rethink your use of transportation if you will be using public transportation for the majority of your travel. This area will be heavily dependent upon other methods of transportation. If this is a heavily populated area, make sure that their is public parking next to the location for those times people will want to visit.
+            p.font-large-prime Your accessibility score is #{allData.renderTransit[0]}. You may want to rethink your use of transportation if you will be using public transportation for the majority of your travel. This area will be heavily dependent upon other methods of transportation. If this is a heavily populated area, make sure that their is public parking next to the location for those times people will want to visit.
           else if allData.renderTransit[0] >= 25 && allData.renderTransit[0] <= 49
-            p Your accessibility score is #{allData.renderTransit[0]}. This location has #{allData.renderTransit[1].data.list.length} bus stop locations within a half mile for you to reach your desired location. This location is mostly car dependent but bike transportation may just do the trick. There are bus stops near this location.
+            p.font-large-prime Your accessibility score is #{allData.renderTransit[0]}. This location has #{allData.renderTransit[1].data.list.length} bus stop locations within a half mile for you to reach your desired location. This location is mostly car dependent but bike transportation may just do the trick. There are bus stops near this location.
           else if allData.renderTransit[0] >= 50 && allData.renderTransit[0] <= 74
-            p Your accessibility score is #{allData.renderTransit[0]}. Great! This location has #{allData.renderTransit[1].data.list.length} bus stop locations within a half mile for you to choose from.
+            p.font-large-prime Your accessibility score is #{allData.renderTransit[0]}. Great! This location has #{allData.renderTransit[1].data.list.length} bus stop locations within a half mile for you to choose from.
           else
-            p Booyah! Your accessibility score is #{allData.renderTransit[0]}. This is a paradise for public transportation. The #{allData.renderTransit[1].data.list.length} bus stops within a half mile provide a wealth of options to travel to your desired location. Dependance upon a car is not needed for this location.
-          p Your score is based upon the bus stops in the local area. Your score has been compared to the overall average of all areas within Seattle. You may also see the number of public parking lots and parking garages within walking distance to the inputed address.
+            p.font-large-prime Booyah! Your accessibility score is #{allData.renderTransit[0]}. This is a paradise for public transportation. The #{allData.renderTransit[1].data.list.length} bus stops within a half mile provide a wealth of options to travel to your desired location. Dependance upon a car is not needed for this location.
+          p.font-large-prime Your score is based upon the bus stops in the local area. Your score has been compared to the overall average of all areas within Seattle. You may also see the number of public parking lots and parking garages within walking distance to the inputed address.
           
           br
           
           img#walkScoreLogo(src="https://cdn.walk.sc/images/api-logo.png")
-          h5 #{allData.renderWalkScore.walkscore} (#{allData.renderWalkScore.description})
+          p.font-large-prime #{allData.renderWalkScore.walkscore} (#{allData.renderWalkScore.description})
   .cube
   section#environment.environment
     .expanded
@@ -192,21 +192,21 @@ block content
           h2.sub_cap Environment
 
           if enviroGrade <= 24
-            p The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. If you are looking for a quite area with less sound population and construction occurring in your area, this will not be the place for you. This area has a high concentration of open building permits that will increase the amount of noise and traffic in the area. These factors could increase your stress and effect your health negatively.
+            p.font-large-white The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. If you are looking for a quite area with less sound population and construction occurring in your area, this will not be the place for you. This area has a high concentration of open building permits that will increase the amount of noise and traffic in the area. These factors could increase your stress and effect your health negatively.
           else if enviroGrade >= 25 && enviroGrade <= 49
-            p The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. We are all looking for an area that we can come home and relax after a hard days of work. This area will be busy with all the new construction that is going on in the area. This is not the best area for a low level of construction traffic, but hey, things could be worst.
+            p.font-large-white The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. We are all looking for an area that we can come home and relax after a hard days of work. This area will be busy with all the new construction that is going on in the area. This is not the best area for a low level of construction traffic, but hey, things could be worst.
           else if enviroGrade >= 50 && enviroGrade <= 74
-            p The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. This is an area with a small amount of open building permits. This will be a relatively quite and less active area, in regards to permits, compared to other parts of Seattle. If you are looking for a quite neighborhood for your home, this may be the place.
+            p.font-large-white The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. This is an area with a small amount of open building permits. This will be a relatively quite and less active area, in regards to permits, compared to other parts of Seattle. If you are looking for a quite neighborhood for your home, this may be the place.
           else
-            p Oh yeah! The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. An awesome place with little to no building permits in the area. This area currently has no high level of building projects projected to start in the foreseeable future. This area will not be filled with high noise, traffic, and congestion that can occur from a high level amount of permits.
-          p #{allData.renderAqi.dominant_pollutant_text.main} #{allData.renderAqi.dominant_pollutant_text.causes} #{allData.renderAqi.dominant_pollutant_text.effects}
+            p.font-large-white Oh yeah! The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. An awesome place with little to no building permits in the area. This area currently has no high level of building projects projected to start in the foreseeable future. This area will not be filled with high noise, traffic, and congestion that can occur from a high level amount of permits.
+          p.font-large-white #{allData.renderAqi.dominant_pollutant_text.main} #{allData.renderAqi.dominant_pollutant_text.causes} #{allData.renderAqi.dominant_pollutant_text.effects}
           
           br
           
           img#breezLogo(src='images/breezometer-logo.png')
-          h6 BreezoMeter AQI: #{allData.renderAqi.breezometer_aqi}
-          p #{allData.renderAqi.breezometer_description}
-  .break
+          p.font-large-white BreezoMeter AQI: #{allData.renderAqi.breezometer_aqi} 
+          p.font-large-white #{allData.renderAqi.breezometer_description}
+  .cube
   section#safety.safety
     .expanded
       .large-7.columns
@@ -215,16 +215,16 @@ block content
 
       .large-5.columns
         .safety_sub
-          h2.sub_cap_sec Safety Score
+          h2.sub_cap_sec Safety
           if allData.renderCrime[0] <= 24
-            p Your safety score is #{allData.renderCrime[0]}. This is a crime ridden area of Seattle. You may want to rethink of living in this area.
+            p.font-large-prime Your safety score is #{allData.renderCrime[0]}. This is a crime ridden area of Seattle. You may want to rethink of living in this area.
           else if allData.renderCrime[0] >= 25 && allData.renderCrime[0] <= 49
-            p Your safety score is #{allData.renderCrime[0]}. This area may not be ridden with crime, but it may not be a place you want to go on a walk at night.
+            p.font-large-prime Your safety score is #{allData.renderCrime[0]}. This area may not be ridden with crime, but it may not be a place you want to go on a walk at night.
           else if allData.renderCrime[0] >= 50 && allData.renderCrime[0] <= 74
-            p Your safety score is #{allData.renderCrime[0]}. You may feel comfortable walking the streets at night.
+            p.font-large-prime Your safety score is #{allData.renderCrime[0]}. You may feel comfortable walking the streets at night.
           else
-            p Utopia! Your safety score is #{allData.renderCrime[0]}. This is a safe place to live thanks to its low crime rate.
-          p Your score is based upon the amount of crimes reported in the last year from today and on the comparison of all areas in Seattle and their average. Hover over each topic bubble to view the total amount of crime was reported respective to the category. A high amount of crime will produce a low score.
+            p.font-large-prime Utopia! Your safety score is #{allData.renderCrime[0]}. This is a safe place to live thanks to its low crime rate.
+          p.font-large-prime Your score is based upon the amount of crimes reported in the last year from today and on the comparison of all areas in Seattle and their average. Hover over each topic bubble to view the total amount of crime was reported respective to the category. A high amount of crime will produce a low score.
 
   .shadow
 
