@@ -28,7 +28,6 @@ $(document).ready(function(){
 		});
 
 		$('.prof').on('click', function(event) {
-			console.log('yolo');
 				window.location.href= "/user/" + user.id;
 		});
 
@@ -41,10 +40,6 @@ $(document).ready(function(){
 		$('.score_arrow').click(function(e){
 			e.preventDefault();
 			scrollTo($(this).attr('href'), 900, 'easeInOutCubic');
-			setTimeout(function(){
-				console.log('yolo');
-			    $('.odometer').html(98);
-			}, 2000);
 		});
 
     /*    Back to top button    */
