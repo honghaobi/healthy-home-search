@@ -222,7 +222,6 @@ h2.sub_cap_sec{
 	margin-bottom: 50px;
 }
 
-<<<<<<< HEAD
 h3.sub_cap{
 	font-family: "lato-light", Helvetica, Arial, sans-serif;
 	font-weight: bold;
@@ -243,7 +242,8 @@ h3.sub_cap_sec{
 	line-height: 50px;
   margin-top: 200px;
   display: inline;
-=======
+}
+
 h2.reg {
   font-family: "lato-light", Helvetica, Arial, sans-serif;
   font-weight: lighter;
@@ -266,7 +266,6 @@ h2.sign {
   padding-top: 50px;
   padding-left: 20px;
   padding-bottom: 20px;
->>>>>>> ef8fcb63b74fa2aaa605341cb8bbf790143474e1
 }
 
 .main .caption .btn_details span{

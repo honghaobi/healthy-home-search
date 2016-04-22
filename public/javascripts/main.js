@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
 	/*  Foundation Init    */
 	$(document).foundation();
 
