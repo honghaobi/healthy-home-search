@@ -203,6 +203,24 @@ span.logo-sub {
   font-weight: 600;
 }
 
+h1.mean_cap {
+	font-family: "lato-bold", Helvetica, Arial, sans-serif;
+	font-size: 60px;
+	color: #fff;
+	text-transform: uppercase;
+	line-height: 70px;
+}
+
+
+h2.sub_cap{
+  color: #fff;
+	font-family: "lato-light", Helvetica, Arial, sans-serif;
+	font-weight: lighter;
+  text-transform: uppercase;
+  line-height: 70px;
+	font-size: 60px;
+	margin-bottom: 50px;
+}
 
 h2.sub_cap_sec{
 	font-family: "lato-light", Helvetica, Arial, sans-serif;
