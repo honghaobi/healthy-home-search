@@ -69,7 +69,7 @@ module.exports = {
         var avg = 1088.57;
         var stD = 234.07;
         var zScore = ( -(totCrimes - avg) / stD)
-        var crimeGrade = Math.floor((((zScore + 2) / 4) * 100) + 10);
+        var crimeGrade = Math.floor(((zScore + 2) / 4) * 100);
 
         if (crimeGrade > 100) {
           return [99, crimeData];

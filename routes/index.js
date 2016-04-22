@@ -94,7 +94,7 @@ router.post('/save', function(req, res, next) {
     var comScore = Math.floor((req.session.schoolNum + req.session.parksNum + req.session.cultNum + req.session.viewNum) / 4);
 
     var permitGrade = req.session.permitNum;
-    var aqiGrade = ((req.session.aqiNum) + 10);
+    var aqiGrade = (req.session.aqiNum);
     var enviroScore = Math.ceil((permitGrade + aqiGrade) / 2);
     var timestamp = new Date();
 
