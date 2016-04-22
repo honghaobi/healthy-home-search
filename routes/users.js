@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var users = require('../models/users');
 var validations = require('../models/validations');
 
 /* GET users listing. */
@@ -35,8 +36,7 @@ router.post('/register/signup', function(req, res, next) {
   if (errors.length) {
     res.render('register', dataForView);
   }
-  res.render('register', {errors: [], validInputs: {}});
-
+  
   users.createUser(req.body, (err, data) => {
     res.redirect('/');
   });
