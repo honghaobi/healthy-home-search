@@ -184,7 +184,17 @@
 	margin-top: 140px;
 }
 
-h1.mean_cap{
+/*h1.logo-name {
+  	font-family: "lato-light", Helvetica, Arial, sans-serif;
+  	font-weight: lighter;
+  	font-size: 60px;
+  	color: #fff;
+  	text-transform: uppercase;
+  	line-height: 70px;
+  	margin-bottom: 50px;
+}*/
+
+h1.mean_cap, h1.logo-sub {
 	font-family: "lato-black", Helvetica, Arial, sans-serif;
 	font-size: 60px;
 	color: #fff;
@@ -192,7 +202,7 @@ h1.mean_cap{
 	line-height: 70px;
 }
 
-h2.sub_cap{
+h2.sub_cap, h1.logo-name{
 	font-family: "lato-light", Helvetica, Arial, sans-serif;
 	font-weight: lighter;
 	font-size: 60px;
@@ -212,6 +222,7 @@ h2.sub_cap_sec{
 	margin-bottom: 50px;
 }
 
+<<<<<<< HEAD
 h3.sub_cap{
 	font-family: "lato-light", Helvetica, Arial, sans-serif;
 	font-weight: bold;
@@ -232,6 +243,30 @@ h3.sub_cap_sec{
 	line-height: 50px;
   margin-top: 200px;
   display: inline;
+=======
+h2.reg {
+  font-family: "lato-light", Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  font-size: 60px;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 70px;
+  padding-top: 50px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+
+h2.sign {
+  font-family: "lato-light", Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  font-size: 60px;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 70px;
+  padding-top: 50px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+>>>>>>> ef8fcb63b74fa2aaa605341cb8bbf790143474e1
 }
 
 .main .caption .btn_details span{
@@ -732,8 +767,6 @@ footer{
 		font-size: 45px;
 		line-height: 60px;
 	}
-
-
 
 @media only screen and (min-width: 64.063em) {
 	#back_top{
