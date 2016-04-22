@@ -572,6 +572,12 @@ p{
   height: 500px;
 }
 
+#breezLogo {
+  height: 25%;
+  width: 25%;
+  float: left;
+}
+
 /*    Footer    */
 
 footer{
