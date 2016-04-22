@@ -1,5 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var knex = require('../db/knex');
+
+
+function Users() {
+  return knex('users');
+}
 
 module.exports = {
 
@@ -21,5 +27,14 @@ module.exports = {
     if (input.split('@').length !== 2) {
       return 'Email is invalid';
     }
+  },
+  isUserRegistered: function(userEmail){
+    return Users().where({email:userEmail}).first().then(function(user){
+      console.log(user);
+      if(user){
+        console.log('User exists');
+        return 'User exists';
+      }
+    })
   }
 };

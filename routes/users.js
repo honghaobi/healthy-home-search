@@ -27,25 +27,31 @@ router.post('/register/signup', function(req, res, next) {
   } else {
     validInputs.email = req.body.email;
   }
-  console.log(errors);
 
-  var dataForView = {
-    errors: errors,
-    validInputs: validInputs
-  };
-  if (errors.length) {
-    res.render('register', dataForView);
-  }
-  
-  users.createUser(req.body, (err, data) => {
-    res.redirect('/');
+  validations.isUserRegistered(req.body.email).then(function(error){
+    if (error) {
+      errors.push(error)
+    }
+    var dataForView = {
+      errors: errors,
+      validInputs: validInputs
+    };
+    if (errors.length) {
+      res.render('register', dataForView);
+    }
+
+    users.createUser(req.body, (err, data) => {
+      res.redirect('/');
+    });
+
   });
 });
 
 router.post('/register/signin', (req, res, next) => {
   users.authenticateUser(req.body.full_name, req.body.password, (err, user) => {
+    var validInputs = {};
     if (err) {
-      res.render('register', {error: err});
+      res.render('register', {error: err, validInputs});
     } else {
       req.session.user = user;
       res.redirect('/');

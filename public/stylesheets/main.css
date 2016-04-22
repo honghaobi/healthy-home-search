@@ -551,6 +551,11 @@ p{
 	margin-top: 100px;
 }
 
+.alert-message{
+  color: red;
+  font-size: 18px;
+}
+
 /*    Fancy Button    */
 
 .btn_fancy{

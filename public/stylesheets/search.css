@@ -128,7 +128,7 @@ form.signin-form {
   margin-top: 20px;
 }
 
-.text-input-register input[type="text"], .text-input-register input[type="email"] {
+.text-input-register input[type="text"], .text-input-register input[type="email"], .text-input-register input[type="password"] {
   display: inline-block;
   width: 350px;
   height: 40px;
@@ -141,7 +141,7 @@ form.signin-form {
   transition: all 0.1s ease-out;
 }
 
-.text-input-register input[type="text"] + label, .text-input-register input[type="email"] + label  {
+.text-input-register input[type="text"] + label, .text-input-register input[type="email"] + label , .text-input-register input[type="password"] + label   {
   position: absolute;
   top: 0;
   left: 0;
@@ -159,14 +159,14 @@ form.signin-form {
   -webkit-transition-delay: 0.2s;
           transition-delay: 0.2s;
 }
-.text-input-register input[type="text"]:focus + label, .text-input-register input[type="email"]:focus + label {
+.text-input-register input[type="text"]:focus + label, .text-input-register input[type="email"]:focus + label, .text-input-register input[type="password"]:focus + label {
   -webkit-transform: translateY(0%) translateX(-90%);
           transform: translateY(0%) translateX(-90%);
   border-radius: 3px;
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
 }
-.text-input-register input[type="text"]:focus, .text-input-register input[type="email"]:focus {
+.text-input-register input[type="text"]:focus, .text-input-register input[type="email"]:focus, .text-input-register input[type="password"]:focus {
   padding: 10px;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
