@@ -18,6 +18,10 @@ $(document).ready(function(){
 			});
 		});
 
+		$('.search_again').on('click', function(event) {
+				window.location.href= "/";
+		});
+
 		$('.prof').on('click', function(event) {
 				window.location.href= "/user/" + user.id;
 		});

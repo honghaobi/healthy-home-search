@@ -436,6 +436,10 @@ header .top-bar-section ul li a.register {
   color: #55adb6;
 }
 
+header .top-bar-section ul li a.search_again {
+  color: #55adb6;
+}
+
 .render-success{
   position: fixed;
   display: none;

@@ -16,6 +16,8 @@ block content
           section#mean_nav.top-bar-section
             ul.right
               li
+                a.search_again(href='#') Search Again
+              li
                 a(href='#scores') Your NeighborGood Scores
               li
                 a(href='#community') Community
@@ -27,11 +29,11 @@ block content
                 a(href='#safety') Safety
               if user
                 li
+                  a.save_button(href='#') Save Your Search
+                li
                   a.prof(href='user/#{user.id}') Profile
                 li
                   a.signout(href='signout') Sign Out
-                li
-                  a.save_button(href='#') Save Your Search
               else
                 li
                   a.register(href='#') Sign In
