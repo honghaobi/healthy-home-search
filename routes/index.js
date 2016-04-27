@@ -83,6 +83,15 @@ router.post('/', function(req, res, next) {
     }));
 
     Promise.all(allFunctions).then(() => {
+
+      //Community Score Calculation:
+      req.session.comScore = Math.floor((req.session.schoolNum + req.session.parksNum + req.session.cultNum + req.session.viewNum) / 4);
+      res.locals.comScore = req.session.comScore;
+
+      //Environment Score Calculation:
+      req.session.enviroScore = Math.ceil((req.session.permitNum + req.session.aqiNum) / 2);
+      res.locals.enviroScore = req.session.enviroScore;
+
       res.locals.user = req.session.user;
       res.render('result', {allData});
     });
@@ -90,15 +99,9 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/save', function(req, res, next) {
-
-    var comScore = Math.floor((req.session.schoolNum + req.session.parksNum + req.session.cultNum + req.session.viewNum) / 4);
-
-    var permitGrade = req.session.permitNum;
-    var aqiGrade = (req.session.aqiNum);
-    var enviroScore = Math.ceil((permitGrade + aqiGrade) / 2);
     var timestamp = new Date();
 
-    Searches().insert({user_id:req.session.user.id, address: req.session.userInput, community: comScore, accessablility: req.session.transitNum, environment: enviroScore, safety: req.session.crimeNum, date_time: timestamp}).then(function(){
+    Searches().insert({user_id:req.session.user.id, address: req.session.userInput, community: req.session.comScore, accessablility: req.session.transitNum, environment: req.session.enviroScore, safety: req.session.crimeNum, date_time: timestamp}).then(function(){
       res.send(200);
     }).catch(function(err){
       console.log(err);

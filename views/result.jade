@@ -66,14 +66,6 @@ block content
     .row.scores_list
       .small-12.medium-3.large-3.columns
 
-
-        -  var schoolScore = allData.renderSchool[0];
-        -  var parkScore = allData.renderParks[0];
-        -  var cultScore = allData.renderCultCenters[0];
-        -  var viewScore = allData.renderViewpoints[0];
-
-        -  var comScore = Math.floor((schoolScore + parkScore + cultScore + viewScore) / 4);
-
         img.serv_icon(src='images/icons/ic_local_activity_black_48dp/web/ic_local_activity_black_48dp_2x.png', alt='', title='')
         h1.mean_title_score #{comScore}
         .btn_holder
@@ -96,6 +88,20 @@ block content
         br
         p
           | Travel time to work and entrainment can take away from precious time that can be used for other things. We will show you how accessible your new home will be to transit locations.
+          
+
+          
+      .small-12.medium-3.large-3.columns
+        img.serv_icon(src='images/icons/ic_public_black_48dp/web/ic_public_black_48dp_2x.png', alt='', title='')
+        h1.mean_title_score #{enviroScore}
+        .btn_holder
+          a.btn_fancy(href='#environment')
+            .solid_layer
+            .border_layer
+            .text_layer Environment
+        br
+        p
+          | Figuring out which area is best is tricky when comparing a lot of environmental factors. NeighborGood environment score is designed to help you answer your questions and make healthier choices.
 
       .small-12.medium-3.large-3.columns
         img.serv_icon(src='images/icons/ic_vpn_key_black_48dp/web/ic_vpn_key_black_48dp_2x.png', alt='', title='')
@@ -108,22 +114,6 @@ block content
         br
         p
           | Safety is an important factor in reducing your stress at home. Become aware of criminal activity that has occurred within the neighborhood.
-
-      - var transitGrade = allData.renderPermits[0];
-      - var aqiGrade = ((allData.renderAqi.breezometer_aqi) + 30);
-      - var enviroGrade = Math.ceil((transitGrade + aqiGrade) / 2);
-
-      .small-12.medium-3.large-3.columns
-        img.serv_icon(src='images/icons/ic_public_black_48dp/web/ic_public_black_48dp_2x.png', alt='', title='')
-        h1#odometer.mean_title_score.odometer #{enviroGrade}
-        .btn_holder
-          a.btn_fancy(href='#environment')
-            .solid_layer
-            .border_layer
-            .text_layer Environment
-        br
-        p
-          | Figuring out which area is best is tricky when comparing a lot of environmental factors. NeighborGood environment score is designed to help you answer your questions and make healthier choices.
 
   section#community.community
     .expanded
@@ -193,14 +183,14 @@ block content
         .environment_sub
           h2.sub_cap Environment
 
-          if enviroGrade <= 24
-            p.font-large-white The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. If you are looking for a quite area with less sound population and construction occurring in your area, this will not be the place for you. This area has a high concentration of open building permits that will increase the amount of noise and traffic in the area.
-          else if enviroGrade >= 25 && enviroGrade <= 49
-            p.font-large-white The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. We are all looking for an area that we can come home and relax after a hard days of work. This area will be busy with all the new construction that is going on in the area. This is not the best area for a low level of construction traffic, but hey, things could be worst.
-          else if enviroGrade >= 50 && enviroGrade <= 74
-            p.font-large-white The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. This is an area with a small amount of open building permits. This will be a relatively quite and less active area, in regards to permits, compared to other parts of Seattle. If you are looking for a quite neighborhood for your home, this may be the place.
+          if enviroScore <= 24
+            p.font-large-white The environment score is #{enviroScore}. This is an average based on the air quality and construction in your area. If you are looking for a quite area with less sound population and construction occurring in your area, this will not be the place for you. This area has a high concentration of open building permits that will increase the amount of noise and traffic in the area.
+          else if enviroScore >= 25 && enviroScore <= 49
+            p.font-large-white The environment score is #{enviroScore}. This is an average based on the air quality and construction in your area. We are all looking for an area that we can come home and relax after a hard days of work. This area will be busy with all the new construction that is going on in the area. This is not the best area for a low level of construction traffic, but hey, things could be worst.
+          else if enviroScore >= 50 && enviroScore <= 74
+            p.font-large-white The environment score is #{enviroScore}. This is an average based on the air quality and construction in your area. This is an area with a small amount of open building permits. This will be a relatively quite and less active area, in regards to permits, compared to other parts of Seattle. If you are looking for a quite neighborhood for your home, this may be the place.
           else
-            p.font-large-white Oh yeah! The environment score is #{enviroGrade}. This is an average based on the air quality and construction in your area. An awesome place with little to no building permits in the area. This area will not be filled with high noise, traffic, and congestion that can occur from a high level amount of permits.
+            p.font-large-white Oh yeah! The environment score is #{enviroScore}. This is an average based on the air quality and construction in your area. An awesome place with little to no building permits in the area. This area will not be filled with high noise, traffic, and congestion that can occur from a high level amount of permits.
           p.font-large-white #{allData.renderAqi.dominant_pollutant_text.main} #{allData.renderAqi.dominant_pollutant_text.causes} 
           
           br
