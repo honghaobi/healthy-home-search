@@ -18,7 +18,7 @@ block content
               li
                 a.search_again(href='#') Search Again
               li
-                a(href='#scores') Your NeighborGood Scores
+                a(href='#scores') Your Scores
               li
                 a(href='#community') Community
               li
@@ -45,12 +45,12 @@ block content
       .row
         if user
           h1.mean_cap Hi #{user.full_name},
-          h2.sub_cap Discover
+          h2.sub_cap Discover 
             span.neighbor #{allData.renderRestaurants.location.title}
             span.with  With Neighbor
             span.good Good
         else
-          h2.sub_cap Discover 
+          h2.sub_cap Discover  
             span.neighbor #{allData.renderRestaurants.location.title} 
             span.with  With Neighbor
             span.good Good

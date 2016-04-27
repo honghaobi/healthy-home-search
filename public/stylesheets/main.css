@@ -20,7 +20,6 @@
 
 */
 
-
 /*		Fonts		*/
 
 @font-face {
@@ -119,19 +118,19 @@
 
 }
 
-
-
 .row{
 	max-width:1140px;
 	padding: 0 20px;
 }
 
 .top-bar .toggle-topbar.menu-icon a span::after{
+  top: 25px;
 	right: 0;
 }
 
 .top-bar .toggle-topbar.menu-icon a{
-	padding: 0 2rem 0 0.9375rem;
+  padding-top: 8px;
+  padding-right: 25px;
 }
 
 
@@ -168,7 +167,6 @@
 .top-bar.expanded .toggle-topbar a span::after {
   box-shadow: 0 0 0 1px #55adb6, 0 7px 0 1px #55adb6, 0 14px 0 1px #55adb6;
 }
-
 
 .main{
 	width: 100%;
@@ -401,7 +399,6 @@ img.bg {
 }
 
 /*    scores    */
-
 
 .main-nav{
   list-style: none;
@@ -679,12 +676,14 @@ nav.menu-ui a:hover{
   height: 750px;
   width: 100%;
   background-color: #55adb6;
+  z-index: 5;
+  position: relative;
 }
 
 #community_map {
-  position: relative;
   width: 100%;
   height: 750px;
+  position: relative;
 }
 .community_sub{
   width:100%;
@@ -692,16 +691,17 @@ nav.menu-ui a:hover{
   padding-right: 7%;
   padding-top: 5%;
   padding-bottom: 5%;
+  position: relative;
 }
 
 .accessibility{
   height: 750px;
   width: 100%;
   background-color: white;
+  position: relative;
 }
 
 #accessibility_map {
-  position: relative;
   width: 100%;
   height: 750px;
 }
@@ -711,18 +711,20 @@ nav.menu-ui a:hover{
   padding-right: 7%;
   padding-top: 5%;
   padding-bottom: 5%;
+  position: relative;
 }
 
 .environment{
   height: 750px;
   width: 100%;
   background-color: #E96956;
+  position: relative;
 }
 
 #environment_map {
-  position: relative;
   width: 100%;
   height: 750px;
+  position: relative;
 }
 
 .environment_sub{
@@ -731,12 +733,14 @@ nav.menu-ui a:hover{
   padding-right: 7%;
   padding-top: 5%;
   padding-bottom: 5%;
+  position: relative;
 }
 
 .safety{
   height: 900px;
   width: 100%;
   background: url('/images/cube.png') repeat;
+  position: relative;
 }
 
 .safety_sub{
@@ -745,6 +749,7 @@ nav.menu-ui a:hover{
   padding-right: 7%;
   padding-top: 5%;
   padding-bottom: 5%;
+  position: relative;
 }
 
 .menu-ui {
@@ -789,8 +794,7 @@ nav.menu-ui a:hover{
   }
 
 #breezLogo {
-    height: 35%;
-    width: 35%;
+    width: 170px;
     float: left;
     margin-left: -50px;
     margin-right: -30px;
@@ -802,14 +806,6 @@ nav.menu-ui a:hover{
   padding-right: 10px;
   padding-top: 2px;
 }
-
-/*    Footer    */
-
-footer{
-	padding: 80px 0;
-	background: #535353;
-}
-
 
 /*  Back To Top button  */
 
@@ -839,11 +835,83 @@ footer{
 	        transform:translate(-1px,1px);
 }
 
+@media only screen and (max-width: 1110px){
+  .main-nav{
+    height: 62px;
+  }
 
+  header .top-bar-section li:not(.has-form) a:not(.button) {
+    padding-bottom: 8px;
+  }
+
+  nav.menu-ui {
+    top: 50px;
+  }
+}
+
+@media only screen and (max-width: 1025px){
+  .community{
+    height: 1050px;
+  }
+
+  #community_map {
+    height: 500px;
+  }
+  .community_sub{
+
+  }
+  .accessibility{
+    height: 1050px;
+  }
+
+  #accessibility_map {
+    height: 500px;
+  }
+  .accessibility_sub{
+  }
+
+  .environment{
+    height: 1050px;
+  }
+
+  #environment_map {
+    height: 500px;
+  }
+
+  .environment_sub{
+  }
+
+  .safety{
+    height: 1050px;
+  }
+
+  .safety_sub{
+  }
+
+  p.font-large-white, p.font-large-prime {
+    font-size: 16px;
+  }
+
+  h2.sub_cap, h2.sub_cap_sec{
+    font-size: 40px;
+  }
+
+}
 
 /*    Responsive CSS    */
 
 @media only screen and (max-width: 40em){
+  .cube{
+    display: none;
+  }
+
+  p.font-large-white, p.font-large-prime {
+    font-size: 16px;
+  }
+
+  h2.sub_cap, h2.sub_cap_sec{
+    font-size: 40px;
+  }
 	.top-bar .top-bar-section{
 		display: none;
 	}
