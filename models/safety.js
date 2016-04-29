@@ -30,7 +30,6 @@ module.exports = {
 
     return rp(options)
       .then(function(crimeData) {
-
           var organizedCrimeCountObj = {}
 
           for (var i = 0; i < crimeData.length; i++) {
@@ -49,7 +48,8 @@ module.exports = {
 
            var finalcrimeData = {
              name:"crimes",
-             children: organizedCrimeCountArray
+             children: organizedCrimeCountArray,
+             original_data: crimeData
            };
 
         finalcrimeData = JSON.stringify(finalcrimeData);
