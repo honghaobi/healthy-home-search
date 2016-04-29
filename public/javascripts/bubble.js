@@ -47,20 +47,27 @@ const bubbleChart = () => {
     const noders = [];
     const myNodes = rawData.original_data.map((d) => {
 
-      const byWeekDay = new Date(Date.parse(d.occurred_date_or_date_range_start
-        )).getUTCDay();
+      const byDayofWeek = new Date(Date.parse(d.occurred_date_or_date_range_start
+      )).getUTCDay();
+      const byDayofMonth = new Date(Date.parse(d.occurred_date_or_date_range_start
+      )).getUTCDate();
+      const time = new Date(Date.parse(d.occurred_date_or_date_range_start
+      )).getUTCHours();
       noders.push ({
         id: noders.length,
-        radius: 1,
-        byDayofWeek: byWeekDay
-        // value: d.score,
-        // group: d.score,
-        // tweet: d.tweet,
-        // created: created,
-        // x: Math.random() * 900,
-        // y: Math.random() * 800
+        radius: 10,
+        summarized_offense_description: d.summarized_offense_description,
+        month: d.month,
+        year: d.year,
+        byDayofMonth: byDayofMonth,
+        byDayofWeek: byDayofWeek,
+        time: time,
+        group: d.summarized_offense_description,
+        x: Math.random() * 900,
+        y: Math.random() * 800
       })
     })
+    console.log(noders);
     noders.sort((a, b) => { return b.value - a.value })
     return noders;
   }
@@ -70,12 +77,12 @@ const bubbleChart = () => {
   const x = d3.scale.linear()
     .range([margin.left + 40, width - margin.left - margin.right - 40]);
 
-  // const xMap = (d) => { console.log(d); return x(d.id) }
+  const xMap = (d) => { console.log(d); return x(d.id) }
 
   const y = d3.scale.linear()
     .range([height - margin.top - margin.bottom - 40, margin.bottom + 40]);
 
-  // const yMap = (d) => { console.log(d);return y(d.value) }
+  const yMap = (d) => { console.log(d);return y(d.value) }
 
   const xAxis = d3.svg.axis()
     .scale(x)
@@ -100,9 +107,18 @@ const bubbleChart = () => {
     //   weekDayCenters[sortedSkorz[i]] = {x: 200 + 100 * i, y: height/2}
     // }
 
-    const fillColor = d3.scale.ordinal()
-      .domain('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday')
-      .range(['#FFEDBC', '#FEBE7E', '#EC7263', '#A75265', '#D9213B', '#D9213B', '#a49adf']);
+    var randomColorArray = [];
+    var arrayOfRandomColor = function(n) {
+
+      for (var i = 0; i < n; i++) {
+        var randomColor = "#" + ((1<<24)*Math.random()|0).toString(16);
+        randomColorArray.push(randomColor);
+      }
+    }
+    arrayOfRandomColor(50);
+
+
+    const fillColor = d3.scale.ordinal().range(randomColorArray);
 
     //   yearsTitleX = {};
     //   for (var i = 0; i < sortedSkorz.length; i++) {
@@ -132,8 +148,8 @@ const bubbleChart = () => {
     bubbles.enter().append('circle')
       .classed('bubble', true)
       .attr('r', 0)
-      .attr('fill', (d) => { return fillColor(d.value); })
-      .attr('stroke', (d) => { return d3.rgb(fillColor(d.value)).darker(); })
+      .attr('fill', (d) => { return fillColor(d.group); })
+      .attr('stroke', (d) => { return d3.rgb(fillColor(d.group)).darker(); })
       .attr('stroke-width', 0.3)
       .on('mouseover', showDetail)
       .on('mouseout', hideDetail);
@@ -234,12 +250,13 @@ const bubbleChart = () => {
   }
 
   const showDetail = (d) => {
-    const content = '<span class="name">Tweet: </span><span class="value">' +
-                  d.tweet.text +
+    console.log(d.summarized_offense_description);
+    const content = '<span class="name">Crime: </span><span class="value">' +
+                  d.summarized_offense_description +
                   '</span><br/>' +
-                  '<span class="name">Score: </span><span class="value">' +
-                  addCommas(d.value) +
-                  '</span><br/>'
+                  '<span class="name">Day of the Week </span><span class="value">' +
+                  addCommas(d.byDayofWeek) +
+                  '</span><br/>';
     tooltip.showTooltip(content, d3.event);
   }
 
@@ -284,7 +301,8 @@ function getParameterByName(name, url) {
 //DONT TOUCH ==>
 
 const hideDetail = (d) => {
-  tooltip.hideTooltip();
+  
+   tooltip.hideTooltip();
 }
 
 const myBubbleChart = bubbleChart();
