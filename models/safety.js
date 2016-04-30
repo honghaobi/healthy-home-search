@@ -5,23 +5,10 @@ var path = require('path');
 
 module.exports = {
   getCrime: (location) => {
-    var today = new Date();
-    var thisYear = today.getFullYear();
-    var thisMonth = today.getMonth();
-    var subMonth = (thisMonth - 12);
-
-    if(subMonth < 1) {
-      var lastYear = (thisYear - 1);
-      var newMonth = 12 + subMonth;
-
-      var searchDate = `AND year>= ${lastYear} AND month>= ${newMonth}`;
-    } else {
-      var searchDate = `AND year>= ${thisYear} AND month>= ${subMonth}`;
-    }
 
     var options = {
       method: 'GET',
-      uri: `https://data.seattle.gov/resource/y7pv-r3kh.json?$where=within_circle(location,${location.long},${location.lat},1500) ${searchDate}`,
+      uri: `https://data.seattle.gov/resource/y7pv-r3kh.json?$where=within_circle(location,${location.long},${location.lat},1000)`,
       qs: {
         $$app_token: process.env.SODAKEY
       },
