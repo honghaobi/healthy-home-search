@@ -24,13 +24,13 @@ function bubbleChart() {
   // arrays for the sorted Data==>
 
   var weekDayCenters = {
-    0: { x: 200, y: height / 2 },
-    1: { x: 325, y: height / 2 },
+    0: { x: 250, y: height / 2 },
+    1: { x: 350, y: height / 2 },
     2: { x: 450, y: height / 2 },
-    3: { x: 575, y: height / 2 },
-    4: { x: 700, y: height / 2 },
-    5: { x: 825, y: height / 2 },
-    6: { x: 950, y: height / 2 }
+    3: { x: 550, y: height / 2 },
+    4: { x: 650, y: height / 2 },
+    5: { x: 750, y: height / 2 },
+    6: { x: 850, y: height / 2 }
   }
 
   var monthDayCenters = {
@@ -43,7 +43,7 @@ function bubbleChart() {
     7: { x: 550, y: 200 },
     8: { x: 600, y: 200 },
     9: { x: 650, y: 200 },
-    10: { x: 700, y: 300 },
+    10: { x: 700, y: 200 },
     11: { x: 250, y: 300 },
     12: { x: 300, y: 300 },
     13: { x: 350, y: 300 },
@@ -64,10 +64,34 @@ function bubbleChart() {
     28: { x: 600, y: 400 },
     29: { x: 650, y: 400 },
     30: { x: 700, y: 400 },
-    31: { x: 700, y: 400 },
+    31: { x: 750, y: 400 }
   }
-  var timeOfDayCenters = null;
-  var typeCenters = null;
+  var timeOfDayCenters = {
+    0: { x: 250, y: 200 },
+    1: { x: 325, y: 200 },
+    2: { x: 400, y: 200 },
+    3: { x: 475, y: 200 },
+    4: { x: 550, y: 200 },
+    5: { x: 625, y: 200 },
+    6: { x: 700, y: 200 },
+    7: { x: 775, y: 200 },
+    8: { x: 250, y: 300 },
+    9: { x: 325, y: 300 },
+    10: { x: 400, y: 300 },
+    11: { x: 475, y: 300 },
+    12: { x: 550, y: 300 },
+    13: { x: 625, y: 300 },
+    14: { x: 700, y: 300 },
+    15: { x: 775, y: 300 },
+    16: { x: 250, y: 400 },
+    17: { x: 325, y: 400 },
+    18: { x: 400, y: 400 },
+    19: { x: 475, y: 400 },
+    20: { x: 550, y: 400 },
+    21: { x: 625, y: 400 },
+    22: { x: 700, y: 400 },
+    23: { x: 775, y: 400 }
+  }
 
   var monthCenters = {
     0: { x: 100, y: 300 },
@@ -84,6 +108,8 @@ function bubbleChart() {
     11: { x: 600, y: 450 },
     12: { x: 700, y: 450 }
   };
+
+  var typeCenters = null;
 
   function charge(d) {
     return -Math.pow(d.radius, 2.0)/9
@@ -284,6 +310,23 @@ function bubbleChart() {
     };
   }
 
+  function splitBubblestoTime() {
+    force.on('tick', (e) => {
+      bubbles.each(moveToTime(e.alpha))
+        .attr('cx', (d) => { return d.x; })
+        .attr('cy', (d) => { return d.y; });
+    });
+    force.start();
+  }
+
+  function moveToTime(alpha) {
+    return function (d) {
+      var target = timeOfDayCenters[d.time];
+      d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
+      d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
+    };
+  }
+
   function scatterPlot() {
     hideYears();
     svg.append('g')
@@ -359,7 +402,7 @@ function bubbleChart() {
     } else if (displayName === 'by_month_of_year') {
       splitBubblestoMonths();
     } else if (displayName === 'by_time_of_day') {
-
+      splitBubblestoTime();
     } else if (displayName === 'by_crime_type') {
 
       groupBubbles();
