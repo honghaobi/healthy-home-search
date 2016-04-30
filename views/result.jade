@@ -204,6 +204,12 @@ block content
   section#safety.safety
     .expanded
       .large-7.columns
+        nav.menu-ui.safe_menu
+          a#all_crime.button.active(href='#') All Crime Data
+          a#by_day_of_week.button(href='#') By Day Of Week
+          a#by_day_of_month.button(href='#') By Day Of Month
+          a#by_time_of_day.button(href='#') By Time Of Day
+          a#by_crime_type.button(href='#') By Crime Type
 
         .crime_graph
 
@@ -229,7 +235,10 @@ block content
     .border_layer
     .text_layer
       img.top_arrow(src='images/top_arrow.png', alt='Back to top', title='')
-
+      
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js', charset='utf-8')
+  script(src='/javascripts/tooltip.js')
+  script(src='/javascripts/bubble.js')
   script.
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVucnliaSIsImEiOiJjaW42NmVvMmowZTFidXBra2xkM2N3cTE1In0.cdfJiLolXJoUefefWOKqew';
 

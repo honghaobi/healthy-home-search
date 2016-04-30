@@ -12,8 +12,7 @@ function floatingTooltip(tooltipId, width) {
   hideTooltip();
 
   function showTooltip(content, event) {
-    tt.style('opacity', 1.0)
-      .html(content);
+    tt.style('opacity', 1.0).html(content);
 
     updatePosition(event);
   }
