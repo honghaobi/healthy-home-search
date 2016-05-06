@@ -242,7 +242,7 @@ block content
   script(src='/javascripts/bubble.js')
   script.
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVucnliaSIsImEiOiJjaW42NmVvMmowZTFidXBra2xkM2N3cTE1In0.cdfJiLolXJoUefefWOKqew';
-
+    
     var allData = !{JSON.stringify(allData)};
     console.log(allData);
 
@@ -269,128 +269,135 @@ block content
     }).addTo(communityMap);
 
     var communityGeoJson = [];
-
-    for (var i = 0; i < allData.renderSchool[1].length; i++) {
-      communityGeoJson.push({
-        "type": "Feature",
-        "geometry": {
-          "coordinates": [
-            allData.renderSchool[1][i].shape.longitude,
-            allData.renderSchool[1][i].shape.latitude
-          ],
-          "type": "Point"
-        },
-        "properties": {
-          "title": allData.renderSchool[1][i].name,
-          "description": allData.renderSchool[1][i].type,
-          "schools": true,
-          "parks": false,
-          "restaurants": false,
-          "viewpoints": false,
-          "cultural-spaces": false,
-          "marker-color": "#63afb8",
-          "marker-size": "medium",
-          "marker-symbol": "school"
-        }
-      });
+    
+    if(allData.renderSchool) {
+      for (var i = 0; i < allData.renderSchool[1].length; i++) {
+        communityGeoJson.push({
+          "type": "Feature",
+          "geometry": {
+            "coordinates": [
+              allData.renderSchool[1][i].shape.longitude,
+              allData.renderSchool[1][i].shape.latitude
+            ],
+            "type": "Point"
+          },
+          "properties": {
+            "title": allData.renderSchool[1][i].name,
+            "description": allData.renderSchool[1][i].type,
+            "schools": true,
+            "parks": false,
+            "restaurants": false,
+            "viewpoints": false,
+            "cultural-spaces": false,
+            "marker-color": "#63afb8",
+            "marker-size": "medium",
+            "marker-symbol": "school"
+          }
+        });
+      }
+    }
+    
+    if(allData.renderParks) {
+      for (var j = 0; j < allData.renderParks[1].length; j++) {
+        communityGeoJson.push({
+          "type": "Feature",
+          "geometry": {
+            "coordinates": [
+              allData.renderParks[1][j].longitude,
+              allData.renderParks[1][j].latitude
+            ],
+            "type": "Point"
+          },
+          "properties": {
+            "title": allData.renderParks[1][j].common_name,
+            "schools": false,
+            "parks": true,
+            "restaurants": false,
+            "viewpoints": false,
+            "cultural-spaces": false,
+            "marker-color": "#3ebc36",
+            "marker-size": "medium",
+            "marker-symbol": "park"
+          }
+        });
+      }
     }
 
-    for (var j = 0; j < allData.renderParks[1].length; j++) {
-      communityGeoJson.push({
-        "type": "Feature",
-        "geometry": {
-          "coordinates": [
-            allData.renderParks[1][j].longitude,
-            allData.renderParks[1][j].latitude
-          ],
-          "type": "Point"
-        },
-        "properties": {
-          "title": allData.renderParks[1][j].common_name,
-          "schools": false,
-          "parks": true,
-          "restaurants": false,
-          "viewpoints": false,
-          "cultural-spaces": false,
-          "marker-color": "#3ebc36",
-          "marker-size": "medium",
-          "marker-symbol": "park"
-        }
-      });
+    if(allData.renderRestaurants) {
+      for (var r = 1; r <= 9; r++) {
+        communityGeoJson.push({
+          "type": "Feature",
+          "geometry": {
+            "coordinates": [
+              allData.renderRestaurants.nearby_restaurants[r].restaurant.location.longitude, allData.renderRestaurants.nearby_restaurants[r].restaurant.location.latitude
+            ],
+            "type": "Point"
+          },
+          "properties": {
+            "title": allData.renderRestaurants.nearby_restaurants[r].restaurant.name,
+            "schools": false,
+            "parks": false,
+            "restaurants": true,
+            "viewpoints": false,
+            "cultural-spaces": false,
+            "marker-color": "#7bd0b5",
+            "marker-size": "medium",
+            "marker-symbol": "bar"
+          }
+        });
+      }
     }
-
-
-
-    for (var r = 1; r <= 9; r++) {
-      communityGeoJson.push({
-        "type": "Feature",
-        "geometry": {
-          "coordinates": [
-            allData.renderRestaurants.nearby_restaurants[r].restaurant.location.longitude, allData.renderRestaurants.nearby_restaurants[r].restaurant.location.latitude
-          ],
-          "type": "Point"
-        },
-        "properties": {
-          "title": allData.renderRestaurants.nearby_restaurants[r].restaurant.name,
-          "schools": false,
-          "parks": false,
-          "restaurants": true,
-          "viewpoints": false,
-          "cultural-spaces": false,
-          "marker-color": "#7bd0b5",
-          "marker-size": "medium",
-          "marker-symbol": "bar"
-        }
-
-      });
+    
+    if(allData.renderViewpoints) {
+      for (var k = 0; k < allData.renderViewpoints[1].length; k++) {
+        communityGeoJson.push({
+          "type": "Feature",
+          "geometry": {
+            "coordinates": [
+              allData.renderViewpoints[1][k].longitude,
+              allData.renderViewpoints[1][k].latitude
+            ],
+            "type": "Point"
+          },
+          "properties": {
+            "title": allData.renderViewpoints[1][k].common_name,
+            "schools": false,
+            "parks": false,
+            "restaurants": false,
+            "viewpoints": true,
+            "cultural-spaces": false,
+            "marker-color": "#b1c128",
+            "marker-size": "medium",
+            "marker-symbol": "star"
+          }
+        });
+      }
     }
-
-    for (var k = 0; k < allData.renderViewpoints[1].length; k++) {
-      communityGeoJson.push({
-        "type": "Feature",
-        "geometry": {
-          "coordinates": [
-            allData.renderViewpoints[1][k].longitude,
-            allData.renderViewpoints[1][k].latitude
-          ],
-          "type": "Point"
-        },
-        "properties": {
-          "title": allData.renderViewpoints[1][k].common_name,
-          "schools": false,
-          "parks": false,
-          "restaurants": false,
-          "viewpoints": true,
-          "cultural-spaces": false,
-          "marker-color": "#b1c128",
-          "marker-size": "medium",
-          "marker-symbol": "star"
-        }
-      });
-    }
-
-    for (var l = 0; l < allData.renderCultCenters[1].length; l++) {
-      communityGeoJson.push({
-        "type": "Feature",
-        "geometry": {
-          "coordinates": [
-            allData.renderCultCenters[1][l].location.coordinates[0],
-            allData.renderCultCenters[1][l].location.coordinates[1]
-          ],
-          "type": "Point"
-        },
-        "properties": {
-          "title": allData.renderCultCenters[1][l].name,
-          "schools": false,
-          "parks": false,
-          "restaurants": false,
-          "viewpoints": false,
-          "cultural-spaces": true,
-          "marker-color": "#b65bc1",
-          "marker-size": "medium",
-          "marker-symbol": "music"
-        }
-      });
+    
+    if(allData.renderCultCenters) {
+      for (var l = 0; l < allData.renderCultCenters[1].length; l++) {
+        communityGeoJson.push({
+          "type": "Feature",
+          "geometry": {
+            "coordinates": [
+              allData.renderCultCenters[1][l].location.coordinates[0],
+              allData.renderCultCenters[1][l].location.coordinates[1]
+            ],
+            "type": "Point"
+          },
+          "properties": {
+            "title": allData.renderCultCenters[1][l].name,
+            "schools": false,
+            "parks": false,
+            "restaurants": false,
+            "viewpoints": false,
+            "cultural-spaces": true,
+            "marker-color": "#b65bc1",
+            "marker-size": "medium",
+            "marker-symbol": "music"
+          }
+        });
+      }
     }
 
     var communityMarkers = L.mapbox.featureLayer().setGeoJSON(communityGeoJson).addTo(communityMap);
@@ -429,49 +436,53 @@ block content
     }).addTo(accessibilityMap);
 
     var accessibilityGeoJson = [];
-
-    for (var p = 0; p < allData.renderTransit[1].data.list.length; p++) {
-      accessibilityGeoJson.push({
-        "type": "Feature",
-        "geometry": {
-          "coordinates": [
-            allData.renderTransit[1].data.list[p].lon,
-            allData.renderTransit[1].data.list[p].lat
-          ],
-          "type": "Point"
-        },
-        "properties": {
-          "title": "Bus-Stop",
-          "description": allData.renderTransit[1].data.list[p].name,
-          "bus-stop": true,
-          "parking": false,
-          "marker-color": "#4c8bc1",
-          "marker-size": "medium",
-          "marker-symbol": "bus"
-        }
-      });
+    
+    if(allData.renderTransit) {
+      for (var p = 0; p < allData.renderTransit[1].data.list.length; p++) {
+        accessibilityGeoJson.push({
+          "type": "Feature",
+          "geometry": {
+            "coordinates": [
+              allData.renderTransit[1].data.list[p].lon,
+              allData.renderTransit[1].data.list[p].lat
+            ],
+            "type": "Point"
+          },
+          "properties": {
+            "title": "Bus-Stop",
+            "description": allData.renderTransit[1].data.list[p].name,
+            "bus-stop": true,
+            "parking": false,
+            "marker-color": "#4c8bc1",
+            "marker-size": "medium",
+            "marker-symbol": "bus"
+          }
+        });
+      }
     }
-
-    for (var q = 0; q < allData.renderParking[1].length; q++) {
-      accessibilityGeoJson.push({
-        "type": "Feature",
-        "geometry": {
-          "coordinates": [
-            allData.renderParking[1][q].shape.longitude,
-            allData.renderParking[1][q].shape.latitude
-          ],
-          "type": "Point"
-        },
-        "properties": {
-          "title": "Parking",
-          "description": allData.renderParking[1][q].fac_type || allData.renderParking[1][q].fac_name || allData.renderParking[1][q].webname,
-          "bus-stop": false,
-          "parking": true,
-          "marker-color": "#63afb8",
-          "marker-size": "medium",
-          "marker-symbol": "car"
-        }
-      });
+    
+    if(allData.renderParking) {
+      for (var q = 0; q < allData.renderParking[1].length; q++) {
+        accessibilityGeoJson.push({
+          "type": "Feature",
+          "geometry": {
+            "coordinates": [
+              allData.renderParking[1][q].shape.longitude,
+              allData.renderParking[1][q].shape.latitude
+            ],
+            "type": "Point"
+          },
+          "properties": {
+            "title": "Parking",
+            "description": allData.renderParking[1][q].fac_type || allData.renderParking[1][q].fac_name || allData.renderParking[1][q].webname,
+            "bus-stop": false,
+            "parking": true,
+            "marker-color": "#63afb8",
+            "marker-size": "medium",
+            "marker-symbol": "car"
+          }
+        });
+      }
     }
 
     var accessibilityMarkers = L.mapbox.featureLayer().setGeoJSON(accessibilityGeoJson).addTo(accessibilityMap);
@@ -485,7 +496,7 @@ block content
       });
       return false;
     });
-
+    
     var environmentMap = new L.mapbox.map('environment_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
 
     L.mapbox.featureLayer({
@@ -505,128 +516,142 @@ block content
         'marker-symbol': 'star',
         }
     }).addTo(environmentMap);
+    
+
 
     var environmentGeoJson = [];
-
-    for (var o = 0; o < allData.renderPermits[1].length; o++) {
-      if(allData.renderPermits[1][o].status !== 'Permit Closed' && allData.renderPermits[1][o].status !== 'CANCELLED' && allData.renderPermits[1][o].status !== undefined){
-        if(allData.renderPermits[1][o].category === 'SINGLE FAMILY / DUPLEX'){
-          environmentGeoJson.push({
-            "type": "Feature",
-            "geometry": {
-              "coordinates": [
-                allData.renderPermits[1][o].longitude,
-                allData.renderPermits[1][o].latitude
-              ],
-              "type": "Point"
-            },
-            "properties": {
-              "title": allData.renderPermits[1][o].status,
-              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
-              "single-family": true,
-              "multifamily": false,
-              "commercial": false,
-              "indulstrial": false,
-              "institutional": false,
-              "marker-color": "#63afb8",
-              "marker-size": "medium",
-              "marker-symbol": "star"
-            }
-          });
-        } else if (allData.renderPermits[1][o].category === 'MULTIFAMILY'){
-          environmentGeoJson.push({
-            "type": "Feature",
-            "geometry": {
-              "coordinates": [
-                allData.renderPermits[1][o].longitude,
-                allData.renderPermits[1][o].latitude
-              ],
-              "type": "Point"
-            },
-            "properties": {
-              "title": allData.renderPermits[1][o].status,
-              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
-              "single-family": false,
-              "multifamily": true,
-              "commercial": false,
-              "indulstrial": false,
-              "institutional": false,
-              "marker-color": "#00dab6",
-              "marker-size": "medium",
-              "marker-symbol": "star"
-            }
-          });
-        } else if (allData.renderPermits[1][o].category === 'COMMERCIAL'){
-          environmentGeoJson.push({
-            "type": "Feature",
-            "geometry": {
-              "coordinates": [
-                allData.renderPermits[1][o].longitude,
-                allData.renderPermits[1][o].latitude
-              ],
-              "type": "Point"
-            },
-            "properties": {
-              "title": allData.renderPermits[1][o].status,
-              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
-              "single-family": false,
-              "multifamily": false,
-              "commercial": true,
-              "indulstrial": false,
-              "institutional": false,
-              "marker-color": "#008ada",
-              "marker-size": "medium",
-              "marker-symbol": "restaurant"
-            }
-          });
-        } else if (allData.renderPermits[1][o].category === 'INSTITUTIONAL'){
-          environmentGeoJson.push({
-            "type": "Feature",
-            "geometry": {
-              "coordinates": [
-                allData.renderPermits[1][o].longitude,
-                allData.renderPermits[1][o].latitude
-              ],
-              "type": "Point"
-            },
-            "properties": {
-              "title": allData.renderPermits[1][o].status,
-              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
-              "single-family": false,
-              "multifamily": false,
-              "commercial": false,
-              "indulstrial": false,
-              "institutional": true,
-              "marker-color": "#007123",
-              "marker-size": "medium",
-              "marker-symbol": "school"
-            }
-          });
-        } else if (allData.renderPermits[1][o].category === 'INDULSTRIAL'){
-          environmentGeoJson.push({
-            "type": "Feature",
-            "geometry": {
-              "coordinates": [
-                allData.renderPermits[1][o].longitude,
-                allData.renderPermits[1][o].latitude
-              ],
-              "type": "Point"
-            },
-            "properties": {
-              "title": allData.renderPermits[1][o].status,
-              "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
-              "single-family": false,
-              "multifamily": false,
-              "commercial": false,
-              "indulstrial": false,
-              "institutional": true,
-              "marker-color": "#001071",
-              "marker-size": "medium",
-              "marker-symbol": "harbor"
-            }
-          });
+    
+    if(allData.renderPermits) {
+      for (var o = 0; o < allData.renderPermits[1].length; o++) {
+        if(allData.renderPermits[1][o].status !== 'Permit Closed' && allData.renderPermits[1][o].status !== 'CANCELLED' && allData.renderPermits[1][o].status !== undefined){
+          if(allData.renderPermits[1][o].category === 'SINGLE FAMILY / DUPLEX'){
+            environmentGeoJson.push({
+              "type": "Feature",
+              "geometry": {
+                "coordinates": [
+                  allData.renderPermits[1][o].location.longitude,
+                  allData.renderPermits[1][o].location.latitude
+                ],
+                "type": "Point"
+              },
+              "properties": {
+                "title": allData.renderPermits[1][o].status,
+                "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
+                "single-family": true,
+                "multifamily": false,
+                "commercial": false,
+                "indulstrial": false,
+                "institutional": false,
+                "marker-color": "#63afb8",
+                "marker-size": "medium",
+                "marker-symbol": "star"
+              }
+            });
+          } else if (allData.renderPermits[1][o].category === 'MULTIFAMILY'){
+            environmentGeoJson.push({
+              "type": "Feature",
+              "geometry": {
+                "coordinates": [
+                  allData.renderPermits[1][o].location.longitude,
+                  allData.renderPermits[1][o].location.latitude
+                ],
+                "type": "Point"
+              },
+              "properties": {
+                "title": allData.renderPermits[1][o].status,
+                "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
+                "single-family": false,
+                "multifamily": true,
+                "commercial": false,
+                "indulstrial": false,
+                "institutional": false,
+                "marker-color": "#00dab6",
+                "marker-size": "medium",
+                "marker-symbol": "star"
+              }
+            });
+          } else if (allData.renderPermits[1][o].category === 'COMMERCIAL'){
+            environmentGeoJson.push({
+              "type": "Feature",
+              "geometry": {
+                "coordinates": [
+                  allData.renderPermits[1][o].location.longitude,
+                  allData.renderPermits[1][o].location.latitude
+                ],
+                "type": "Point"
+              },
+              "properties": {
+                "title": allData.renderPermits[1][o].status,
+                "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
+                "single-family": false,
+                "multifamily": false,
+                "commercial": true,
+                "indulstrial": false,
+                "institutional": false,
+                "marker-color": "#008ada",
+                "marker-size": "medium",
+                "marker-symbol": "restaurant"
+              }
+            });
+          } else if (allData.renderPermits[1][o].category === 'INSTITUTIONAL'){
+            environmentGeoJson.push({
+              "type": "Feature",
+              "geometry": {
+                "coordinates": [
+                  allData.renderPermits[1][o].location.longitude,
+                  allData.renderPermits[1][o].location.latitude
+                ],
+                "type": "Point"
+              },
+              "properties": {
+                "title": allData.renderPermits[1][o].status,
+                "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
+                "single-family": false,
+                "multifamily": false,
+                "commercial": false,
+                "indulstrial": false,
+                "institutional": true,
+                "marker-color": "#007123",
+                "marker-size": "medium",
+                "marker-symbol": "school"
+              }
+            });
+          } else if (allData.renderPermits[1][o].category === 'INDULSTRIAL'){
+            environmentGeoJson.push({
+              "type": "Feature",
+              "geometry": {
+                "coordinates": [
+                  allData.renderPermits[1][o].location.longitude,
+                  allData.renderPermits[1][o].location.latitude
+                ],
+                "type": "Point"
+              },
+              "properties": {
+                "title": allData.renderPermits[1][o].status,
+                "description": 'Permit Type for this Project is ' + allData.renderPermits[1][o].permit_type + ' And The Project is ' + allData.renderPermits[1][o].description,
+                "single-family": false,
+                "multifamily": false,
+                "commercial": false,
+                "indulstrial": false,
+                "institutional": true,
+                "marker-color": "#001071",
+                "marker-size": "medium",
+                "marker-symbol": "harbor"
+              }
+            });
+          }
         }
       }
     }
-
+    
     var environmentMarkers = L.mapbox.featureLayer().setGeoJSON(environmentGeoJson).addTo(environmentMap);
+    
+    $('.em a').on('click', function(e) {
+      e.preventDefault();
+      var filter = $(this).data('filter');
+      $(this).addClass('active').siblings().removeClass('active');
+      environmentMarkers.setFilter(function(f) {
+        return (filter === 'all') ? true : f.properties[filter] === true;
+      });
+      return false;
+    });

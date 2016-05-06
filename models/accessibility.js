@@ -38,7 +38,10 @@ module.exports = {
   getParking: (location) => {
     var options = {
       method: 'GET',
+      // gets a 500 server error when making this request.
       uri: `https://data.seattle.gov/resource/3neb-8edu.json?$where=within_circle(shape,${location.long},${location.lat},500)`,
+      // parking signage within the blocks radius
+      // uri: `https://data.seattle.gov/resource/erv6-k5zv.json?$where=within_circle(shape,${location.long},${location.lat},200)`,
       ps: {
         $$app_token: process.env.SODAKEY
       },
