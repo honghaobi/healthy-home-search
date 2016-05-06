@@ -9,11 +9,10 @@ function floatingTooltip(tooltipId, width) {
     tt.style('width', width);
   }
 
-  hideTooltip();
+  // hideTooltip();
 
   function showTooltip(content, event) {
     tt.style('opacity', 1.0).html(content);
-
     updatePosition(event);
   }
 
@@ -46,7 +45,6 @@ function floatingTooltip(tooltipId, width) {
     if (tttop < wscrY + yOffset) {
       tttop = curY + yOffset;
     }
-
     tt.style({ top: tttop + 'px', left: ttleft + 'px' });
   }
 

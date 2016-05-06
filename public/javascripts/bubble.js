@@ -1,5 +1,3 @@
-'use strict'
-
 function bubbleChart() {
 
   // Constants for sizing
@@ -147,10 +145,9 @@ function bubbleChart() {
         group: d.summarized_offense_description,
         x: Math.random() * 900,
         y: Math.random() * 800
-      })
-    })
-    // console.log(noders);
-    noders.sort(function(a, b) { return b.value - a.value });
+      });
+    });
+    console.log(noders);
     return noders;
   }
 
@@ -377,13 +374,9 @@ function bubbleChart() {
   }
 
   function showDetail(d) {
-    // console.log(d.summarized_offense_description);
     var content = '<span class="name">Crime: </span><span class="value">' +
                   d.summarized_offense_description +
-                  '</span><br/>' +
-                  '<span class="name">Day of the Week </span><span class="value">' +
-                  addCommas(d.byDayofWeek) +
-                  '</span><br/>'
+                  '</span>';
     tooltip.showTooltip(content, d3.event);
   }
 

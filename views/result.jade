@@ -237,9 +237,6 @@ block content
     .text_layer
       img.top_arrow(src='images/top_arrow.png', alt='Back to top', title='')
       
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js', charset='utf-8')
-  script(src='/javascripts/tooltip.js')
-  script(src='/javascripts/bubble.js')
   script.
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVucnliaSIsImEiOiJjaW42NmVvMmowZTFidXBra2xkM2N3cTE1In0.cdfJiLolXJoUefefWOKqew';
     
@@ -655,3 +652,7 @@ block content
       });
       return false;
     });
+    
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js')
+  script(src='/javascripts/tooltip.js')
+  script(src='/javascripts/bubble.js')
