@@ -203,11 +203,18 @@ block content
   .cube
   section#safety.safety
     .expanded
-      .large-7.columns
+      .large-9.columns
+        nav.menu-ui.safe_menu
+          a#all_crime.button.active(href='#') All Crime Data
+          a#by_day_of_week.button(href='#') By Day Of Week
+          a#by_day_of_month.button(href='#') By Day Of Month
+          a#by_month_of_year.button(href='#') By Month Of Year
+          a#by_time_of_day.button(href='#') By Time Of Day
+          a#by_crime_type.button(href='#') By Crime Type
 
         .crime_graph
 
-      .large-5.columns
+      .large-3.columns
         .safety_sub
           h2.sub_cap_sec Safety
           if allData.renderCrime[0] <= 24
@@ -229,7 +236,10 @@ block content
     .border_layer
     .text_layer
       img.top_arrow(src='images/top_arrow.png', alt='Back to top', title='')
-
+      
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js', charset='utf-8')
+  script(src='/javascripts/tooltip.js')
+  script(src='/javascripts/bubble.js')
   script.
     L.mapbox.accessToken = 'pk.eyJ1IjoiaGVucnliaSIsImEiOiJjaW42NmVvMmowZTFidXBra2xkM2N3cTE1In0.cdfJiLolXJoUefefWOKqew';
 
@@ -265,13 +275,14 @@ block content
         "type": "Feature",
         "geometry": {
           "coordinates": [
-            allData.renderSchool[1][i].long_cen,
-            allData.renderSchool[1][i].lat_cen
+            allData.renderSchool[1][i].shape.longitude,
+            allData.renderSchool[1][i].shape.latitude
           ],
           "type": "Point"
         },
         "properties": {
           "title": allData.renderSchool[1][i].name,
+          "description": allData.renderSchool[1][i].type,
           "schools": true,
           "parks": false,
           "restaurants": false,
@@ -619,63 +630,3 @@ block content
     }
 
     var environmentMarkers = L.mapbox.featureLayer().setGeoJSON(environmentGeoJson).addTo(environmentMap);
-
-    $('.em a').on('click', function(e) {
-      e.preventDefault();
-      var filter = $(this).data('filter');
-      $(this).addClass('active').siblings().removeClass('active');
-      environmentMarkers.setFilter(function(f) {
-        return (filter === 'all') ? true : f.properties[filter] === true;
-      });
-    });
-
-    var diameter = 720,
-        format = d3.format(",d"),
-        color = d3.scale.category20c();
-
-    var bubble = d3.layout.pack()
-        .sort(null)
-        .size([diameter, diameter])
-        .padding(1.5);
-
-    var svg = d3.select(".crime_graph").append("svg")
-        .attr("width", diameter)
-        .attr("height", diameter)
-        .attr("class", "bubble");
-
-    d3.json("crime.json", function(error, root) {
-      if (error) throw error;
-
-      var node = svg.selectAll(".node")
-          .data(bubble.nodes(classes(root))
-          .filter(function(d) { return !d.children; }))
-        .enter().append("g")
-          .attr("class", "node")
-          .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-
-      node.append("title")
-          .text(function(d) { return d.className + ": " + format(d.value); });
-
-      node.append("circle")
-          .attr("r", function(d) { return d.r; })
-          .style("fill", function(d) { return color(d.packageName); });
-
-      node.append("text")
-          .attr("dy", ".1em")
-          .style("text-anchor","middle")
-          .text(function(d) { return d.className.substring(0, d.r / 3); });
-    });
-
-    function classes(root) {
-      var classes = [];
-
-      function recurse(name, node) {
-        if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
-        else classes.push({packageName: name, className: node.name, value: node.size});
-      }
-
-      recurse(null, root);
-      return {children: classes};
-    }
-
-    d3.select(self.frameElement).style("height", diameter + "px");

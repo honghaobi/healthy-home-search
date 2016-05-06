@@ -54,6 +54,26 @@ $(document).ready(function(){
 			scrollTo($(this).attr('href'), 900, 'easeInOutCubic');
 		});
 
+		$('#all_crime').on('click', function(event) {
+			console.log('all');
+			event.preventDefault();
+		});
+		$('#by_day_of_week').on('click', function(event) {
+			event.preventDefault();
+		});
+		$('#by_day_of_month').on('click', function(event) {
+			event.preventDefault();
+		});
+		$('#by_month_of_year').on('click', function(event) {
+			event.preventDefault();
+		});
+		$('#by_time_of_day').on('click', function(event) {
+			event.preventDefault();
+		});
+		$('#by_crime_type').on('click', function(event) {
+			event.preventDefault();
+		});
+
     /*    Back to top button    */
     var back_top = $('#back_top');
 
