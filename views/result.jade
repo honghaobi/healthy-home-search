@@ -275,13 +275,14 @@ block content
         "type": "Feature",
         "geometry": {
           "coordinates": [
-            allData.renderSchool[1][i].long_cen,
-            allData.renderSchool[1][i].lat_cen
+            allData.renderSchool[1][i].shape.longitude,
+            allData.renderSchool[1][i].shape.latitude
           ],
           "type": "Point"
         },
         "properties": {
           "title": allData.renderSchool[1][i].name,
+          "description": allData.renderSchool[1][i].type,
           "schools": true,
           "parks": false,
           "restaurants": false,

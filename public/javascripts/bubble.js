@@ -149,7 +149,7 @@ function bubbleChart() {
         y: Math.random() * 800
       })
     })
-    console.log(noders);
+    // console.log(noders);
     noders.sort(function(a, b) { return b.value - a.value });
     return noders;
   }
@@ -175,7 +175,7 @@ function bubbleChart() {
     .orient('left');
 
   var chart = function chart(selector, rawData) {
-    console.log(rawData);
+    // console.log(rawData);
 
     // weekDayCenters = {
     //   monday: 0,
@@ -377,7 +377,7 @@ function bubbleChart() {
   }
 
   function showDetail(d) {
-    console.log(d.summarized_offense_description);
+    // console.log(d.summarized_offense_description);
     var content = '<span class="name">Crime: </span><span class="value">' +
                   d.summarized_offense_description +
                   '</span><br/>' +
@@ -464,7 +464,6 @@ function addCommas(nStr) {
 }
 
 // Load the data.
-
 
 d3.json('crime.json', display);
 
