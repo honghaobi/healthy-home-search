@@ -22,92 +22,110 @@ function bubbleChart() {
   // arrays for the sorted Data==>
 
   var weekDayCenters = {
-    0: { x: 250, y: height / 2 },
-    1: { x: 350, y: height / 2 },
-    2: { x: 450, y: height / 2 },
-    3: { x: 550, y: height / 2 },
-    4: { x: 650, y: height / 2 },
-    5: { x: 750, y: height / 2 },
-    6: { x: 850, y: height / 2 }
+    0: { x: 250, y: 400 },
+    1: { x: 350, y: 400 },
+    2: { x: 450, y: 400 },
+    3: { x: 550, y: 400 },
+    4: { x: 650, y: 400 },
+    5: { x: 750, y: 400 },
+    6: { x: 850, y: 400 }
   }
 
   var monthDayCenters = {
-    1: { x: 250, y: 200 },
-    2: { x: 300, y: 200 },
-    3: { x: 350, y: 200 },
-    4: { x: 400, y: 200 },
-    5: { x: 450, y: 200 },
-    6: { x: 500, y: 200 },
-    7: { x: 550, y: 200 },
-    8: { x: 600, y: 200 },
-    9: { x: 650, y: 200 },
-    10: { x: 700, y: 200 },
-    11: { x: 250, y: 300 },
-    12: { x: 300, y: 300 },
-    13: { x: 350, y: 300 },
-    14: { x: 400, y: 300 },
-    15: { x: 450, y: 300 },
-    16: { x: 500, y: 300 },
-    17: { x: 550, y: 300 },
-    18: { x: 600, y: 300 },
-    19: { x: 650, y: 300 },
-    20: { x: 700, y: 300 },
-    21: { x: 250, y: 400 },
-    22: { x: 300, y: 400 },
-    23: { x: 350, y: 400 },
-    24: { x: 400, y: 400 },
-    25: { x: 450, y: 400 },
-    26: { x: 500, y: 400 },
-    27: { x: 550, y: 400 },
-    28: { x: 600, y: 400 },
-    29: { x: 650, y: 400 },
-    30: { x: 700, y: 400 },
-    31: { x: 750, y: 400 }
+    1: { x: 250, y: 300 },
+    2: { x: 300, y: 300 },
+    3: { x: 350, y: 300 },
+    4: { x: 400, y: 300 },
+    5: { x: 450, y: 300 },
+    6: { x: 500, y: 300 },
+    7: { x: 550, y: 300 },
+    8: { x: 600, y: 300 },
+    9: { x: 650, y: 300 },
+    10: { x: 700, y: 300 },
+    11: { x: 250, y: 400 },
+    12: { x: 300, y: 400 },
+    13: { x: 350, y: 400 },
+    14: { x: 400, y: 400 },
+    15: { x: 450, y: 400 },
+    16: { x: 500, y: 400 },
+    17: { x: 550, y: 400 },
+    18: { x: 600, y: 400 },
+    19: { x: 650, y: 400 },
+    20: { x: 700, y: 400 },
+    21: { x: 250, y: 500 },
+    22: { x: 300, y: 500 },
+    23: { x: 350, y: 500 },
+    24: { x: 400, y: 500 },
+    25: { x: 450, y: 500 },
+    26: { x: 500, y: 500 },
+    27: { x: 550, y: 500 },
+    28: { x: 600, y: 500 },
+    29: { x: 650, y: 500 },
+    30: { x: 700, y: 500 },
+    31: { x: 750, y: 500 }
   }
   var timeOfDayCenters = {
-    0: { x: 250, y: 200 },
-    1: { x: 325, y: 200 },
-    2: { x: 400, y: 200 },
-    3: { x: 475, y: 200 },
-    4: { x: 550, y: 200 },
-    5: { x: 625, y: 200 },
-    6: { x: 700, y: 200 },
-    7: { x: 775, y: 200 },
-    8: { x: 250, y: 300 },
-    9: { x: 325, y: 300 },
-    10: { x: 400, y: 300 },
-    11: { x: 475, y: 300 },
-    12: { x: 550, y: 300 },
-    13: { x: 625, y: 300 },
-    14: { x: 700, y: 300 },
-    15: { x: 775, y: 300 },
-    16: { x: 250, y: 400 },
-    17: { x: 325, y: 400 },
-    18: { x: 400, y: 400 },
-    19: { x: 475, y: 400 },
-    20: { x: 550, y: 400 },
-    21: { x: 625, y: 400 },
-    22: { x: 700, y: 400 },
-    23: { x: 775, y: 400 }
+    0: { x: 250, y: 300 },
+    1: { x: 325, y: 300 },
+    2: { x: 400, y: 300 },
+    3: { x: 475, y: 300 },
+    4: { x: 550, y: 300 },
+    5: { x: 625, y: 300 },
+    6: { x: 700, y: 300 },
+    7: { x: 775, y: 300 },
+    8: { x: 250, y: 400 },
+    9: { x: 325, y: 400 },
+    10: { x: 400, y: 400 },
+    11: { x: 475, y: 400 },
+    12: { x: 550, y: 400 },
+    13: { x: 625, y: 400 },
+    14: { x: 700, y: 400 },
+    15: { x: 775, y: 400 },
+    16: { x: 250, y: 500 },
+    17: { x: 325, y: 500 },
+    18: { x: 400, y: 500 },
+    19: { x: 475, y: 500 },
+    20: { x: 550, y: 500 },
+    21: { x: 625, y: 500 },
+    22: { x: 700, y: 500 },
+    23: { x: 775, y: 500 }
   }
 
-  var monthCenters = {
-    0: { x: 100, y: 300 },
-    1: { x: 200, y: 300 },
-    2: { x: 300, y: 300 },
-    3: { x: 400, y: 300 },
-    4: { x: 500, y: 300 },
-    5: { x: 600, y: 300 },
-    6: { x: 700, y: 300 },
-    7: { x: 200, y: 450 },
-    8: { x: 300, y: 450 },
-    9: { x: 400, y: 450 },
-    10: { x: 500, y: 450 },
-    11: { x: 600, y: 450 },
-    12: { x: 700, y: 450 }
+  var typeCenters = {
+
   };
 
-  var typeCenters = null;
+  function createTypeCenters(rawData) {
+    var uniqueArray = [];
+    for (var i = 0; i < rawData.original_data.length; i++) {
+      if (uniqueArray.indexOf(rawData.original_data[i].summarized_offense_description) < 0) {
+        typeCenters[rawData.original_data[i].summarized_offense_description] = {
+          x: null , y: null
+        };
+      }
+    }
+
+    var proCount = Object.keys(typeCenters).length;
+    var hSpacing = 550/(proCount/3);
+    var vSpacing = 100;
+    var count = 1;
+
+    for (property in typeCenters) {
+      if (count < proCount/3 ) {
+        typeCenters[property].x = 250 + hSpacing * count;
+        typeCenters[property].y = 300;
+        count += 1;
+      } else if(count < proCount * 2/3) {
+        typeCenters[property].x = 250 + hSpacing * (count - Math.floor(proCount/3));
+        typeCenters[property].y = 400;
+        count += 1;
+      } else {
+        typeCenters[property].x = 250 + hSpacing * (count - Math.floor((proCount * 2)/3));
+        typeCenters[property].y = 500;
+        count += 1;
+      }
+    }
+  }
 
   function charge(d) {
     return -Math.pow(d.radius, 2.0)/9
@@ -124,6 +142,9 @@ function bubbleChart() {
     .range([2, 40]);
 
   function createRealNodes(rawData) {
+
+    createTypeCenters(rawData);
+
     var noders = [];
     var myNodes = rawData.original_data.map(function(d) {
 
@@ -147,7 +168,6 @@ function bubbleChart() {
         y: Math.random() * 800
       });
     });
-    console.log(noders);
     return noders;
   }
 
@@ -254,25 +274,6 @@ function bubbleChart() {
     }
   };
 
-  function splitBubblestoMonths() {
-    // showYears();
-    // hideAxes();
-    force.on('tick', (e) => {
-      bubbles.each(moveToMonths(e.alpha))
-        .attr('cx', (d) => { return d.x; })
-        .attr('cy', (d) => { return d.y; });
-    });
-    force.start();
-  }
-
-  function moveToMonths(alpha) {
-    return function (d) {
-      var target = monthCenters[d.month];
-      d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
-      d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
-    };
-  }
-
   function splitBubblestoDaysofWeek() {
     force.on('tick', (e) => {
       bubbles.each(moveToWeeks(e.alpha))
@@ -319,6 +320,23 @@ function bubbleChart() {
   function moveToTime(alpha) {
     return function (d) {
       var target = timeOfDayCenters[d.time];
+      d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
+      d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
+    };
+  }
+
+  function splitBubblestoType() {
+    force.on('tick', (e) => {
+      bubbles.each(moveToType(e.alpha))
+        .attr('cx', (d) => { return d.x; })
+        .attr('cy', (d) => { return d.y; });
+    });
+    force.start();
+  }
+
+  function moveToType(alpha) {
+    return function (d) {
+      var target = typeCenters[d.summarized_offense_description];
       d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
       d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
     };
@@ -392,15 +410,11 @@ function bubbleChart() {
       splitBubblestoDaysofWeek();
     } else if (displayName === 'by_day_of_month') {
       splitBubblestoDaysofMonth();
-    } else if (displayName === 'by_month_of_year') {
-      splitBubblestoMonths();
     } else if (displayName === 'by_time_of_day') {
       splitBubblestoTime();
     } else if (displayName === 'by_crime_type') {
-
-      groupBubbles();
+      splitBubblestoType();
     } else {
-      console.log('default');
       groupBubbles();
     }
   };

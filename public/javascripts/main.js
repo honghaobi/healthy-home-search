@@ -64,9 +64,6 @@ $(document).ready(function(){
 		$('#by_day_of_month').on('click', function(event) {
 			event.preventDefault();
 		});
-		$('#by_month_of_year').on('click', function(event) {
-			event.preventDefault();
-		});
 		$('#by_time_of_day').on('click', function(event) {
 			event.preventDefault();
 		});
