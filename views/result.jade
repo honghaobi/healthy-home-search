@@ -203,17 +203,17 @@ block content
   .cube
   section#safety.safety
     .expanded
-      .large-9.columns
+      .large-12.columns
         nav.menu-ui.safe_menu
           a#all_crime.button.active(href='#') All Crime Data
-          a#by_day_of_week.button(href='#') By Day Of Week
-          a#by_day_of_month.button(href='#') By Day Of Month
-          a#by_time_of_day.button(href='#') By Time Of Day
-          a#by_crime_type.button(href='#') By Crime Type
-
+          a#typeCenters.button(href='#') By Crime Type
+          a#weekDayCenters.button(href='#') By Day Of Week
+          a#monthDayCenters.button(href='#') By Day Of Month
+          a#timeOfDayCenters.button(href='#') By Time Of Day
         .crime_graph
-
-      .large-3.columns
+        
+    .expanded
+      .large-12.columns
         .safety_sub
           h2.sub_cap_sec Safety
           if allData.renderCrime[0] <= 24

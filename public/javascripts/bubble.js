@@ -1,30 +1,100 @@
 function bubbleChart() {
 
-  // Constants for sizing
-  var width = 1200;
+  var width = 1300;
   var height = 800;
-
-  // tooltip for mouseover functionality
   var tooltip = floatingTooltip('gates_tooltip', 240);
-
-  // Locations to move bubbles towards, depending
-  // on which view mode is selected.
   var center = { x: width/2, y: height/2 };
-
-  // Used when setting up force and
-  // moving around nodes
   var damper = 0.102;
-
   var svg = null;
   var bubbles = null;
   var nodes = [];
 
-  // arrays for the sorted Data==>
+  var force = d3.layout.force()
+    .size([width, height])
+    .charge(charge)
+    .gravity(-0.001)
+    .friction(0.9);
+  var radiusScale = d3.scale.pow()
+    .exponent(0.5)
+    .range([2, 40]);
+
+  var margin = {top: 20, right: 20, bottom: 30, left: 30};
+  var x = d3.scale.linear()
+    .range([margin.left + 40, width - margin.left - margin.right - 40]);
+  var xMap = function(d) { console.log(d); return x(d.id) }
+  var y = d3.scale.linear()
+    .range([height - margin.top - margin.bottom - 40, margin.bottom + 40]);
+  var yMap = function(d) { console.log(d);return y(d.value) }
+  var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient('bottom');
+  var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient('left');
+
+  var chart = function chart(selector, rawData) {
+
+    var randomColorArray = [];
+    var arrayOfRandomColor = function(n) {
+
+      for (var i = 0; i < n; i++) {
+        var randomColor = "#" + ((1<<24)*Math.random()|0).toString(16);
+        randomColorArray.push(randomColor);
+      }
+    }
+    arrayOfRandomColor(50);
+
+    var fillColor = d3.scale.ordinal().range(randomColorArray);
+
+    nodes = createRealNodes(rawData);
+
+    force.nodes(nodes);
+    svg = d3.select(selector)
+      .append('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .classed('svg-content-responsive', true)
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    bubbles = svg.selectAll('.bubble')
+      .data(nodes, function(rawData) { return rawData.id });
+
+    bubbles.enter().append('circle')
+      .classed('bubble', true)
+      .attr('r', 0)
+      .attr('fill', function(d) { return fillColor(d.group); })
+      .attr('stroke', function(d) { return d3.rgb(fillColor(d.group)).darker(); })
+      .attr('stroke-width', .3)
+      .on('mouseover', showDetail)
+      .on('mouseout', hideDetail);
+
+     bubbles.transition()
+      .duration(2000)
+      .attr('r', function(d) { return d.radius; });
+
+    splitBubbles();
+    hideLabels();
+  };
+
+  var monthDays = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st"];
+  var weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  var HourTime = ["12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM"];
+  var months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   var weekDayCenters = {};
   var monthDayCenters = {};
   var timeOfDayCenters = {};
   var typeCenters = {};
+  var weekDayLabelCenters = {
+    0: {x:290, y:600},
+    1: {x:430, y:600},
+    2: {x:570, y:600},
+    3: {x:710, y:600},
+    4: {x:850, y:600},
+    5: {x:990, y:600},
+    6: {x:1150, y:600}
+  }
 
   function createCenters(centerObj, centerCounts, rows) {
     var hSpacing = 550/(centerCounts/rows);
@@ -32,26 +102,25 @@ function bubbleChart() {
     for (var i = 0; i <= centerCounts; i++) {
       if (i <= Math.ceil(centerCounts/rows) - 1) {
         centerObj[i] = {
-          x: 250 + hSpacing * count,
+          x: 400 + hSpacing * count,
           y: 300
         }
         count += 1;
       } else if (i <= Math.ceil((2 * centerCounts)/rows) - 1) {
         centerObj[i] = {
-          x: 250 + hSpacing * (count - (centerCounts/rows)),
+          x: 400 + hSpacing * (count - (centerCounts/rows)),
           y: 400
         }
         count += 1;
       } else {
         centerObj[i] = {
-          x: 250 + hSpacing * (count - (centerCounts * 2)/rows),
+          x: 400 + hSpacing * (count - (centerCounts * 2)/rows),
           y: 500
         }
         count += 1;
       }
     }
   }
-
 
   function createTypeCenters(rawData) {
     var uniqueArray = [];
@@ -69,15 +138,15 @@ function bubbleChart() {
 
     for (property in typeCenters) {
       if (count < uniqueCrimeCount/3 ) {
-        typeCenters[property].x = 250 + hSpacing * count;
+        typeCenters[property].x = 400 + hSpacing * count;
         typeCenters[property].y = 300;
         count += 1;
       } else if(count < uniqueCrimeCount * 2/3) {
-        typeCenters[property].x = 250 + hSpacing * (count - Math.floor(uniqueCrimeCount/3));
+        typeCenters[property].x = 400 + hSpacing * (count - Math.floor(uniqueCrimeCount/3));
         typeCenters[property].y = 400;
         count += 1;
       } else {
-        typeCenters[property].x = 250 + hSpacing * (count - Math.floor((uniqueCrimeCount * 2)/3));
+        typeCenters[property].x = 400 + hSpacing * (count - Math.floor((uniqueCrimeCount * 2)/3));
         typeCenters[property].y = 500;
         count += 1;
       }
@@ -87,16 +156,6 @@ function bubbleChart() {
   function charge(d) {
     return -Math.pow(d.radius, 2.0)/9
   }
-
-  var force = d3.layout.force()
-    .size([width, height])
-    .charge(charge)
-    .gravity(-0.001)
-    .friction(0.9);
-
-  var radiusScale = d3.scale.pow()
-    .exponent(0.5)
-    .range([2, 40]);
 
   function createRealNodes(rawData) {
     createCenters(weekDayCenters, 7, 1);
@@ -130,107 +189,26 @@ function bubbleChart() {
     return noders;
   }
 
-  const margin = {top: 20, right: 20, bottom: 30, left: 30};
-
-  const x = d3.scale.linear()
-    .range([margin.left + 40, width - margin.left - margin.right - 40]);
-
-  const xMap = (d) => { console.log(d); return x(d.id) }
-
-  const y = d3.scale.linear()
-    .range([height - margin.top - margin.bottom - 40, margin.bottom + 40]);
-
-  const yMap = (d) => { console.log(d);return y(d.value) }
-
-  const xAxis = d3.svg.axis()
-    .scale(x)
-    .orient('bottom');
-
-  const yAxis = d3.svg.axis()
-    .scale(y)
-    .orient('left');
-
-  var chart = function chart(selector, rawData) {
-    // console.log(rawData);
-
-    // weekDayCenters = {
-    //   monday: 0,
-    //   tuesday: 0,
-    //   wednesday: 0,
-    //   thursday: 0,
-    //   friday: 0,
-    //   saturday: 0,
-    //   sunday: 0
-    // };
-    //
-    // for (var i = 0; i < 6; i++) {
-    //   weekDayCenters[i] = {x: 200 + 100 * i, y: height/2}
-    // }
-
-    var randomColorArray = [];
-    var arrayOfRandomColor = function(n) {
-
-      for (var i = 0; i < n; i++) {
-        var randomColor = "#" + ((1<<24)*Math.random()|0).toString(16);
-        randomColorArray.push(randomColor);
-      }
-    }
-    arrayOfRandomColor(50);
-
-
-    var fillColor = d3.scale.ordinal().range(randomColorArray);
-
-    nodes = createRealNodes(rawData);
-
-    // x.domain(d3.extent(nodes.map(node => { return node.created }))).nice();
-    // y.domain(d3.extent(nodes.map(node => { return node.value }))).nice();
-
-    force.nodes(nodes);
-    svg = d3.select(selector)
-      .append('svg')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-      .append('g')
-      .classed('svg-content-responsive', true)
-      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-    bubbles = svg.selectAll('.bubble')
-      .data(nodes, function(rawData) { return rawData.id });
-
-    bubbles.enter().append('circle')
-      .classed('bubble', true)
-      .attr('r', 0)
-      .attr('fill', function(d) { return fillColor(d.group); })
-      .attr('stroke', function(d) { return d3.rgb(fillColor(d.group)).darker(); })
-      .attr('stroke-width', .3)
-      .on('mouseover', showDetail)
-      .on('mouseout', hideDetail);
-
-     bubbles.transition()
-      .duration(2000)
-      .attr('r', function(d) { return d.radius; });
-
-    splitBubbles();
-  };
-
-  function splitBubbles(displayName) {
+  function splitBubbles(toCenters) {
+    hideLabels();
+    showLables(toCenters);
     force.on('tick', function(e) {
-      bubbles.each(moveToCenters(e.alpha, displayName))
+      bubbles.each(moveToCenters(e.alpha, toCenters))
         .attr('cx', function(d) { return d.x; })
         .attr('cy', function(d) { return d.y; });
     });
     force.start();
   }
 
-  function moveToCenters(alpha, displayName) {
+  function moveToCenters(alpha, toCenters) {
     return function (d) {
-      if (displayName === 'by_day_of_week') {
+      if (toCenters === 'weekDayCenters') {
         var target = weekDayCenters[d.byDayofWeek];
-      } else if (displayName === 'by_day_of_month') {
+      } else if (toCenters === 'monthDayCenters') {
         var target = monthDayCenters[d.byDayofMonth];
-      } else if (displayName === 'by_time_of_day') {
+      } else if (toCenters === 'timeOfDayCenters') {
         var target = timeOfDayCenters[d.time];
-      } else if (displayName === 'by_crime_type') {
+      } else if (toCenters === 'typeCenters') {
         var target = typeCenters[d.summarized_offense_description];
       } else {
         var target = center;
@@ -240,63 +218,47 @@ function bubbleChart() {
     };
   }
 
-
-  chart.toggleDisplay = function(displayName) {
-    splitBubbles(displayName);
+  chart.toggleDisplay = function(toCenters) {
+    splitBubbles(toCenters);
   };
 
-  function scatterPlot() {
-    hideYears();
-    svg.append('g')
-      .attr('class', 'x axis')
-      .attr('transform', 'translate(0,' + height + 200 +')')
-      .call(xAxis)
-      .attr('x', width)
-      .attr('y', height);
-
-    svg.append('g')
-      .attr('class', 'y axis')
-      .call(yAxis);
-
-    force.on('tick', (e) => {
-      bubbles.each(moveToAxes(e.alpha))
-      .attr('cx', (d) => { return d.x; })
-      .attr('cy', (d) => { return d.y; });
-    });
-    force.start();
+  function hideLabels() {
+    svg.selectAll('.d3_labels').remove();
   }
 
-  function moveToAxes(alpha) {
-    return function(d) {
-      console.log(d.month);
-      d.x = d.x + (x(d.month) - d.x) * damper * alpha * 1.1;
-      d.y = d.y + (y(d.value) - d.y) * damper * alpha * 1.1;
-    };
-  }
-
-  function hideYears() {
-    svg.selectAll('.year').remove();
-  }
-
-  function hideAxes() {
-    svg.selectAll('g').remove();
-  }
-
-  function showYears() {
-    var yearsData = d3.keys(yearsTitleX);
-    var years = svg.selectAll('.year').data(yearsData);
-
-      years.enter().append('text')
-        .attr('class', 'year')
-        .attr('x', function(d) { return yearsTitleX[d]; })
-        .attr('y', 40)
+  function showLables(toCenters) {
+    if (toCenters === 'weekDayCenters') {
+      var labelCenterLoc = weekDayLabelCenters;
+      var labeText = weekDays;
+    } else if (toCenters === 'monthDayCenters') {
+      // var labelCenterLoc = monthDayLabelCenters;
+      // var labeText = monthDays;
+    } else if (toCenters === 'timeOfDayCenters') {
+      // var labelCenterLoc = timeLabelCenters;
+      // var labeText = HourTime;
+    } else if (toCenters === 'typeCenters') {
+      var centerObj = typeCenters;
+    }
+    var dataCenters = svg.selectAll('.d3_labels').data(d3.keys(labelCenterLoc));
+      dataCenters.enter().append('text')
+        .attr('class', 'd3_labels')
+        .attr('x', function (d) {
+          return labelCenterLoc[d].x; })
+        .attr('y', function (d) { return labelCenterLoc[d].y; })
         .attr('text-anchor', 'middle')
-        .text(function(d) { return d; });
+        .text(function(d) { return labeText[d]; });
   }
 
   function showDetail(d) {
     var content = '<span class="name">Crime: </span><span class="value">' +
                   d.summarized_offense_description +
+                  '</span>' + '</br>' +
+                  '<span class="name">Date of Occurance: </span><span class="value">' +
+                  months[d.month] + "-" + monthDays[d.byDayofMonth] + "-" +
+                  d.year +
+                  '</span>' + '</br>' +
+                  '<span class="name">Time of Occurance: </span><span class="value">' +
+                  HourTime[d.time] + " On " + weekDays[d.byDayofWeek] +
                   '</span>';
     tooltip.showTooltip(content, d3.event);
   }
@@ -323,11 +285,11 @@ function setupButtons() {
     .selectAll('.button')
     .on('click', function () {
       d3.selectAll('.button').classed('active', false);
-      const button = d3.select(this);
+      var button = d3.select(this);
 
       button.classed('active', true);
 
-      const buttonId = button.attr('id');
+      var buttonId = button.attr('id');
 
       myBubbleChart.toggleDisplay(buttonId);
     });
