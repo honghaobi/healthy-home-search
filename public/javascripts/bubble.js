@@ -21,79 +21,37 @@ function bubbleChart() {
 
   // arrays for the sorted Data==>
 
-  var weekDayCenters = {
-    0: { x: 250, y: 400 },
-    1: { x: 350, y: 400 },
-    2: { x: 450, y: 400 },
-    3: { x: 550, y: 400 },
-    4: { x: 650, y: 400 },
-    5: { x: 750, y: 400 },
-    6: { x: 850, y: 400 }
+  var weekDayCenters = {};
+  var monthDayCenters = {};
+  var timeOfDayCenters = {};
+  var typeCenters = {};
+
+  function createCenters(centerObj, centerCounts, rows) {
+    var hSpacing = 550/(centerCounts/rows);
+    var count = 1;
+    for (var i = 0; i <= centerCounts; i++) {
+      if (i <= Math.ceil(centerCounts/rows) - 1) {
+        centerObj[i] = {
+          x: 250 + hSpacing * count,
+          y: 300
+        }
+        count += 1;
+      } else if (i <= Math.ceil((2 * centerCounts)/rows) - 1) {
+        centerObj[i] = {
+          x: 250 + hSpacing * (count - (centerCounts/rows)),
+          y: 400
+        }
+        count += 1;
+      } else {
+        centerObj[i] = {
+          x: 250 + hSpacing * (count - (centerCounts * 2)/rows),
+          y: 500
+        }
+        count += 1;
+      }
+    }
   }
 
-  var monthDayCenters = {
-    1: { x: 250, y: 300 },
-    2: { x: 300, y: 300 },
-    3: { x: 350, y: 300 },
-    4: { x: 400, y: 300 },
-    5: { x: 450, y: 300 },
-    6: { x: 500, y: 300 },
-    7: { x: 550, y: 300 },
-    8: { x: 600, y: 300 },
-    9: { x: 650, y: 300 },
-    10: { x: 700, y: 300 },
-    11: { x: 250, y: 400 },
-    12: { x: 300, y: 400 },
-    13: { x: 350, y: 400 },
-    14: { x: 400, y: 400 },
-    15: { x: 450, y: 400 },
-    16: { x: 500, y: 400 },
-    17: { x: 550, y: 400 },
-    18: { x: 600, y: 400 },
-    19: { x: 650, y: 400 },
-    20: { x: 700, y: 400 },
-    21: { x: 250, y: 500 },
-    22: { x: 300, y: 500 },
-    23: { x: 350, y: 500 },
-    24: { x: 400, y: 500 },
-    25: { x: 450, y: 500 },
-    26: { x: 500, y: 500 },
-    27: { x: 550, y: 500 },
-    28: { x: 600, y: 500 },
-    29: { x: 650, y: 500 },
-    30: { x: 700, y: 500 },
-    31: { x: 750, y: 500 }
-  }
-  var timeOfDayCenters = {
-    0: { x: 250, y: 300 },
-    1: { x: 325, y: 300 },
-    2: { x: 400, y: 300 },
-    3: { x: 475, y: 300 },
-    4: { x: 550, y: 300 },
-    5: { x: 625, y: 300 },
-    6: { x: 700, y: 300 },
-    7: { x: 775, y: 300 },
-    8: { x: 250, y: 400 },
-    9: { x: 325, y: 400 },
-    10: { x: 400, y: 400 },
-    11: { x: 475, y: 400 },
-    12: { x: 550, y: 400 },
-    13: { x: 625, y: 400 },
-    14: { x: 700, y: 400 },
-    15: { x: 775, y: 400 },
-    16: { x: 250, y: 500 },
-    17: { x: 325, y: 500 },
-    18: { x: 400, y: 500 },
-    19: { x: 475, y: 500 },
-    20: { x: 550, y: 500 },
-    21: { x: 625, y: 500 },
-    22: { x: 700, y: 500 },
-    23: { x: 775, y: 500 }
-  }
-
-  var typeCenters = {
-
-  };
 
   function createTypeCenters(rawData) {
     var uniqueArray = [];
@@ -105,22 +63,21 @@ function bubbleChart() {
       }
     }
 
-    var proCount = Object.keys(typeCenters).length;
-    var hSpacing = 550/(proCount/3);
-    var vSpacing = 100;
+    var uniqueCrimeCount = Object.keys(typeCenters).length;
+    var hSpacing = 550/(uniqueCrimeCount/3);
     var count = 1;
 
     for (property in typeCenters) {
-      if (count < proCount/3 ) {
+      if (count < uniqueCrimeCount/3 ) {
         typeCenters[property].x = 250 + hSpacing * count;
         typeCenters[property].y = 300;
         count += 1;
-      } else if(count < proCount * 2/3) {
-        typeCenters[property].x = 250 + hSpacing * (count - Math.floor(proCount/3));
+      } else if(count < uniqueCrimeCount * 2/3) {
+        typeCenters[property].x = 250 + hSpacing * (count - Math.floor(uniqueCrimeCount/3));
         typeCenters[property].y = 400;
         count += 1;
       } else {
-        typeCenters[property].x = 250 + hSpacing * (count - Math.floor((proCount * 2)/3));
+        typeCenters[property].x = 250 + hSpacing * (count - Math.floor((uniqueCrimeCount * 2)/3));
         typeCenters[property].y = 500;
         count += 1;
       }
@@ -142,7 +99,9 @@ function bubbleChart() {
     .range([2, 40]);
 
   function createRealNodes(rawData) {
-
+    createCenters(weekDayCenters, 7, 1);
+    createCenters(monthDayCenters, 31, 3);
+    createCenters(timeOfDayCenters, 24, 3);
     createTypeCenters(rawData);
 
     var noders = [];
@@ -236,7 +195,7 @@ function bubbleChart() {
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     bubbles = svg.selectAll('.bubble')
-      .data(nodes, (rawData) => { return rawData.id });
+      .data(nodes, function(rawData) { return rawData.id });
 
     bubbles.enter().append('circle')
       .classed('bubble', true)
@@ -249,98 +208,42 @@ function bubbleChart() {
 
      bubbles.transition()
       .duration(2000)
-      .attr('r', (d) => { return d.radius; });
+      .attr('r', function(d) { return d.radius; });
 
-    groupBubbles();
+    splitBubbles();
   };
 
-  function groupBubbles() {
-    hideYears();
-    hideAxes();
-
-    force.on('tick', (e) => {
-      bubbles.each(moveToCenter(e.alpha))
-        .attr('cx', (d) => { return d.x })
-        .attr('cy', (d) => { return d.y });
+  function splitBubbles(displayName) {
+    force.on('tick', function(e) {
+      bubbles.each(moveToCenters(e.alpha, displayName))
+        .attr('cx', function(d) { return d.x; })
+        .attr('cy', function(d) { return d.y; });
     });
-
     force.start();
   }
 
-  function moveToCenter (alpha) {
-    return (d) => {
-      d.x = d.x + (center.x - d.x) * damper * alpha * 1.1;
-      d.y = d.y + (center.y - d.y) * damper * alpha * 1.1;
-    }
+  function moveToCenters(alpha, displayName) {
+    return function (d) {
+      if (displayName === 'by_day_of_week') {
+        var target = weekDayCenters[d.byDayofWeek];
+      } else if (displayName === 'by_day_of_month') {
+        var target = monthDayCenters[d.byDayofMonth];
+      } else if (displayName === 'by_time_of_day') {
+        var target = timeOfDayCenters[d.time];
+      } else if (displayName === 'by_crime_type') {
+        var target = typeCenters[d.summarized_offense_description];
+      } else {
+        var target = center;
+      }
+      d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
+      d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
+    };
+  }
+
+
+  chart.toggleDisplay = function(displayName) {
+    splitBubbles(displayName);
   };
-
-  function splitBubblestoDaysofWeek() {
-    force.on('tick', (e) => {
-      bubbles.each(moveToWeeks(e.alpha))
-        .attr('cx', (d) => { return d.x; })
-        .attr('cy', (d) => { return d.y; });
-    });
-    force.start();
-  }
-
-  function moveToWeeks(alpha) {
-    return function (d) {
-      var target = weekDayCenters[d.byDayofWeek];
-      d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
-      d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
-    };
-  }
-
-  function splitBubblestoDaysofMonth() {
-    force.on('tick', (e) => {
-      bubbles.each(moveToDays(e.alpha))
-        .attr('cx', (d) => { return d.x; })
-        .attr('cy', (d) => { return d.y; });
-    });
-    force.start();
-  }
-
-  function moveToDays(alpha) {
-    return function (d) {
-      var target = monthDayCenters[d.byDayofMonth];
-      d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
-      d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
-    };
-  }
-
-  function splitBubblestoTime() {
-    force.on('tick', (e) => {
-      bubbles.each(moveToTime(e.alpha))
-        .attr('cx', (d) => { return d.x; })
-        .attr('cy', (d) => { return d.y; });
-    });
-    force.start();
-  }
-
-  function moveToTime(alpha) {
-    return function (d) {
-      var target = timeOfDayCenters[d.time];
-      d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
-      d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
-    };
-  }
-
-  function splitBubblestoType() {
-    force.on('tick', (e) => {
-      bubbles.each(moveToType(e.alpha))
-        .attr('cx', (d) => { return d.x; })
-        .attr('cy', (d) => { return d.y; });
-    });
-    force.start();
-  }
-
-  function moveToType(alpha) {
-    return function (d) {
-      var target = typeCenters[d.summarized_offense_description];
-      d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
-      d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
-    };
-  }
 
   function scatterPlot() {
     hideYears();
@@ -401,23 +304,6 @@ function bubbleChart() {
   function hideDetail(d) {
      tooltip.hideTooltip();
   }
-
-  chart.toggleDisplay = function(displayName) {
-    if (displayName === 'all_crime') {
-      groupBubbles();
-      // scatterPlot();
-    } else if (displayName === 'by_day_of_week') {
-      splitBubblestoDaysofWeek();
-    } else if (displayName === 'by_day_of_month') {
-      splitBubblestoDaysofMonth();
-    } else if (displayName === 'by_time_of_day') {
-      splitBubblestoTime();
-    } else if (displayName === 'by_crime_type') {
-      splitBubblestoType();
-    } else {
-      groupBubbles();
-    }
-  };
 
   return chart;
 }
