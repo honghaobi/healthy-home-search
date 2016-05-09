@@ -54,8 +54,9 @@ $(document).ready(function(){
 			scrollTo($(this).attr('href'), 900, 'easeInOutCubic');
 		});
 
-		$('.safe_menu a').on('click', function(event) {
-			event.preventDefault();
+		$('.safe_menu a').on('click', function(e) {
+			e.preventDefault();
+			scrollTo($('#safety'), 900, 'easeInOutCubic');
 		});
 
     /*    Back to top button    */

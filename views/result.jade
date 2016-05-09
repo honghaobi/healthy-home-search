@@ -204,6 +204,7 @@ block content
   section#safety.safety
     .expanded
       .large-12.columns
+        h2.sub_cap_sec.pad Safety
         nav.menu-ui.safe_menu
           a#all_crime.button.active(href='#') All Crime Data
           a#typeCenters.button(href='#') By Crime Type
@@ -215,7 +216,6 @@ block content
     .expanded
       .large-12.columns
         .safety_sub
-          h2.sub_cap_sec Safety
           if allData.renderCrime[0] <= 24
             p.font-large-prime Your safety score is #{allData.renderCrime[0]}. This is a crime ridden area of Seattle. You may want to rethink of living in this area.
           else if allData.renderCrime[0] >= 25 && allData.renderCrime[0] <= 49

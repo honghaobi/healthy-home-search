@@ -400,7 +400,7 @@ img.bg {
 
 .main-nav{
   list-style: none;
-  background-color: rgba(100, 100, 100, 0.6);
+  background-color: rgba(100, 100, 100, .9);
   width: 100%;
   height: 38px;
   position: fixed;
@@ -738,16 +738,33 @@ nav.menu-ui a:hover{
   position: relative;
 }
 
+.pad{
+  position: absolute;
+  top: 80px;
+  left: 50px;
+}
+
 .safety{
-  height: 1400px;
+  height: 1150px;
   width: 100%;
   background: url('/images/cube.png') repeat;
   position: relative;
 }
 
+.safety_sub{
+  width:100%;
+  padding-left: 7%;
+  padding-right: 7%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  position: relative;
+  background-color: rgba(225, 225, 225, 0.8);
+}
+
 .crime_graph{
   clear: both;
   margin-bottom: 10px;
+  overflow-x: scroll;
 }
 
 .tooltip {
@@ -777,15 +794,8 @@ nav.menu-ui a:hover{
 
 .d3_labels {
   font-size: 16px;
-}
-
-.safety_sub{
-  width:100%;
-  padding-left: 7%;
-  padding-right: 7%;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  position: relative;
+  font-weight: bold;
+  font-family: "raleway-light", Helvetica, Arial, sans-serif;
 }
 
 .menu-ui {
@@ -919,6 +929,12 @@ nav.menu-ui a:hover{
 
   .safety{
     height: 1050px;
+  }
+
+  .pad{
+    position: absolute;
+    top: 400px;
+    left: 30px;
   }
 
   .safety_sub{

@@ -1,7 +1,7 @@
 function bubbleChart() {
 
   var width = 1300;
-  var height = 800;
+  var height = 750;
   var tooltip = floatingTooltip('gates_tooltip', 240);
   var center = { x: width/2, y: height/2 };
   var damper = 0.102;
@@ -82,7 +82,7 @@ function bubbleChart() {
   var hourTime = ["12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM"];
   var months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var monthSections = ["1st-10th", "11th-20th", "21st-31st"];
-  var timeSections = ["12AM-7AM", "8AM-4PM", "5PM-12PM"];
+  var timeSections = ["12AM-7AM", "8AM-3PM", "4PM-12PM"];
 
   var weekDayCenters = {};
   var monthDayCenters = {};
