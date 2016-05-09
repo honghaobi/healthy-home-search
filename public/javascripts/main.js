@@ -54,11 +54,9 @@ $(document).ready(function(){
 			scrollTo($(this).attr('href'), 900, 'easeInOutCubic');
 		});
 
-
 		$('.safe_menu a').on('click', function(event) {
 			event.preventDefault();
 		});
-
 
     /*    Back to top button    */
     var back_top = $('#back_top');
@@ -66,7 +64,6 @@ $(document).ready(function(){
     back_top.click(function(e){
     	e.preventDefault();
     	scrollTo(0, 900, 'easeInOutCubic');
-
     });
 
     function scrollTo(target, speed, ease){

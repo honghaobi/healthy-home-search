@@ -79,21 +79,35 @@ function bubbleChart() {
 
   var monthDays = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st"];
   var weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-  var HourTime = ["12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM"];
+  var hourTime = ["12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM"];
   var months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var monthSections = ["1st-10th", "11th-20th", "21st-31st"];
+  var timeSections = ["12AM-7AM", "8AM-4PM", "5PM-12PM"];
 
   var weekDayCenters = {};
   var monthDayCenters = {};
   var timeOfDayCenters = {};
   var typeCenters = {};
   var weekDayLabelCenters = {
-    0: {x:290, y:600},
-    1: {x:430, y:600},
-    2: {x:570, y:600},
-    3: {x:710, y:600},
-    4: {x:850, y:600},
-    5: {x:990, y:600},
-    6: {x:1150, y:600}
+    0: {x:310, y:640},
+    1: {x:460, y:640},
+    2: {x:590, y:640},
+    3: {x:720, y:640},
+    4: {x:830, y:640},
+    5: {x:960, y:640},
+    6: {x:1110, y:640}
+  }
+
+  var monthDayLabelCenters = {
+    0: {x:180, y:200},
+    1: {x:180, y:400},
+    2: {x:180, y:600}
+  }
+
+  var timeLabelCenters = {
+    0: {x:180, y:200},
+    1: {x:180, y:400},
+    2: {x:180, y:600}
   }
 
   function createCenters(centerObj, centerCounts, rows) {
@@ -231,11 +245,11 @@ function bubbleChart() {
       var labelCenterLoc = weekDayLabelCenters;
       var labeText = weekDays;
     } else if (toCenters === 'monthDayCenters') {
-      // var labelCenterLoc = monthDayLabelCenters;
-      // var labeText = monthDays;
+      var labelCenterLoc = monthDayLabelCenters;
+      var labeText = monthSections;
     } else if (toCenters === 'timeOfDayCenters') {
-      // var labelCenterLoc = timeLabelCenters;
-      // var labeText = HourTime;
+      var labelCenterLoc = timeLabelCenters;
+      var labeText = timeSections;
     } else if (toCenters === 'typeCenters') {
       var centerObj = typeCenters;
     }
@@ -258,7 +272,7 @@ function bubbleChart() {
                   d.year +
                   '</span>' + '</br>' +
                   '<span class="name">Time of Occurance: </span><span class="value">' +
-                  HourTime[d.time] + " On " + weekDays[d.byDayofWeek] +
+                  hourTime[d.time] + " On " + weekDays[d.byDayofWeek] +
                   '</span>';
     tooltip.showTooltip(content, d3.event);
   }
