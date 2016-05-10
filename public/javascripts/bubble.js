@@ -33,7 +33,7 @@ function bubbleChart() {
     .orient('left');
 
   var chart = function chart(selector, rawData) {
-
+    var bubblesColorArray = [""];
     var randomColorArray = [];
     var arrayOfRandomColor = function(n) {
 
