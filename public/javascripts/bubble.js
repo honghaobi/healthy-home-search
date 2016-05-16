@@ -33,10 +33,10 @@ function bubbleChart() {
     .orient('left');
 
   var chart = function chart(selector, rawData) {
-    var bubblesColorArray = [""];
+    var bubblesColorArray = ["#e96956", "#7dd6e6", "#aa98e5", "#3a6159", "#77e6be", "#28e664", "#143d73", "#e97d8d", "#3a54e5", "#f97bf7",  "#d4e98c", "#5d1a61", "#e6e046", "#e6af85", "#28e6c0", "#271c61", "#e6883f", "#339cff", "#e67100", "#b1e971", "#e63500", "#d584e6", "#7b00e6", "#e648a9", "#bfc2e6", "#c0e6d1", "#e6dca9", "#e6b0ac", "#d18de6", "#64b8e5", "#6d77e5", "#e95973", "#e1e97c", "#96e18e", "#20611f", "#61362d", "#612447"];
+
     var randomColorArray = [];
     var arrayOfRandomColor = function(n) {
-
       for (var i = 0; i < n; i++) {
         var randomColor = "#" + ((1<<24)*Math.random()|0).toString(16);
         randomColorArray.push(randomColor);
@@ -44,7 +44,7 @@ function bubbleChart() {
     }
     arrayOfRandomColor(50);
 
-    var fillColor = d3.scale.ordinal().range(randomColorArray);
+    var fillColor = d3.scale.ordinal().range(bubblesColorArray);
 
     nodes = createRealNodes(rawData);
 
@@ -264,6 +264,9 @@ function bubbleChart() {
   }
 
   function showDetail(d) {
+
+    d3.select(this).attr('stroke', '#E96956').attr('stroke-width', 1.5);
+
     var content = '<span class="name">Crime: </span><span class="value">' +
                   d.summarized_offense_description +
                   '</span>' + '</br>' +
@@ -278,6 +281,7 @@ function bubbleChart() {
   }
 
   function hideDetail(d) {
+      d3.select(this).attr('stroke-width', 0)
      tooltip.hideTooltip();
   }
 
