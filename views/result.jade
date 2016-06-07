@@ -243,7 +243,12 @@ block content
     console.log(allData);
 
     var communityMap = new L.mapbox.map('community_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 15);
-
+    
+    communityMap.touchZoom.disable();
+    communityMap.doubleClickZoom.disable();
+    communityMap.scrollWheelZoom.disable();
+    communityMap.keyboard.disable();
+    
     L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(communityMap);
 
     L.mapbox.featureLayer({
@@ -410,6 +415,11 @@ block content
 
 
     var accessibilityMap = new L.mapbox.map('accessibility_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
+    
+    accessibilityMap.touchZoom.disable();
+    accessibilityMap.doubleClickZoom.disable();
+    accessibilityMap.scrollWheelZoom.disable();
+    accessibilityMap.keyboard.disable();
 
     L.mapbox.styleLayer('mapbox://styles/henrybi/cin8j804n0090bckv5dtpjoe3').addTo(accessibilityMap);
 
@@ -494,6 +504,11 @@ block content
     });
     
     var environmentMap = new L.mapbox.map('environment_map', 'mapbox.streets').setView([#{allData.renderLocation.long}, #{allData.renderLocation.lat}], 16);
+    
+    environmentMap.touchZoom.disable();
+    environmentMap.doubleClickZoom.disable();
+    environmentMap.scrollWheelZoom.disable();
+    environmentMap.keyboard.disable();
 
     L.mapbox.featureLayer({
       type: 'Feature',
