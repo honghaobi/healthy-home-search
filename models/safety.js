@@ -10,6 +10,7 @@ module.exports = {
       method: 'GET',
       uri: `https://data.seattle.gov/resource/y7pv-r3kh.json?$where=within_circle(location,${location.long},${location.lat},1000)`,
       qs: {
+        $limit : 1000,
         $$app_token: process.env.SODAKEY
       },
       json:true
@@ -17,6 +18,7 @@ module.exports = {
 
     return rp(options)
       .then(function(crimeData) {
+
           var organizedCrimeCountObj = {}
 
           for (var i = 0; i < crimeData.length; i++) {

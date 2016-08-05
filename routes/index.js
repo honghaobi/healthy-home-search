@@ -99,8 +99,6 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/save', function(req, res, next) {
-    var timestamp = new Date();
-
     Searches().insert({user_id:req.session.user.id, address: req.session.userInput, community: req.session.comScore, accessablility: req.session.transitNum, environment: req.session.enviroScore, safety: req.session.crimeNum, date_time: timestamp}).then(function(){
       res.send(200);
     }).catch(function(err){
