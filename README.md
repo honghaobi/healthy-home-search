@@ -1,7 +1,7 @@
 ___NeighborGood___
 ==================
 
-** Summery **
+## Summary
 The NeighborGood app estimates safety, accessibility, and environment of neighborhoods within the city of  Seattle, based on a user’s address. The vision and creation of the app was by Henry Bi, Alex Southwell, Carey LaMothe, and Dustin Wurtz.
 
 Web Link: http://healthy-home-search.herokuapp.com/
@@ -59,4 +59,4 @@ NeighborGood is intended to be a user friendly tool for a user to research a par
 
 This data represents a 1.5 mile radius around the specified address. Each piece of data has a longitude and latitude associated with it. We then used that coordinate and placed it on it’s appropriate map. These maps are displayed to the user through MapBox with the appropriate points and can be filtered by their subtopics. In order to compare and score different aspects of city areas, we created an algorithm that assigns a score on a scale from 1 to 100. Where 100 is the best score. A user will also have the opportunity to save their searches, by signing up for a profile on the app. There are two ways for a user to sign up. They can sign up by providing an email address, username and password. Or they can sign up by approving the application to use their Google Account through OAuth. If a user provides an email address, username and password, the application will store this information in a database. Then when the user desires to login, a check will be performed to check if they are already a registered user and sign them in.
 
-Once they receive a profile they will be provided a dashboard where they can save all their search locations and their scores. A user will also be able to re-search any past saved address and receive the most up to date score and data of their specified address. All of the user’s saved searches will be saved within a database through Postgres and Knex. 
+Once they receive a profile they will be provided a dashboard where they can save all their search locations and their scores. A user will also be able to re-search any past saved address and receive the most up to date score and data of their specified address. All of the user’s saved searches will be saved within a database through Postgres and Knex.
