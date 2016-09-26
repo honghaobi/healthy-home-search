@@ -1,6 +1,4 @@
 node_modules/
 bower_components/
-.env
-.gitignore
 ../public/crime.json
 .DS_Store
