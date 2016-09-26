@@ -30,6 +30,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
 app.use(session({keys: [process.env.SESSION_KEY1, process.env.SESSION_KEY2]}));
 app.use(function(req, res, next) {
   res.locals.user = req.user;
