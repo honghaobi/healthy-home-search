@@ -326,26 +326,28 @@ block content
 
     if(allData.renderRestaurants) {
       for (var r = 1; r <= 9; r++) {
-        communityGeoJson.push({
-          "type": "Feature",
-          "geometry": {
-            "coordinates": [
+        if (allData.renderRestaurants.nearby_restaurants[r]) {
+          communityGeoJson.push({
+            "type": "Feature",
+            "geometry": {
+              "coordinates": [
               allData.renderRestaurants.nearby_restaurants[r].restaurant.location.longitude, allData.renderRestaurants.nearby_restaurants[r].restaurant.location.latitude
-            ],
-            "type": "Point"
-          },
-          "properties": {
-            "title": allData.renderRestaurants.nearby_restaurants[r].restaurant.name,
-            "schools": false,
-            "parks": false,
-            "restaurants": true,
-            "viewpoints": false,
-            "cultural-spaces": false,
-            "marker-color": "#7bd0b5",
-            "marker-size": "medium",
-            "marker-symbol": "bar"
-          }
-        });
+              ],
+              "type": "Point"
+              },
+              "properties": {
+                "title": allData.renderRestaurants.nearby_restaurants[r].restaurant.name,
+                "schools": false,
+                "parks": false,
+                "restaurants": true,
+                "viewpoints": false,
+                "cultural-spaces": false,
+                "marker-color": "#7bd0b5",
+                "marker-size": "medium",
+                "marker-symbol": "bar"
+              }
+            });
+        }
       }
     }
     
