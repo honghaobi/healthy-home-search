@@ -67,6 +67,10 @@ form.signin-form {
   font-family: Montserrat;
 }
 
+a {
+  color: white;
+}
+
 .text-input {
   position: relative;
   margin-top: 50px;
